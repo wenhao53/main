@@ -47,7 +47,7 @@ public class Address {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
-                && this.value.equals(((Address) other).value)); // state check
+                && this.value.toLowerCase().equals(((Address) other).value.toLowerCase())); // state check
     }
 
     @Override

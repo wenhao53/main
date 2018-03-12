@@ -31,6 +31,7 @@ public class Name {
         this.fullName = name;
     }
 
+
     /**
      * Returns true if a given string is a valid person name.
      */
@@ -48,7 +49,7 @@ public class Name {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Name // instanceof handles nulls
-                && this.fullName.equals(((Name) other).fullName)); // state check
+                && this.fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase())); // state check
     }
 
     @Override
