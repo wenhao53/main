@@ -9,7 +9,9 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-    //Adapted from https://nus-cs2103-ay1718s2.github.io/addressbook-level4/DeveloperGuide.html#improving-each-component
+    /**
+     * Adapted from https://nus-cs2103-ay1718s2.github.io/addressbook-level4/DeveloperGuide.html#improving-each-component
+     */
     public static final String COMMAND_ALIAS = "f";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
