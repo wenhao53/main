@@ -38,6 +38,15 @@ public class Address {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if two Addresses in comparison are alphabetically the same (regardless of case).
+     */
+    public boolean alphabeticallyEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Address // instanceof handles nulls
+                && this.value.toLowerCase().equals(((Address) other).value)); // state check
+    }
+
     @Override
     public String toString() {
         return value;
@@ -48,12 +57,6 @@ public class Address {
         return other == this // short circuit if same object
                 || (other instanceof Address // instanceof handles nulls
                 && this.value.equals(((Address) other).value)); // state check
-    }
-
-    public boolean alphabeticallyEquals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && this.value.toLowerCase().equals(((Address) other).value)); // state check
     }
 
     @Override
