@@ -47,10 +47,10 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
-            /**
-             * Adapted from https://nus-cs2103-ay1718s2.github.io/
-             * addressbook-level4/DeveloperGuide.html#improving-each-component
-             */
+        /**
+        * Adapted from https://nus-cs2103-ay1718s2.github.io/
+        * addressbook-level4/DeveloperGuide.html#improving-each-component
+        */
         case AddCommand.COMMAND_WORD:
         case AddCommand.COMMAND_ALIAS:
             return new AddCommandParser().parse(arguments);
