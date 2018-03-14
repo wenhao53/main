@@ -51,6 +51,12 @@ public class Name {
                 && this.fullName.equals(((Name) other).fullName)); // state check
     }
 
+    public boolean alphabeticallyEquals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Name // instanceof handles nulls
+                && this.fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase())); // state check
+    }
+
     @Override
     public int hashCode() {
         return fullName.hashCode();
