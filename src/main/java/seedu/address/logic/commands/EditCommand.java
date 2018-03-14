@@ -199,9 +199,9 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(address);
         }
 
-        public void setWeight(Weight weight) { this.weight = weight;}
+        public void setWeight(Weight weight) { this.weight = weight; }
 
-        public Optional<Weight> getWeight() { return Optional.ofNullable(weight);}
+        public Optional<Weight> getWeight() { return Optional.ofNullable(weight); }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
