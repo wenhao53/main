@@ -1,41 +1,39 @@
 package seedu.address.model.person;
 
+import org.junit.Test;
+import seedu.address.testutil.Assert;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
-import seedu.address.testutil.Assert;
-
-public class PhoneTest {
+public class WeightTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Phone(null));
+        Assert.assertThrows(NullPointerException.class, () -> new Weight(null));
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+    public void constructor_invalidWeight_throwsIllegalArgumentException() {
+        String invalidWeight = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Weight(invalidWeight));
     }
 
     @Test
-    public void isValidPhone() {
-        // null phone number
-        Assert.assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
+    public void isValidWeight() {
+        // null weight
+        Assert.assertThrows(NullPointerException.class, () -> Weight.isValidWeight(null));
 
-        // invalid phone numbers
-        assertFalse(Phone.isValidPhone("")); // empty string
-        assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
-        assertFalse(Phone.isValidPhone("phone")); // non-numeric
-        assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
-        assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
+        // invalid weight
+        assertFalse(Weight.isValidWeight("")); // empty string
+        assertFalse(Weight.isValidWeight(" ")); // spaces only
+        assertFalse(Weight.isValidWeight("weight")); // non-numeric
+        assertFalse(Weight.isValidWeight("9p.2")); // alphabets within digits
+        assertFalse(Weight.isValidWeight("9 3")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
-        assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
+        assertTrue(Weight.isValidWeight("91.1")); // exactly 3 numbers
+        assertTrue(Weight.isValidWeight("95"));
+        assertTrue(Weight.isValidWeight("105")); // heavy weight
     }
 }
