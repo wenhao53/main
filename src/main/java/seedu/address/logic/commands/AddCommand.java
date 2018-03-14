@@ -18,7 +18,8 @@ public class AddCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "add";
     /**
-     * Adapted from https://nus-cs2103-ay1718s2.github.io/addressbook-level4/DeveloperGuide.html#improving-each-component
+     * Adapted from https://nus-cs2103-ay1718s2.github.io/
+     * addressbook-level4/DeveloperGuide.html#improving-each-component
      */
 
     public static final String COMMAND_ALIAS = "a";
