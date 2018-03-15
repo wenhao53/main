@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -22,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_WEIGHT = "55.5";
+    public static final String DEFAULT_GENDER = "F";
     public static final String DEFAULT_TAGS = "friends";
 
     private Name name;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Weight weight;
+    private Gender gender;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -37,6 +40,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         weight = new Weight(DEFAULT_WEIGHT);
+        gender = new Gender(DEFAULT_GENDER);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
     }
 
@@ -49,6 +53,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         weight = personToCopy.getWeight();
+        gender = personToCopy.getGender();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -100,8 +105,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, weight, tags);
+        return new Person(name, phone, email, address, weight, gender, tags);
     }
 
 }

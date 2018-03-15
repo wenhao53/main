@@ -7,5 +7,6 @@
         <email isPrivate="false">hans@exam!32ple</email>
         <address isPrivate="false">4th street</address>
         <weight isPrivate="false">55.5</weight>
+        <gender isPrivate="false">m</gender>
     </persons>
 </addressbook>
