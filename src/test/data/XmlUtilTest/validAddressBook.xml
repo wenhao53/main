@@ -30,7 +30,7 @@
         <email isPrivate="false">cornelia@example.com</email>
         <address isPrivate="false">10th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -46,7 +46,7 @@
         <email isPrivate="false">lydia@example.com</email>
         <address isPrivate="false">little tokyo</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -54,7 +54,7 @@
         <email isPrivate="false">anna@example.com</email>
         <address isPrivate="false">4th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Stefan Meier</name>

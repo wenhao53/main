@@ -76,7 +76,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
          */
         Person toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
-                + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + WEIGHT_DESC_AMY + "   " + GENDER_DESC_AMY + " "
+                + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + WEIGHT_DESC_AMY + "   " + GENDER_DESC_AMY + "  "
                 + TAG_DESC_FRIEND + " ";
         assertCommandSuccess(command, toAdd);
 

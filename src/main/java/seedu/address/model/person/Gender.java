@@ -39,8 +39,8 @@ public class Gender {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Weight // instanceof handles nulls
-                && this.value.equals(((Weight) other).value)); // state check
+                || (other instanceof Gender // instanceof handles nulls
+                && this.value.equals(((Gender) other).value)); // state check
     }
 
     @Override

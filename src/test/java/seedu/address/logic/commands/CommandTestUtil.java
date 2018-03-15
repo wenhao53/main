@@ -42,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_WEIGHT_AMY = "55.5";
     public static final String VALID_WEIGHT_BOB = "65.5";
     public static final String VALID_GENDER_AMY = "f";
-    public static final String VALID_GENDER_BOB = "M";
+    public static final String VALID_GENDER_BOB = "m";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
