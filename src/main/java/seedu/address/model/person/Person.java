@@ -55,9 +55,13 @@ public class Person {
         return address;
     }
 
-    public Weight getWeight() { return weight; }
+    public Weight getWeight() {
+        return weight;
+    }
 
-    public Gender getGender() { return gender; }
+    public Gender getGender() {
+        return gender;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

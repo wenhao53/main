@@ -2,7 +2,10 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-
+/**
+ * Represents a Person's Gender (whether male or female) in the address book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
+ */
 public class Gender {
 
     public static final String MESSAGE_GENDER_CONSTRAINTS =
@@ -22,7 +25,7 @@ public class Gender {
     }
 
     /**
-     * Returns true if a given string is a valid weight.
+     * Returns true if a given string is a valid Gender.
      */
     public static boolean isValidGender(String test) {
         return test.matches(GENDER_VALIDATION_REGEX);

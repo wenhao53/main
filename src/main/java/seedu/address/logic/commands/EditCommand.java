@@ -121,7 +121,8 @@ public class EditCommand extends UndoableCommand {
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight, updatedGender, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedWeight,
+                updatedGender, updatedTags);
     }
 
     @Override
@@ -176,8 +177,8 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.weight, this.gender
-                    , this.tags);
+            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.weight,
+                    this.gender, this.tags);
         }
 
         public void setName(Name name) {
@@ -212,13 +213,21 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(address);
         }
 
-        public void setWeight(Weight weight) { this.weight = weight; }
+        public void setWeight(Weight weight) {
+            this.weight = weight;
+        }
 
-        public Optional<Weight> getWeight() { return Optional.ofNullable(weight); }
+        public Optional<Weight> getWeight() {
+            return Optional.ofNullable(weight);
+        }
 
-        public void setGender(Gender gender) { this.gender = gender; }
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
 
-        public Optional<Gender> getGender() { return Optional.ofNullable(gender); }
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
