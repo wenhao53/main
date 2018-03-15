@@ -6,7 +6,7 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -14,7 +14,7 @@
         <email isPrivate="false">ruth@example.com</email>
         <address isPrivate="false">81th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -22,7 +22,7 @@
         <email isPrivate="false">heinz@example.com</email>
         <address isPrivate="false">wall street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -38,7 +38,7 @@
         <email isPrivate="false">werner@example.com</email>
         <address isPrivate="false">michegan ave</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -62,7 +62,7 @@
         <email isPrivate="false">stefan@example.com</email>
         <address isPrivate="false">little india</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -70,6 +70,6 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">chicago ave</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
 </addressbook>

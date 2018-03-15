@@ -166,7 +166,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Gender} into a {@code Gender}.
+     * Parses a {@code String gender} into a {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws IllegalValueException if the given {@code gender} is invalid.

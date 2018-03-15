@@ -7,7 +7,7 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
     <!-- Person with invalid phone field -->
     <persons>
@@ -16,6 +16,6 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
         <weight isPrivate="false">55.5</weight>
-        <gender isPrivate="false">m</gender>
+        <gender isPrivate="false">f</gender>
     </persons>
 </addressbook>
