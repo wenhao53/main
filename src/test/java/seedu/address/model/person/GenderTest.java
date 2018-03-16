@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
-
-
 public class GenderTest {
 
     @Test
@@ -40,6 +38,5 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("f")); // exactly 3 numbers
         assertTrue(Gender.isValidGender("M")); // exactly 3 numbers
         assertTrue(Gender.isValidGender("F")); // exactly 3 numbers
-
     }
 }
