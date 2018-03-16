@@ -1,9 +1,12 @@
 package seedu.address.model.person;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
 import seedu.address.testutil.Assert;
+
 
 public class GenderTest {
 
@@ -29,7 +32,7 @@ public class GenderTest {
         assertFalse(Gender.isValidGender("gender")); // non-numeric
         assertFalse(Gender.isValidGender("9p.2")); // alphabets within digits
         assertFalse(Gender.isValidGender("9 5")); // spaces within digits
-        assertFalse(Gender.isValidGender("y")); // other alphabets
+        assertFalse(Gender.isValidGender("y ")); // other alphabets
 
         // valid gender
         assertTrue(Gender.isValidGender("m")); // exactly 3 numbers
