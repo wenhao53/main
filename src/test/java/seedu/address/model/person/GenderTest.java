@@ -40,3 +40,4 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("F")); // exactly 3 numbers
     }
 }
+
