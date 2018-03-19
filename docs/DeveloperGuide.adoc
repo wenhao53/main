@@ -788,12 +788,16 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * Major - Firstly a function to estimate the approximate calories needed to reach the goal of the client and then a
  page with the exercises the clients can do with links to video they can watch from the application
 
+* Wenhao:
+* Minor - Sorting command to sort the list of clients by BMI range
+* Major - Automatically generate weight classification (Overweight/Acceptable/Underweight) based on
+  current attributes of each client. This will be listed in a similar fashion to tags under a client's name
+
 * Wei Sheng:
 * Minor - Weight Attribute added. Since this is an application for fitness trainers, the weight of the clients is
 essential as it allows the trainers to gauge the physical fitness of the clients.
 * Major - Integrated google calendar to allow the trainer to add training sessions with the clients and for the
 clients to view the training sessions they have signed up for.
-
 
 *Target user profile*:
 
