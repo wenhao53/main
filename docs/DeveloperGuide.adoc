@@ -793,6 +793,11 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 * Major - Automatically generate weight classification (Overweight/Acceptable/Underweight) based on
   current attributes of each client. This will be listed in a similar fashion to tags under a client's name
 
+* Wei Sheng:
+* Minor - Weight Attribute added. Since this is an application for fitness trainers, the weight of the clients is
+essential as it allows the trainers to gauge the physical fitness of the clients.
+* Major - Integrated google calendar to allow the trainer to add training sessions with the clients and for the
+clients to view the training sessions they have signed up for.
 
 *Target user profile*:
 
