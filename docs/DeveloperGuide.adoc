@@ -780,6 +780,14 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 [appendix]
 == Product Scope
 
+*Feature Contribution*:
+
+* Ivan:
+* Minor - Gender Attribute added, this will enable trainers to understand the amount of calories and weight that
+  contributes to a specific person of a certain gender.
+* Major - Firstly a function to estimate the approximate calories needed to reach the goal of the client and then a
+ page with the exercises the clients can do with links to video they can watch from the application
+
 *Target user profile*:
 
 * has a need to manage a significant number of clients
