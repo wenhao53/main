@@ -11,9 +11,11 @@ import javax.xml.bind.annotation.XmlElement;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +33,10 @@ public class XmlAdaptedPerson {
     private String email;
     @XmlElement(required = true)
     private String address;
+    @XmlElement(required = true)
+    private String weight;
+    @XmlElement(required = true)
+    private String gender;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -44,11 +50,14 @@ public class XmlAdaptedPerson {
     /**
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
-    public XmlAdaptedPerson(String name, String phone, String email, String address, List<XmlAdaptedTag> tagged) {
+    public XmlAdaptedPerson(String name, String phone, String email, String address,
+                            String weight, String gender, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.weight = weight;
+        this.gender = gender;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -64,6 +73,8 @@ public class XmlAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        weight = source.getWeight().value;
+        gender = source.getGender().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -113,8 +124,25 @@ public class XmlAdaptedPerson {
         }
         final Address address = new Address(this.address);
 
+        if (this.weight == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
+        }
+        if (!Weight.isValidWeight(this.weight)) {
+            throw new IllegalValueException(Weight.MESSAGE_WEIGHT_CONSTRAINTS);
+        }
+        final Weight weight = new Weight(this.weight);
+
+        if (this.gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(this.gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_GENDER_CONSTRAINTS);
+        }
+        final Gender gender = new Gender(this.gender);
+
+
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, weight, gender, tags);
     }
 
     @Override
@@ -132,6 +160,8 @@ public class XmlAdaptedPerson {
                 && Objects.equals(phone, otherPerson.phone)
                 && Objects.equals(email, otherPerson.email)
                 && Objects.equals(address, otherPerson.address)
+                && Objects.equals(weight, otherPerson.weight)
+                && Objects.equals(gender, otherPerson.gender)
                 && tagged.equals(otherPerson.tagged);
     }
 }

@@ -19,18 +19,22 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private final Weight weight;
+    private final Gender gender;
 
     private final UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Weight weight, Gender gender, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, weight, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.weight = weight;
+        this.gender = gender;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
     }
@@ -51,6 +55,13 @@ public class Person {
         return address;
     }
 
+    public Weight getWeight() {
+        return weight;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -73,13 +84,16 @@ public class Person {
         return otherPerson.getName().alphabeticallyEquals(this.getName())
                 && otherPerson.getPhone().equals(this.getPhone())
                 && otherPerson.getEmail().equals(this.getEmail())
-                && otherPerson.getAddress().alphabeticallyEquals(this.getAddress());
+
+                && otherPerson.getAddress().alphabeticallyEquals(this.getAddress())
+                && otherPerson.getWeight().equals(this.getWeight())
+                && otherPerson.getGender().equals(this.getGender());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, weight, gender, tags);
     }
 
     @Override
@@ -92,6 +106,10 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Weight: ")
+                .append(getWeight())
+                .append(" Gender: ")
+                .append(getGender())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
