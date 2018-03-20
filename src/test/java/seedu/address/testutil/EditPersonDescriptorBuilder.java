@@ -11,6 +11,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
@@ -38,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setHeight(person.getHeight());
         descriptor.setWeight(person.getWeight());
         descriptor.setGender(person.getGender());
         descriptor.setTags(person.getTags());
@@ -56,6 +58,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Height} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withHeight(String height) {
+        descriptor.setHeight(new Height(height));
         return this;
     }
 

@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the Personal Trainer Pro app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -19,6 +19,7 @@ public class Person {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private final Height height;
     private final Weight weight;
     private final Gender gender;
 
@@ -27,12 +28,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Weight weight, Gender gender, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, weight, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Height height,
+                  Weight weight, Gender gender, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.height = height;
         this.weight = weight;
         this.gender = gender;
         // protect internal tags from changes in the arg list
@@ -53,6 +56,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Height getHeight() {
+        return height;
     }
 
     public Weight getWeight() {
@@ -84,8 +91,8 @@ public class Person {
         return otherPerson.getName().alphabeticallyEquals(this.getName())
                 && otherPerson.getPhone().equals(this.getPhone())
                 && otherPerson.getEmail().equals(this.getEmail())
-
                 && otherPerson.getAddress().alphabeticallyEquals(this.getAddress())
+                && otherPerson.getHeight().equals(this.getHeight())
                 && otherPerson.getWeight().equals(this.getWeight())
                 && otherPerson.getGender().equals(this.getGender());
     }
@@ -93,7 +100,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, weight, gender, tags);
+        return Objects.hash(name, phone, email, address, height, weight, gender, tags);
     }
 
     @Override
@@ -106,6 +113,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Height: ")
+                .append(getHeight())
                 .append(" Weight: ")
                 .append(getWeight())
                 .append(" Gender: ")

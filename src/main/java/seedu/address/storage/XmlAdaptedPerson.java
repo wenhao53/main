@@ -15,6 +15,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
 
@@ -36,6 +37,8 @@ public class XmlAdaptedPerson {
     @XmlElement(required = true)
     private String weight;
     @XmlElement(required = true)
+    private String height;
+    @XmlElement(required = true)
     private String gender;
 
     @XmlElement
@@ -51,11 +54,12 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address,
-                            String weight, String gender, List<XmlAdaptedTag> tagged) {
+                            String Height, String weight, String gender, List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.height = height;
         this.weight = weight;
         this.gender = gender;
         if (tagged != null) {
@@ -73,6 +77,7 @@ public class XmlAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        height = source.getHeight().value;
         weight = source.getWeight().value;
         gender = source.getGender().value;
         tagged = new ArrayList<>();
@@ -124,6 +129,14 @@ public class XmlAdaptedPerson {
         }
         final Address address = new Address(this.address);
 
+        if (this.height == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Height.class.getSimpleName()));
+        }
+        if (!Height.isValidHeight(this.height)) {
+            throw new IllegalValueException(Height.MESSAGE_HEIGHT_CONSTRAINTS);
+        }
+        final Height height = new Height(this.height);
+
         if (this.weight == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Weight.class.getSimpleName()));
         }
@@ -142,7 +155,7 @@ public class XmlAdaptedPerson {
 
 
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, weight, gender, tags);
+        return new Person(name, phone, email, address, height, weight, gender, tags);
     }
 
     @Override
@@ -160,6 +173,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(phone, otherPerson.phone)
                 && Objects.equals(email, otherPerson.email)
                 && Objects.equals(address, otherPerson.address)
+                && Objects.equals(height, otherPerson.height)
                 && Objects.equals(weight, otherPerson.weight)
                 && Objects.equals(gender, otherPerson.gender)
                 && tagged.equals(otherPerson.tagged);
