@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     </columnConstraints>
@@ -62,12 +62,12 @@
                <Font name="System Bold" size="12.0" />
             </font></Label>
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-         <Label text="Height:">
+         <Label text="Height(cm):">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Label>
       <Label fx:id="height" styleClass="cell_small_label" text="\$height" />
-         <Label text="Weight:">
+         <Label text="Weight(kg):">
             <font>
                <Font name="System Bold" size="12.0" />
             </font></Label>
