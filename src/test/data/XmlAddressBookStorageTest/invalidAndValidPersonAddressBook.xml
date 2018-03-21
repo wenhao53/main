@@ -9,6 +9,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <!-- Person with invalid phone field -->
     <persons>
@@ -19,5 +20,6 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
 </addressbook>

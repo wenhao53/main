@@ -8,6 +8,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -17,6 +18,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -26,6 +28,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -35,6 +38,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -44,6 +48,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -53,6 +58,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -62,6 +68,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Stefan Meier</name>
@@ -71,6 +78,7 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -80,5 +88,6 @@
         <height isPrivate="false">169.0</height>
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
+        <age isPrivate="false">22</age>
     </persons>
 </addressbook>
