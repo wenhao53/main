@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
@@ -36,6 +37,7 @@ public class PersonUtil {
         sb.append(PREFIX_HEIGHT + person.getHeight().value + " ");
         sb.append(PREFIX_WEIGHT + person.getWeight().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
+        sb.append(PREFIX_AGE + person.getAge().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

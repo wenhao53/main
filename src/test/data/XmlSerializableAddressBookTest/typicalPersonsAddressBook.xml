@@ -10,6 +10,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -20,6 +21,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </persons>
@@ -31,6 +33,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
     </persons>
     <persons>
         <name>Daniel Meier</name>
@@ -40,6 +43,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
     </persons>
     <persons>
         <name>Elle Meyer</name>
@@ -49,6 +53,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
     </persons>
     <persons>
         <name>Fiona Kunz</name>
@@ -58,6 +63,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
     </persons>
     <persons>
         <name>George Best</name>
@@ -67,6 +73,7 @@
         <height>169.0</height>
         <weight>55.5</weight>
         <gender>f</gender>
+        <age>22</age>
     </persons>
     <tags>friends</tags>
     <tags>owesMoney</tags>
