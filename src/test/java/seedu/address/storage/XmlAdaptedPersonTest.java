@@ -14,9 +14,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
+import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Height;
 import seedu.address.model.person.Weight;
 import seedu.address.testutil.Assert;
 
@@ -119,7 +119,7 @@ public class XmlAdaptedPersonTest {
     public void toModelType_invalidHeight_throwsIllegalValueException() {
         XmlAdaptedPerson person =
                 new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        INVALID_WEIGHT, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
+                        INVALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, VALID_TAGS);
         String expectedMessage = Height.MESSAGE_HEIGHT_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
