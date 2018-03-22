@@ -230,6 +230,84 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+//tag:: gender[]
+@by Ivan
+== Gender attribute
+==== Current Implementation
+
+The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
+
+The Gender attribute resides as an attribute to a person under 'model'. This means that every Person added by the AddCommand line must have a gender.
+
+Gender is implemented in this way:
+[source,java]
+---
+public class Gender {
+
+    public static final String MESSAGE_GENDER_CONSTRAINTS =
+            "Gender can only be the alphabets M or F or m or f";
+    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
+    public final String value;
+     //... rest of attribute functions ...
+
+     // Test for regex is shown below
+     public static boolean isValidGender(String test) {
+             return test.matches(GENDER_VALIDATION_REGEX);
+         }
+
+     //... rest of attribute functions ...
+    }
+---
+
+Supposed the user has just created a person using the command line but the gender is null or not within the regex this will cause a failure in execution of the AddCommand and a display of the 'MESSAGE_GENDER_CONSTRAINTS'.
+
+The same applies to the Editfunction where the same checks will apply. However this attribute differs from the name attribute as it can be duplicated to different persons.
+
+AddCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        requireNonNull(model);
+        try {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+    }
+---
+
+EditCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        try {
+            model.updatePerson(personToEdit, editedPerson);
+        } catch (DuplicatePersonException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } catch (PersonNotFoundException pnfe) {
+            throw new AssertionError("The target person cannot be missing");
+        }
+        //... rest of edit command ...
+    }
+---
+
+As one can see it will throw an exception be it either command when a duplicate person is found.
+
+==== Design Considerations
+
+===== Aspect: Implementation of `Gender` attribute
+
+* **Alternative 1 (current choice):** Add a new gender attribute to person 'g/'.
+** Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour.
+** Cons: It will now require constant addition of the gender attribute to a person even when the gender attribute is not needed in some cases.
+* **Alternative 2:** Add gender as a tag
+** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
+** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
