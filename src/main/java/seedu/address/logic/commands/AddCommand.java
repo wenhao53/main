@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
@@ -36,6 +37,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_HEIGHT + "HEIGHT "
             + PREFIX_WEIGHT + "WEIGHT "
             + PREFIX_GENDER + "GENDER "
+            + PREFIX_AGE + "22 "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -45,6 +47,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_HEIGHT + "168 "
             + PREFIX_WEIGHT + "55.5 "
             + PREFIX_GENDER + "m "
+            + PREFIX_AGE + "22 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

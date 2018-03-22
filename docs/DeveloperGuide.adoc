@@ -230,6 +230,133 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+// tag::Google Calendar API[]
+@by Wei Sheng
+
+=== Integrated Google Calendar Services (To be implemented)
+
+The integrated Google Calendar API will allow personal trainers and clients to access their google calendar within the app for increased
+ease and functionality. The trainers and clients will be able to interact with the google calendar through a mouse click or Command Line
+Interface. The proposed commands to be implemented are as follows:
+.Calendar: Opens up the google calendar API
+
+. AddEvent: Allow trainers to add event (training sessions with their clients)
+
+. DeleteEvent: Deletes an event in the case where trainers/clients are unable to make it
+
+. FindAll: Find all the sessions for a particular client for ease of viewing.
+
+==== Current Implementation [V1.0]
+
+Currently, the Google Calendar is opened up in a separate web window upon calling of the command "calendar" and is not yet integrated
+into the Personal Trainer Pro App. Also, the current implementation does not support Command Line Interface and require users to interact
+with the calendar through mouse click.
+
+When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
+ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up a new window showing the
+Google Calendar website.
+
+==== Future implementation [V2.0]
+
+Upon "calendar" command, a StackPane displaying the google calendar will appear, overlaying the main screen. Using
+the Google Calendar API, the user can also then interact with it through Command Line Interface.
+
+==== Design Consideration
+
+===== Aspect: Implementation of Google Calendar API
+
+Alternative 1 (current choice): Open up in a new browser
+
+Pros: Easy to implement and debug
+
+Cons: Lack of Command Line Interface, troublesome for users
+
+Alternative 2: Open Google Calendar in the application
+
+Pros: Ease of viewing for the trainers and clients, supports Command Line Interface
+
+Cons: Positioning of StackPane or other scenebuilder objects may hinder other interface in the current application.
+
+//tag:: gender[]
+@by Ivan
+== Gender attribute
+==== Current Implementation
+
+The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
+
+The Gender attribute resides as an attribute to a person under 'model'. This means that every Person added by the AddCommand line must have a gender.
+
+Gender is implemented in this way:
+[source,java]
+---
+public class Gender {
+
+    public static final String MESSAGE_GENDER_CONSTRAINTS =
+            "Gender can only be the alphabets M or F or m or f";
+    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
+    public final String value;
+     //... rest of attribute functions ...
+
+     // Test for regex is shown below
+     public static boolean isValidGender(String test) {
+             return test.matches(GENDER_VALIDATION_REGEX);
+         }
+
+     //... rest of attribute functions ...
+    }
+---
+
+Supposed the user has just created a person using the command line but the gender is null or not within the regex this will cause a failure in execution of the AddCommand and a display of the 'MESSAGE_GENDER_CONSTRAINTS'.
+
+The same applies to the Editfunction where the same checks will apply. However this attribute differs from the name attribute as it can be duplicated to different persons.
+
+AddCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        requireNonNull(model);
+        try {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+    }
+---
+
+EditCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        try {
+            model.updatePerson(personToEdit, editedPerson);
+        } catch (DuplicatePersonException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } catch (PersonNotFoundException pnfe) {
+            throw new AssertionError("The target person cannot be missing");
+        }
+        //... rest of edit command ...
+    }
+---
+
+As one can see it will throw an exception be it either command when a duplicate person is found.
+
+==== Design Considerations
+
+===== Aspect: Implementation of `Gender` attribute
+
+* **Alternative 1 (current choice):** Add a new gender attribute to person 'g/'.
+** Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour.
+** Cons: It will now require constant addition of the gender attribute to a person even when the gender attribute is not needed in some cases.
+* **Alternative 2:** Add gender as a tag
+** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
+** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+
+
 // tag::undoredo[]
 === Undo/Redo feature
 ==== Current Implementation
