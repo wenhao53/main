@@ -23,7 +23,8 @@ public class CalendarWindowTest extends GuiUnitTest {
     @Before
     public void setUp() throws Exception {
         guiRobot.interact(() -> calendarWindow = new CalendarWindow());
-        Stage calendarWindowStage = FxToolkit.setupStage((stage) -> stage.setScene(calendarWindow.getRoot().getScene()));
+        Stage calendarWindowStage = FxToolkit.setupStage((stage)
+                -> stage.setScene(calendarWindow.getRoot().getScene()));
         FxToolkit.showStage();
         calendarWindowHandle = new CalendarWindowHandle(calendarWindowStage);
     }
@@ -34,14 +35,14 @@ public class CalendarWindowTest extends GuiUnitTest {
 
         try {
             encodedUrl = URLEncoder.encode(CALENDAR_PAGE_URL, "UTF-8");
-        }
-        catch (UnsupportedEncodingException ignored) {
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("Caught UnsupportedEncodingException: " + e.getMessage());
         }
         try {
             URL expectedCalendarPage = new URL(encodedUrl);
             assertEquals(expectedCalendarPage, calendarWindowHandle.getLoadedUrl());
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
+            System.err.println("Caught MalformedURLException: " + e.getMessage());
         }
     }
 }
