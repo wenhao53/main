@@ -12,13 +12,13 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class CalendarWindow extends UiPart<Stage> {
 
+    public static final String CALENDAR_PAGE_URL =
+            "https://accounts.google.com/ServiceLogin/identifier?service=cl&passive=1209600&osid=1&continue="
+                    + "https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Frender&followup=https%3A%2F%2Fcalendar"
+                    + ".google.com%2Fcalendar%2Frender&scc=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
+
     private static final Logger logger = LogsCenter.getLogger(CalendarWindow.class);
     private static final String FXML = "CalendarWindow.fxml";
-
-    public static final String CALENDAR_PAGE_URL =
-            "https://accounts.google.com/ServiceLogin/identifier?service=cl&passive=1209600&osid=1&continue=" +
-                    "https%3A%2F%2Fcalendar.google.com%2Fcalendar%2Frender&followup=https%3A%2F%2Fcalendar" +
-                    ".google.com%2Fcalendar%2Frender&scc=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
 
     @FXML
     private WebView browser;
