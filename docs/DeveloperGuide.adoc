@@ -357,28 +357,29 @@ As one can see it will throw an exception be it either command when a duplicate 
 ** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
 
 
+
 // tag::bmiclassification[]
 @by Wenhao
 
 === Auto-assigning and Sorting of BMI Classification labels to clients (To be implemented)
 
-The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Overweight,
+The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
 Acceptable, or Underweight), so as to allow the user to identify which clients need more help in reaching their desired BMI range.
 
 The BMI classification will be adapted from the standards set by the World Health Organisation (WHO). The background colour of the Person card for each
-client will differ in colour according to the BMI classification for that particular client
+client will differ in colour according to the BMI classification for that particular client.
 
-Current BMI standards set by the World Health Organisation (WHO):
+Current BMI standards set by the World Health Organisation (WHO) are as follows:
 [width="59%",cols="32%,<48%,<20%",options="header",]
 |=======================================================================
 |Classification |BMI Range |Background Colour
 |**Underweight** |BMI < 18.5 |Orange
 
-|**Acceptable** |18.5 <= BMI <= 24.9 |Green
+|**Acceptable** |18.5 &le; BMI &le; 24.9 |Green
 
-|**Overweight** |25 <= BMI <= 29.9 |Orange
+|**Overweight** |25 &le; BMI &le; 29.9 |Orange
 
-|**Obese** |BMI >= 30 |Red
+|**Obese** |BMI &ge; 30 |Red
 |=======================================================================
 
 
@@ -390,12 +391,12 @@ This will allow the BMI to be re-calculated each time a client's weight or heigh
 
 ==== Future implementation [v1.5]
 
-The BMI for individual clients will be calculated using the following formula: **BMI = weight (in kg) * 10000 / height (in cm) x height (in cm) **
+The BMI for individual clients will be calculated using the following formula: **BMI = weight / (height / 100)^2^ **
 
 The BMI for individual clients will then be stored as a Person attribute, but not displayed in the Person card to minimise the cluttering of information in the application.
 This will allow a sorting method to be implemented in the application. The current plan is to sort the clients according to their BMI values, in descending order.
 
-==== Design Consideration
+==== Design Considerations
 
 ===== Aspect: Display of BMI Classification
 
@@ -407,6 +408,7 @@ This will allow a sorting method to be implemented in the application. The curre
 ** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
 ** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
 in a way that will not affect the storage or retrieval of other tags associated with each client.
+
 
 
 // tag::undoredo[]
