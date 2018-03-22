@@ -230,6 +230,54 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+// tag::Google Calendar API[]
+@by Wei Sheng
+
+=== Integrated Google Calendar Services (To be implemented)
+
+The integrated Google Calendar API will allow personal trainers and clients to access their google calendar within the app for increased
+ease and functionality. The trainers and clients will be able to interact with the google calendar through a mouse click or Command Line
+Interface. The proposed commands to be implemented are as follows:
+.Calendar: Opens up the google calendar API
+
+. AddEvent: Allow trainers to add event (training sessions with their clients)
+
+. DeleteEvent: Deletes an event in the case where trainers/clients are unable to make it
+
+. FindAll: Find all the sessions for a particular client for ease of viewing.
+
+==== Current Implementation [V1.0]
+
+Currently, the Google Calendar is opened up in a separate web window upon calling of the command "calendar" and is not yet integrated
+into the Personal Trainer Pro App. Also, the current implementation does not support Command Line Interface and require users to interact
+with the calendar through mouse click.
+
+When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
+ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up a new window showing the
+Google Calendar website.
+
+==== Future implementation [V2.0]
+
+Upon "calendar" command, a StackPane displaying the google calendar will appear, overlaying the main screen. Using
+the Google Calendar API, the user can also then interact with it through Command Line Interface.
+
+==== Design Consideration
+
+===== Aspect: Implementation of Google Calendar API
+
+Alternative 1 (current choice): Open up in a new browser
+
+Pros: Easy to implement and debug
+
+Cons: Lack of Command Line Interface, troublesome for users
+
+Alternative 2: Open Google Calendar in the application
+
+Pros: Ease of viewing for the trainers and clients, supports Command Line Interface
+
+Cons: Positioning of StackPane or other scenebuilder objects may hinder other interface in the current application.
+
 //tag:: gender[]
 @by Ivan
 == Gender attribute
@@ -307,6 +355,7 @@ As one can see it will throw an exception be it either command when a duplicate 
 * **Alternative 2:** Add gender as a tag
 ** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
 ** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+
 
 // tag::undoredo[]
 === Undo/Redo feature
