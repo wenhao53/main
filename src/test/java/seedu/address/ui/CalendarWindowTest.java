@@ -23,8 +23,8 @@ public class CalendarWindowTest extends GuiUnitTest {
     @Before
     public void setUp() throws Exception {
         guiRobot.interact(() -> calendarWindow = new CalendarWindow());
-        Stage calendarWindowStage = FxToolkit.setupStage((stage)
-                -> stage.setScene(calendarWindow.getRoot().getScene()));
+        Stage calendarWindowStage =
+                FxToolkit.setupStage((stage) -> stage.setScene(calendarWindow.getRoot().getScene()));
         FxToolkit.showStage();
         calendarWindowHandle = new CalendarWindowHandle(calendarWindowStage);
     }
