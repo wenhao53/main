@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  */
 public class CalendarWindowHandle extends StageHandle {
 
-    public static final String CALENDAR_WINDOW_TITLE = "Calendar";
+    public static final String CALENDAR_WINDOW_TITLE = "Google Calendar";
 
     private static final String CALENDAR_WINDOW_BROWSER_ID = "#browser";
 
