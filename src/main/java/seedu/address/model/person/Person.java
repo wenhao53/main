@@ -70,7 +70,9 @@ public class Person {
         return weight;
     }
 
-    public BodyMassIndex getBodyMassIndex() { return bodyMassIndex; }
+    public BodyMassIndex getBodyMassIndex() {
+        return bodyMassIndex;
+    }
 
     public Gender getGender() {
         return gender;
