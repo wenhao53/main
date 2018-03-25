@@ -1,8 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
 /**
  * Represents a Person's Body Mass Index (BMI) (in kg/m^2) in the Personal Trainer Pro app.
  * Guarantees: mutable; is valid long as Height as declared in {@link #isValidHeight(String)} and Weight as
@@ -10,13 +7,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class BodyMassIndex {
 
-    public final String value;
-    public final int classification;
-
     public static final int ACCEPTABLE = 1;
     public static final int OBESE = 2;
     public static final int OVERWEIGHT = 3;
     public static final int UNDERWEIGHT = 4;
+
+    public final String value;
+    public final int classification;
 
     private String bodyMassIndex;
     private double bodyMassIndexValue;
@@ -53,14 +50,11 @@ public class BodyMassIndex {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
         if (bodyMassIndexValue < 18.5) {
             return UNDERWEIGHT;
-        }
-        else if (bodyMassIndexValue < 25) {
+        } else if (bodyMassIndexValue < 25) {
             return ACCEPTABLE;
-        }
-        else if (bodyMassIndexValue < 30) {
+        } else if (bodyMassIndexValue < 30) {
             return OVERWEIGHT;
-        }
-        else {
+        } else {
             return OBESE;
         }
     }
