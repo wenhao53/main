@@ -13,10 +13,10 @@ public class BodyMassIndex {
     public final String value;
     public final int classification;
 
-    public static final int UNDERWEIGHT = 1;
-    public static final int ACCEPTABLE = 2;
+    public static final int ACCEPTABLE = 1;
+    public static final int OBESE = 2;
     public static final int OVERWEIGHT = 3;
-    public static final int OBESE = 4;
+    public static final int UNDERWEIGHT = 4;
 
     private String bodyMassIndex;
     private double bodyMassIndexValue;
@@ -51,10 +51,18 @@ public class BodyMassIndex {
      */
     private int getBodyMassIndexClassification(String height, String weight) {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
-        if (bodyMassIndexValue < 18.5) { return UNDERWEIGHT; }
-        else if (bodyMassIndexValue < 25) { return ACCEPTABLE; }
-        else if (bodyMassIndexValue < 30) { return OVERWEIGHT; }
-        else { return OBESE; }
+        if (bodyMassIndexValue < 18.5) {
+            return UNDERWEIGHT;
+        }
+        else if (bodyMassIndexValue < 25) {
+            return ACCEPTABLE;
+        }
+        else if (bodyMassIndexValue < 30) {
+            return OVERWEIGHT;
+        }
+        else {
+            return OBESE;
+        }
     }
 
     /*
@@ -73,7 +81,7 @@ public class BodyMassIndex {
      * Returns the BMI value calculated from heightValue and weightValue
      */
     private double calculateBodyMassIndexValue(double heightValue, double weightValue) {
-        return weightValue / ((heightValue/100)*(heightValue/100));
+        return weightValue / ((heightValue / 100) * (heightValue / 100));
     }
 
     @Override
