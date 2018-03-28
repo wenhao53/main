@@ -13,7 +13,7 @@ public class BodyMassIndex {
     public static final int UNDERWEIGHT = 4;
 
     public final String value;
-    public final int classification;
+    // public final int classification;
 
     private String bodyMassIndex;
     private double bodyMassIndexValue;
@@ -29,7 +29,7 @@ public class BodyMassIndex {
      */
     public BodyMassIndex(String height, String weight) {
         bodyMassIndex = getBodyMassIndexString(height, weight);
-        this.classification = getBodyMassIndexClassification(height, weight);
+        // this.classification = getBodyMassIndexClassification(height, weight);
         this.value = formatBodyMassIndexStringForDisplay(bodyMassIndex);
     }
 
@@ -55,6 +55,7 @@ public class BodyMassIndex {
     /*
      * Returns the BMI Classification of a Person when given valid Height and Weight
      */
+    /*
     private int getBodyMassIndexClassification(String height, String weight) {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
         if (bodyMassIndexValue < 18.5) {
@@ -67,6 +68,7 @@ public class BodyMassIndex {
             return OBESE;
         }
     }
+    */
 
     /*
      * Returns the BMI value of a Person when given valid Height and Weight
