@@ -30,7 +30,16 @@ public class BodyMassIndex {
     public BodyMassIndex(String height, String weight) {
         bodyMassIndex = getBodyMassIndexString(height, weight);
         this.classification = getBodyMassIndexClassification(height, weight);
-        this.value = bodyMassIndex;
+        this.value = formatBodyMassIndexStringForDisplay(bodyMassIndex);
+    }
+
+
+    /*
+     * Formats the String representation of the BMI value of a Person to four characters (2 decimal places)
+     */
+    private String formatBodyMassIndexStringForDisplay(String value) {
+        return String.format("%.4s", value);
+
     }
 
 
