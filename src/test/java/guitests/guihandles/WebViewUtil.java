@@ -30,7 +30,8 @@ public class WebViewUtil {
     }
 
     /**
-     * If the {@code calendarWindowHandle}'s {@code WebView} is loading, sleeps the thread till it is successfully loaded.
+     * If the {@code calendarWindowHandle}'s {@code WebView} is loading,
+     * sleeps the thread till it is successfully loaded.
      */
     public static void waitUntilCalendarLoaded(CalendarWindowHandle calendarWindowHandle) {
         new GuiRobot().waitForEvent(calendarWindowHandle::isLoaded);
