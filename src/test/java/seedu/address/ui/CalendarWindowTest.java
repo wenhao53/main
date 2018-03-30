@@ -1,48 +1,46 @@
 package seedu.address.ui;
 
+import static guitests.guihandles.WebViewUtil.waitUntilCalendarLoaded;
 import static org.junit.Assert.assertEquals;
-import static seedu.address.ui.CalendarWindow.CALENDAR_PAGE_URL;
+import static org.junit.Assert.assertFalse;
+import static seedu.address.testutil.EventsUtil.postNow;
+import static seedu.address.ui.BrowserPanel.DEFAULT_PAGE;
+import static seedu.address.ui.UiPart.FXML_FILE_FOLDER;
 
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.CalendarWindowHandle;
-import javafx.stage.Stage;
+import seedu.address.MainApp;
+import seedu.address.commons.events.ui.ShowCalendarEvent;
 
 public class CalendarWindowTest extends GuiUnitTest {
+    private ShowCalendarEvent showCalendarEventstub;
 
     private CalendarWindow calendarWindow;
     private CalendarWindowHandle calendarWindowHandle;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
+        showCalendarEventstub = new ShowCalendarEvent();
         guiRobot.interact(() -> calendarWindow = new CalendarWindow());
-        Stage calendarWindowStage =
-                FxToolkit.setupStage((stage) -> stage.setScene(calendarWindow.getRoot().getScene()));
-        FxToolkit.showStage();
-        calendarWindowHandle = new CalendarWindowHandle(calendarWindowStage);
+        uiPartRule.setUiPart(calendarWindow);
+
+        calendarWindowHandle = new CalendarWindowHandle(calendarWindow.getRoot());
     }
 
     @Test
-    public void display() {
-        String encodedUrl = null;
+    public void display() throws Exception {
+        // updated default window
+        URL expectedDefaultPageUrl = MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE);
+        assertFalse(expectedDefaultPageUrl.equals(calendarWindowHandle.getLoadedUrl()));
 
-        try {
-            encodedUrl = URLEncoder.encode(CALENDAR_PAGE_URL, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            System.err.println("Caught UnsupportedEncodingException: " + e.getMessage());
-        }
-        try {
-            URL expectedCalendarPage = new URL(encodedUrl);
-            assertEquals(expectedCalendarPage, calendarWindowHandle.getLoadedUrl());
-        } catch (MalformedURLException e) {
-            System.err.println("Caught MalformedURLException: " + e.getMessage());
-        }
+        // calendar window
+        postNow(showCalendarEventstub);
+        URL expectedCalendarWindow = new URL(CalendarWindow.CALENDAR_PAGE_URL);
+        waitUntilCalendarLoaded(calendarWindowHandle);
+        assertEquals(expectedCalendarWindow, calendarWindowHandle.getLoadedUrl());
     }
 }
