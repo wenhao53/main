@@ -39,7 +39,9 @@ public class CalendarWindow extends UiPart<Region> {
         registerAsAnEventHandler(this);
     }
 
-    private void loadCalendarPage() {loadPage(CALENDAR_PAGE_URL);}
+    private void loadCalendarPage() {
+        loadPage(CALENDAR_PAGE_URL);
+    }
 
     public void loadPage(String url) {
         Platform.runLater(() -> calendar.getEngine().load(url));
