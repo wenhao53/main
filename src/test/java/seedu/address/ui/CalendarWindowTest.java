@@ -1,9 +1,6 @@
 package seedu.address.ui;
 
-import static guitests.guihandles.WebViewUtil.waitUntilCalendarLoaded;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.testutil.EventsUtil.postNow;
 import static seedu.address.ui.BrowserPanel.DEFAULT_PAGE;
 import static seedu.address.ui.UiPart.FXML_FILE_FOLDER;
 
