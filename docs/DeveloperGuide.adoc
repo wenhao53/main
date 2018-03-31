@@ -247,15 +247,14 @@ Interface. The proposed commands to be implemented are as follows:
 
 . FindAll: Find all the sessions for a particular client for ease of viewing.
 
-==== Current Implementation [V1.0]
+==== Current Implementation [V1.3]
 
-Currently, the Google Calendar is opened up in a separate web window upon calling of the command "calendar" and is not yet integrated
-into the Personal Trainer Pro App. Also, the current implementation does not support Command Line Interface and require users to interact
-with the calendar through mouse click.
+Currently, the Google Calendar is opened up inside the application upon calling of the command "calendar" and does not
+support Command Line Interface. It require users to interact with the calendar through mouse click.
 
 When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
-ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up a new window showing the
-Google Calendar website.
+ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up the
+Google Calendar page in the application.
 
 ==== Future implementation [V2.0]
 
@@ -266,13 +265,13 @@ the Google Calendar API, the user can also then interact with it through Command
 
 ===== Aspect: Implementation of Google Calendar API
 
-Alternative 1 (current choice): Open up in a new browser
+Alternative 1: Open up in a new browser
 
 Pros: Easy to implement and debug
 
 Cons: Lack of Command Line Interface, troublesome for users
 
-Alternative 2: Open Google Calendar in the application
+Alternative 2 (current choice): Open Google Calendar in the application
 
 Pros: Ease of viewing for the trainers and clients, supports Command Line Interface
 
