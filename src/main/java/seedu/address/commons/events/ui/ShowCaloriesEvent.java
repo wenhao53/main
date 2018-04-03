@@ -10,11 +10,11 @@ public class ShowCaloriesEvent extends BaseEvent {
     public final Person person;
 
     public ShowCaloriesEvent(Person person) {
-            this.person = person;
-        }
+        this.person = person;
+    }
 
     @Override
     public String toString() {
-            return this.getClass().getSimpleName();
-        }
+        return this.getClass().getSimpleName();
+    }
 }
