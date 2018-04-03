@@ -102,7 +102,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void showCalories(Person person){
+        public void showCalories(Person person) {
             fail("This method should not be called. ");
         }
 
