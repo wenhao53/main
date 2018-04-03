@@ -7,14 +7,14 @@ import seedu.address.model.person.Person;
  */
 public class ShowCaloriesEvent extends BaseEvent {
 
-        public final Person person;
+    public final Person person;
 
-        public ShowCaloriesEvent(Person person) {
+    public ShowCaloriesEvent(Person person) {
             this.person = person;
         }
 
-        @Override
-        public String toString() {
+    @Override
+    public String toString() {
             return this.getClass().getSimpleName();
         }
-    }
+}

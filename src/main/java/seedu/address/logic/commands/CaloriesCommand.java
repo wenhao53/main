@@ -7,7 +7,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-
+/**
+ * Opens up the Calories Calculator window with specific index
+ */
 public class CaloriesCommand extends Command {
 
     public static final String COMMAND_WORD = "Calories";

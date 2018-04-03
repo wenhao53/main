@@ -83,7 +83,7 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
-    public void showCalories(Person person) throws PersonNotFoundException{
+    public void showCalories(Person person) throws PersonNotFoundException {
         raise(new ShowCaloriesEvent(person));
     }
 

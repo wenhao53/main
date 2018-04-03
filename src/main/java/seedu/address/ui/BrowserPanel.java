@@ -64,11 +64,6 @@ public class BrowserPanel extends UiPart<Region> {
         Platform.runLater(() -> browser.getEngine().load(url));
     }
 
-    /*private void loadCalculatorPage(Person person){ loadPage(CALCULATOR_PREFIX_URL + CALCULATOR_AGE_PREFIX + "22" +
-    CALCULATOR_GENDER_PREFIX + person.getGender() + CALCULATOR_HEIGHT_PREFIX + person.getHeight()
-            + CALCULATOR_WEIGHT_PREFIX +
-    person.getWeight() + CALCULATOR_ACTIVITY_LEVEL_PREFIX + "1.375" + CALCULATOR_SUFFIX_URL);}*/
-
     /**
      * Loads a default HTML file with a background that matches the general theme.
      */
@@ -81,8 +76,8 @@ public class BrowserPanel extends UiPart<Region> {
      * Creates url from given person
      */
     public void loadPersonCalories(Person person) {
-        loadPage(CALCULATOR_PREFIX_URL + CALCULATOR_AGE_PREFIX + person.getAge().value + CALCULATOR_GENDER_PREFIX
-        + person.getGender().value + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value + CALCULATOR_WEIGHT_PREFIX +
+        loadPage(CALCULATOR_PREFIX_URL + CALCULATOR_AGE_PREFIX + person.getAge().value + CALCULATOR_GENDER_PREFIX +
+        person.getGender().value + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value + CALCULATOR_WEIGHT_PREFIX +
         person.getWeight().value + CALCULATOR_ACTIVITY_LEVEL_PREFIX + "1.375" + CALCULATOR_SUFFIX_URL);
     }
 
