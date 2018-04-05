@@ -27,7 +27,8 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
 
         String[] classificationKeywords = trimmedArgs.split("\\s+");
 
-        return new ClassificationCommand(new NameContainsClassificationPredicate(Arrays.asList(classificationKeywords)));
+        return new ClassificationCommand(
+                new NameContainsClassificationPredicate(Arrays.asList(classificationKeywords)));
     }
 
 }

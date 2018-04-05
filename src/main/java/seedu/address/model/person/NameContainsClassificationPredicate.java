@@ -17,8 +17,8 @@ public class NameContainsClassificationPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getBodyMassIndexClassification(), keyword));
+        return keywords.stream().anyMatch(keyword
+                -> StringUtil.containsWordIgnoreCase(person.getBodyMassIndexClassification(), keyword));
     }
 
     @Override
