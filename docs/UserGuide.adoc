@@ -81,11 +81,14 @@ Shows a list of all persons in the PTP application. +
 Format: `list`
 Alias: `l`
 
-=== Sorting all persons : `sort`
+=== Filtering all persons according to BMI Classification : `bmi`
 
-Shows a list of all persons in the PTP application, sorted according to their BMI. +
-Format: `list`
-Alias: `l`
+Shows a filtered list of all persons in the PTP application according to the given search query. +
+Format: `bmi KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `bmi overweight`
+* `bmi overweight underweight obese`
 
 === Editing a person : `edit`
 
@@ -311,7 +314,8 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`
-* *Sort* : `sort`
+* *Filter* : `bmi KEYWORD [MORE_KEYWORDS]` +
+e.g.   `bmi overweight underweight`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
