@@ -114,8 +114,8 @@ public class ClassificationCommandTest {
      * Parses {@code userInput} into a {@code ClassificationCommand}.
      */
     private ClassificationCommand prepareCommand(String userInput) {
-        ClassificationCommand command =
-                new ClassificationCommand(new NameContainsClassificationPredicate(Arrays.asList(userInput.split("\\s+"))));
+        ClassificationCommand command = new ClassificationCommand(
+                new NameContainsClassificationPredicate(Arrays.asList(userInput.split("\\s+"))));
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
     }
@@ -126,7 +126,8 @@ public class ClassificationCommandTest {
      *     - the {@code FilteredList<Person>} is equal to {@code expectedList}<br>
      *     - the {@code AddressBook} in model remains the same after executing the {@code command}
      */
-    private void assertCommandSuccess(ClassificationCommand command, String expectedMessage, List<Person> expectedList) {
+    private void assertCommandSuccess(ClassificationCommand command,
+                                      String expectedMessage, List<Person> expectedList) {
         AddressBook expectedAddressBook = new AddressBook(model.getAddressBook());
         CommandResult commandResult = command.execute();
 
