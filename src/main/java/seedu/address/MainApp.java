@@ -73,6 +73,11 @@ public class MainApp extends Application {
         ui = new UiManager(logic, config, userPrefs);
 
         initEventsCenter();
+
+        /**
+         * To allow sign in to Google calendar page to load.
+         */
+        System.setProperty("sun.net.http.allowRestrictedHeaders", "true");
     }
 
     private String getApplicationParameter(String parameterName) {
