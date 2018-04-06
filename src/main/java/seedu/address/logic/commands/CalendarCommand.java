@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
+import seedu.address.GoogleCalendar.GoogleCalendarAPI;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.ui.ShowCalendarEvent;
+
+import java.io.IOException;
 
 /**
  * Opens up the Google Calendar window
@@ -18,6 +21,11 @@ public class CalendarCommand extends Command {
     @Override
     public CommandResult execute() {
         EventsCenter.getInstance().post(new ShowCalendarEvent());
+        try {
+            GoogleCalendarAPI.startCalendar();
+        } catch (IOException e) {
+            System.out.println("IOException");
+        }
         return new CommandResult(SHOWING_CALENDAR_MESSAGE);
     }
 }
