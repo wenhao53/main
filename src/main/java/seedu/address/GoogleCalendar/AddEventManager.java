@@ -9,6 +9,9 @@ import seedu.address.model.CalendarEvent.CalendarEvent;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+/**
+ * Some code referenced from CS2103AUG2017-W15-B2.
+ */
 
 public class AddEventManager {
 
