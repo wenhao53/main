@@ -1,7 +1,18 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
+import static seedu.address.model.CalendarEvent.EventEndDate.INVALID_END_DATE_MESSAGE;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.stream.Stream;
+
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CalendarEvent.CalendarEvent;
@@ -10,35 +21,6 @@ import seedu.address.model.CalendarEvent.EventEndTime;
 import seedu.address.model.CalendarEvent.EventName;
 import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Weight;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 /**
  * Parses input arguments and creates a new AddEventCommand object
@@ -73,12 +55,17 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             EventEndTime eventEndTime =
                     ParserUtil.parseEventEndTime(argMultimap.getValue(PREFIX_EVENT_END_TIME)).get();
 
+            dateRestrictions(eventStartDate, eventEndDate);
+
             CalendarEvent calendarEvent = new CalendarEvent(eventName, eventStartDate, eventStartTime,
                     eventEndDate, eventEndTime);
 
             return new AddEventCommand(calendarEvent);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);
+        }
+        catch (Exception e) {
+            throw new ParseException(INVALID_END_DATE_MESSAGE);
         }
     }
 
@@ -88,6 +75,26 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Checks if eventEndDate is earlier then eventStartDate and throws an exception if so.
+     */
+
+    public void dateRestrictions (EventStartDate eventStartDate, EventEndDate eventEndDate)
+     throws Exception{
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date date1 = sdf.parse(eventStartDate.toString());
+            Date date2 = sdf.parse(eventEndDate.toString());
+            if(date2.before(date1)) {
+                throw new Exception("End Date cannot be earlier than Start Date!");
+            }
+        } catch(java.text.ParseException e) {
+            System.out.println("ParseException");
+        }
     }
 
 }
