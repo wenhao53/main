@@ -6,20 +6,6 @@ import seedu.address.model.CalendarEvent.EventEndTime;
 import seedu.address.model.CalendarEvent.EventName;
 import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Height;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Weight;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building CalendarEvent objects.
@@ -98,6 +84,9 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Builds a new CalendarEvent.
+     * */
     public CalendarEvent build() {
         return new CalendarEvent(eventName, eventStartDate, eventStartTime,
                 eventEndDate, eventEndTime);
