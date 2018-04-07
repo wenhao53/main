@@ -13,6 +13,8 @@ public class EventEndDate {
     public static final String MESSAGE_END_DATE_CONSTRAINTS =
             "Event end date should only contain numbers in the format YYYY-MM-DD. Eg. 2008-11-30";
 
+    public static final String INVALID_END_DATE_MESSAGE = "End Date cannot be earlier than Start Date!";
+
     public static final String DATE_VALIDATION_REGEX = "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
 
     public final String endDate;
