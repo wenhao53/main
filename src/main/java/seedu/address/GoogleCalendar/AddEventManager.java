@@ -45,6 +45,6 @@ public class AddEventManager {
     public void handleNewAddCalendarEvent(AddCalendarEvent event) throws IOException {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         CalendarEvent newEvent = event.getCalendarEvent();
-        GoogleCalendarAPI.createEvent(newEvent);
+        GoogleCalendarApi.createEvent(newEvent);
     }
 }
