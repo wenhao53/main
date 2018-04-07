@@ -10,7 +10,7 @@ public class AddCalendarEvent extends BaseEvent {
 
     private CalendarEvent calendarEvent;
 
-    public AddCalendarEvent(CalendarEvent calendarEvent) {this.calendarEvent = calendarEvent;}
+    public AddCalendarEvent(CalendarEvent calendarEvent) { this.calendarEvent = calendarEvent; }
 
     public CalendarEvent getCalendarEvent() {
         return calendarEvent;
