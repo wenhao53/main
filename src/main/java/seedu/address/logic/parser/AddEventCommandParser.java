@@ -81,18 +81,17 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      * Checks if eventEndDate is earlier then eventStartDate and throws an exception if so.
      */
 
-    public void dateRestrictions (EventStartDate eventStartDate, EventEndDate eventEndDate)
-     throws Exception{
+    public void dateRestrictions (EventStartDate eventStartDate, EventEndDate eventEndDate) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
             Date date1 = sdf.parse(eventStartDate.toString());
             Date date2 = sdf.parse(eventEndDate.toString());
-            if(date2.before(date1)) {
+            if (date2.before(date1)) {
                 throw new Exception("End Date cannot be earlier than Start Date!");
             }
-        } catch(java.text.ParseException e) {
+        } catch (java.text.ParseException e) {
             System.out.println("ParseException");
         }
     }

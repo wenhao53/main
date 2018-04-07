@@ -11,8 +11,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EventName {
 
     public static final String MESSAGE_EVENT_NAME_CONSTRAINTS =
-            "Event name should only contain alphanumeric characters and spaces," +
-                    " and it should not be blank. Eg. Weights Training";
+            "Event name should only contain alphanumeric characters and spaces,"
+                    + " and it should not be blank. Eg. Weights Training";
 
     public static final String EVENTNAME_VALIDATION_REGEX = "^[a-zA-Z0-9_ ]+$";
 

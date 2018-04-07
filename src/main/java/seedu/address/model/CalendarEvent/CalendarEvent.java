@@ -22,15 +22,15 @@ public class CalendarEvent implements ReadOnlyCalendarEvent {
 
         requireAllNonNull(eventName, eventStartDate, eventStartTime, eventEndDate, eventEndTime);
 
-         this.eventName = eventName;
-         this.eventStartDate = eventStartDate;
-         this.eventStartTime = eventStartTime;
-         this.eventEndDate = eventEndDate;
-         this.eventEndTime = eventEndTime;
+        this.eventName = eventName;
+        this.eventStartDate = eventStartDate;
+        this.eventStartTime = eventStartTime;
+        this.eventEndDate = eventEndDate;
+        this.eventEndTime = eventEndTime;
     }
 
     @Override
-    public EventName getEventName() { return eventName;}
+    public EventName getEventName() { return eventName; }
 
     @Override
     public EventStartDate getEventStartDate() {

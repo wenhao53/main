@@ -1,17 +1,17 @@
 package seedu.address.logic.commands;
 
-import seedu.address.GoogleCalendar.AddEventManager;
-import seedu.address.commons.core.EventsCenter;
-import seedu.address.commons.events.GoogleCalendar.AddCalendarEvent;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.CalendarEvent.CalendarEvent;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
+
+import seedu.address.GoogleCalendar.AddEventManager;
+import seedu.address.commons.core.EventsCenter;
+import seedu.address.commons.events.GoogleCalendar.AddCalendarEvent;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.CalendarEvent.CalendarEvent;
 
 /**
  * Adds an event to the Google Calendar.
