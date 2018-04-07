@@ -1,9 +1,8 @@
 package seedu.address.model.CalendarEvent;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.ReadOnlyCalendarEvent;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a Calendar event in the Personal Trainer Pro app.
@@ -20,7 +19,8 @@ public class CalendarEvent implements ReadOnlyCalendarEvent {
 
     public CalendarEvent (EventName eventName, EventStartDate eventStartDate, EventStartTime eventStartTime,
                           EventEndDate eventEndDate, EventEndTime eventEndTime) {
-         requireAllNonNull(eventName, eventStartDate, eventStartTime, eventEndDate, eventEndTime);
+
+        requireAllNonNull(eventName, eventStartDate, eventStartTime, eventEndDate, eventEndTime);
 
          this.eventName = eventName;
          this.eventStartDate = eventStartDate;
@@ -66,5 +66,4 @@ public class CalendarEvent implements ReadOnlyCalendarEvent {
                 .append(getEventEndTime());
         return builder.toString();
     }
-
 }

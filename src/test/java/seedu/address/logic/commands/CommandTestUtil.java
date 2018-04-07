@@ -6,6 +6,11 @@ import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HEIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -52,6 +57,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_EVENT_NAME = "Weights Training";
+    public static final String VALID_START_DATE = "2018-05-20";
+    public static final String VALID_START_TIME = "15:30";
+    public static final String VALID_END_DATE = "2018-05-20";
+    public static final String VALID_END_TIME = "16:30";
+    public static final String EVENT_NAME_DESC = " " + PREFIX_EVENT_NAME + VALID_EVENT_NAME;
+    public static final String EVENT_START_DATE_DESC = " " + PREFIX_EVENT_START_DATE + VALID_START_DATE;
+    public static final String EVENT_START_TIME_DESC = " " + PREFIX_EVENT_START_TIME + VALID_START_TIME;
+    public static final String EVENT_END_DATE_DESC = " " + PREFIX_EVENT_END_DATE + VALID_END_DATE;
+    public static final String EVENT_END_TIME_DESC = " " + PREFIX_EVENT_END_TIME + VALID_END_TIME;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -80,6 +96,22 @@ public class CommandTestUtil {
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "Y"; // 'Y' not allowed for gender
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "Y"; // 'Y' not allowed for age
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_EVENT_NAME = "Weights&Training";
+    public static final String INVALID_START_DATE = "18-05-20";
+    public static final String INVALID_START_TIME = "15:300";
+    public static final String INVALID_END_DATE = "18-05-20";
+    public static final String INVALID_END_TIME = "160:30";
+    public static final String INVALID_EVENT_NAME_DESC = " " + PREFIX_EVENT_NAME
+            + "Weight&Training"; // '&' not allowed in event names
+    public static final String INVALID_START_DATE_DESC = " " + PREFIX_EVENT_START_DATE
+            + "18-05-20"; // Start Date should be in YYYY-MM-DD format
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_EVENT_START_TIME
+            + "3:300"; // Start Time should be in HH:MM format
+    public static final String INVALID_END_DATE_DESC = " " + PREFIX_EVENT_END_DATE
+            + "18-05-20"; // End Date should be in YYYY-MM-DD format
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_EVENT_END_TIME
+            + "4:300"; // End Time should be in HH:MM format
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
