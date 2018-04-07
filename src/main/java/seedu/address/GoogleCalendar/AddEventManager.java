@@ -1,9 +1,9 @@
 package seedu.address.GoogleCalendar;
 
-import com.google.common.eventbus.Subscribe;
-
 import java.io.IOException;
 import java.util.logging.Logger;
+
+import com.google.common.eventbus.Subscribe;
 
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.core.LogsCenter;
