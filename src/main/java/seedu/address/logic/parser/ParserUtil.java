@@ -10,6 +10,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.CalendarEvent.EventEndDate;
+import seedu.address.model.CalendarEvent.EventEndTime;
+import seedu.address.model.CalendarEvent.EventName;
+import seedu.address.model.CalendarEvent.EventStartDate;
+import seedu.address.model.CalendarEvent.EventStartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -265,5 +270,133 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String eventName} into a {@code EventName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code eventName} is invalid.
+     */
+    public static EventName parseEventName(String eventName) throws IllegalValueException {
+        requireNonNull(eventName);
+        String trimmedName = eventName.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new IllegalValueException(EventName.MESSAGE_EVENT_NAME_CONSTRAINTS);
+        }
+        return new EventName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code Optional<String> eventName} into an {@code Optional<EventName>} if {@code eventName} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<EventName> parseEventName(Optional<String> eventName) throws IllegalValueException {
+        requireNonNull(eventName);
+        return eventName.isPresent() ? Optional.of(parseEventName(eventName.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String eventStartDate} into a {@code EventStartDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code eventStartDate} is invalid.
+     */
+    public static EventStartDate parseEventStartDate(String eventStartDate) throws IllegalValueException {
+        requireNonNull(eventStartDate);
+        String trimmedStartDate = eventStartDate.trim();
+        if (!EventStartDate.isValidDate(trimmedStartDate)) {
+            throw new IllegalValueException(EventStartDate.MESSAGE_START_DATE_CONSTRAINTS);
+        }
+        return new EventStartDate(trimmedStartDate);
+    }
+
+    /**
+     * Parses a {@code Optional<String> eventStartDate} into an {@code Optional<EventStartDate>}
+     * if {@code eventStartDate} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<EventStartDate> parseEventStartDate(Optional<String> eventStartDate)
+            throws IllegalValueException {
+        requireNonNull(eventStartDate);
+        return eventStartDate.isPresent() ? Optional.of(parseEventStartDate(eventStartDate.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String eventEndDate} into a {@code EventEndDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code eventEndDate} is invalid.
+     */
+    public static EventEndDate parseEventEndDate(String eventEndDate) throws IllegalValueException {
+        requireNonNull(eventEndDate);
+        String trimmedEndDate = eventEndDate.trim();
+        if (!EventEndDate.isValidDate(trimmedEndDate)) {
+            throw new IllegalValueException(EventEndDate.MESSAGE_END_DATE_CONSTRAINTS);
+        }
+        return new EventEndDate(trimmedEndDate);
+    }
+
+    /**
+     * Parses a {@code Optional<String> eventEndDate} into an {@code Optional<EventEndDate>}
+     * if {@code eventEndDate} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<EventEndDate> parseEventEndDate(Optional<String> eventEndDate)
+            throws IllegalValueException {
+        requireNonNull(eventEndDate);
+        return eventEndDate.isPresent() ? Optional.of(parseEventEndDate(eventEndDate.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String eventStartTime} into a {@code EventStartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code eventStartTime} is invalid.
+     */
+    public static EventStartTime parseEventStartTime(String eventStartTime) throws IllegalValueException {
+        requireNonNull(eventStartTime);
+        String trimmedStartTime = eventStartTime.trim();
+        if (!EventStartTime.isValidTime(trimmedStartTime)) {
+            throw new IllegalValueException(EventStartTime.MESSAGE_START_TIME_CONSTRAINTS);
+        }
+        return new EventStartTime(trimmedStartTime);
+    }
+
+    /**
+     * Parses a {@code Optional<String> eventStartTime} into an {@code Optional<EventStartTime>}
+     * if {@code eventStartTime} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<EventStartTime> parseEventStartTime(Optional<String> eventStartTime)
+            throws IllegalValueException {
+        requireNonNull(eventStartTime);
+        return eventStartTime.isPresent() ? Optional.of(parseEventStartTime(eventStartTime.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String eventEndTime} into a {@code EventEndTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code eventEndTime} is invalid.
+     */
+    public static EventEndTime parseEventEndTime(String eventEndTime) throws IllegalValueException {
+        requireNonNull(eventEndTime);
+        String trimmedEndTime = eventEndTime.trim();
+        if (!EventEndTime.isValidTime(trimmedEndTime)) {
+            throw new IllegalValueException(EventEndTime.MESSAGE_END_TIME_CONSTRAINTS);
+        }
+        return new EventEndTime(trimmedEndTime);
+    }
+
+    /**
+     * Parses a {@code Optional<String> eventEndTime} into an {@code Optional<EventEndTime>}
+     * if {@code eventEndTime} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<EventEndTime> parseEventEndTime(Optional<String> eventEndTime)
+            throws IllegalValueException {
+        requireNonNull(eventEndTime);
+        return eventEndTime.isPresent() ? Optional.of(parseEventEndTime(eventEndTime.get())) : Optional.empty();
     }
 }

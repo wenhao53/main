@@ -234,32 +234,34 @@ This section describes some noteworthy details on how certain features are imple
 // tag::Google Calendar API[]
 @by Wei Sheng
 
-=== Integrated Google Calendar Services (To be implemented)
+=== Integrated Google Calendar Services
 
 The integrated Google Calendar API will allow personal trainers and clients to access their google calendar within the app for increased
 ease and functionality. The trainers and clients will be able to interact with the google calendar through a mouse click or Command Line
 Interface. The proposed commands to be implemented are as follows:
 .Calendar: Opens up the google calendar API
 
-. AddEvent: Allow trainers to add event (training sessions with their clients)
+. AddEvent: Allow trainers to add an event (Eg. training sessions with their clients)
 
-. DeleteEvent: Deletes an event in the case where trainers/clients are unable to make it
+. DeleteEvent: Deletes an event in the case where trainers/clients are unable to make it [v2.0]
 
-. FindAll: Find all the sessions for a particular client for ease of viewing.
+. FindAll: Find all the sessions for a particular client for ease of viewing [v2.0]
 
-==== Current Implementation [V1.3]
+==== Current Implementation [v1.5]
 
-Currently, the Google Calendar is opened up inside the application upon calling of the command "calendar" and does not
-support Command Line Interface. It require users to interact with the calendar through mouse click.
+The Google Calendar is displayed inside the application upon calling of the command "calendar" and
+supports Command Line Interface via the 'addEvent' command.
 
 When the user keys in the "calendar", the AddressBookParser parses through the command to check for correct parameters. Then, an event,
 ShowCalenderEvent is passed to the EventsCentre. The EventsCentre then sends an update to the UI to open up the
-Google Calendar page in the application.
+Google Calendar page in the application. Users are then prompted to allow access to Personal Trainer Pro to manage their Google
+Calendar. This is to allow the use of Command Line Interface through the 'addEvent' command to add new events to the users' Google Calendar.
+
 
 ==== Future implementation [V2.0]
 
-Upon "calendar" command, a StackPane displaying the google calendar will appear, overlaying the main screen. Using
-the Google Calendar API, the user can also then interact with it through Command Line Interface.
+More features will be implemented to allow increased ease of use for the users of Personal Trainer Pro such as the DeleteEvent command
+and the FindAll command.
 
 ==== Design Consideration
 
