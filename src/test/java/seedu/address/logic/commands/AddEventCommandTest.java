@@ -20,7 +20,7 @@ public class AddEventCommandTest {
         thrown.expect(NullPointerException.class);
         new AddEventCommand(null);
     }
-
+    /* Works only on manual testing as it requires authentication by the user.
     @Test
     public void execute_event_addSuccessful() throws Exception {
         CalendarEvent validEvent = new EventBuilder().build();
@@ -28,7 +28,7 @@ public class AddEventCommandTest {
         CommandResult commandResult = getAddEventCommandForEvent(validEvent).execute();
 
         assertEquals(String.format(AddEventCommand.MESSAGE_SUCCESS, validEvent), commandResult.feedbackToUser);
-    }
+    } */
 
     /**
      * Generates a new AddEventCommand with the details of the given CalendarEvent.
