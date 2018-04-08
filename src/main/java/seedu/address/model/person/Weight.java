@@ -30,8 +30,18 @@ public class Weight {
      * Returns true if a given string is a valid weight.
      */
     public static boolean isValidWeight(String test) {
-        return test.matches(WEIGHT_VALIDATION_REGEX);
+        return test.matches(WEIGHT_VALIDATION_REGEX) && weightWithinRange(test);
     }
+
+    //@@author wenhao53
+    /**
+     * Returns true if a given Weight string is within the allowable range of input
+     */
+    private static boolean weightWithinRange(String test) {
+        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
+    }
+
+    //@@author
 
     @Override
     public String toString() {
