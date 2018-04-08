@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= Personal Trainer Pro- Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103JAN2018-F12-B2/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103JAN2018-F12-B2`      Since: `Feb 2018`      Licence: `MIT`
 
 == Setting up
 
@@ -68,7 +68,7 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, links in the documentation will still point to the `se-edu/addressbook-level4` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `se-edu/addressbook-level4`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
+After forking the repo, links in the documentation will still point to the `CS2103JAN2018-F12-B2/main` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `CS2103JAN2018-F12-B2/main`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
 
 ==== Setting up CI
 
@@ -140,7 +140,7 @@ The _Sequence Diagram_ below shows how the components interact for the scenario 
 image::SDforDeletePerson.png[width="800"]
 
 [NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+Note how the `Model` simply raises a `AddressBookChangedEvent` when the Personal Trainer Pro data are changed, instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
@@ -382,7 +382,7 @@ Current BMI standards set by the World Health Organisation (WHO) are as follows:
 |=======================================================================
 
 
-==== Current Implementation [as of v1.3]
+==== Current Implementation [as of v1.4]
 
 Currently, each client is saved as a person with weight and height attributes. This is sufficient to facilitate the calculation of their BMI.
 Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
@@ -390,11 +390,9 @@ This will allow the BMI to be re-calculated each time a client's weight or heigh
 
 The BMI for individual clients is calculated using the following formula: **BMI = weight / (height / 100)^2^ **.
 
-The BMI of each client is stored as a Person attribute and is currently displayed (to 2 decimal places) in the PersonCard.
+The BMI of each client is stored as a Person attribute and is currently displayed (to 4 significant figures) in the PersonCard.
 
 ==== Future implementation [by v1.5]
-
-A sorting method will be implemented in the application. The current plan is to sort the clients according to their BMI values, in descending order.
 
 The BMI and Gender of each Person will help to determine the BMI classification according to the above table.
 Once the classification has been implemented and integrated into the UI (using the background colour of the PersonCard),
@@ -414,6 +412,12 @@ the BMI for individual clients will be removed from the PersonCard to allow for 
 ** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
 in a way that will not affect the storage or retrieval of other tags associated with each client.
 
+
+=== Classification Command to filter clients displayed
+
+As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
+The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
+to the BMI classification (i.e. acceptable, overweight, underweight, obese)
 
 
 // tag::undoredo[]
@@ -1024,13 +1028,11 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |update the weight of my client |track his/her weight progress
 
-|`* * *` |user |set goals for my clients |know what target we both are working towards
+|`* * *` |user |filter my clients according to BMI classification |easily view clients with similar BMI
 
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |track the weight changes of my clients |view my clients' progression till date using past weight updates
-
-|`* *` |user with many persons in the client tracker |sort persons by BMI classification |prioritise the needs of my clients and see which clients to focus on
 |=======================================================================
 
 
@@ -1038,7 +1040,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `Personal Trainer Pro` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
 === Use case: Delete person

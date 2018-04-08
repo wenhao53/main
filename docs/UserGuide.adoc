@@ -13,7 +13,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103JAN2018-F12-B2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103JAN2018-F12-B2`      Since: `Feb 2018`      Licence: `MIT`
 
 == Introduction
 
@@ -41,7 +41,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`list`* : lists all clients
 * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/169.0 w/55.5 g/M age/22` : adds a contact named `John Doe` to the Personal Trainer Pro application.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
-* **`sort`: sorts the clients in the list according to BMI
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -85,6 +84,13 @@ Alias: `l`
 
 Shows a filtered list of all persons in the PTP application whose BMI classification matches the given search query. +
 Format: `bmi KEYWORD [MORE_KEYWORDS]`
+
+Keywords (any of the below):
+
+* `Underweight` (BMI < 18.5)
+* `Acceptable` (18.5 &le; BMI &le; 24.9)
+* `Overweight` (25 &le; BMI &le; 29.9)
+* `Obese` (BMI &ge; 30)
 
 Examples:
 
