@@ -1,6 +1,14 @@
+//@@author wenhao53
+
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import static seedu.address.model.person.BodyMassIndex.ACCEPTABLE_CLASSIFICATION;
+import static seedu.address.model.person.BodyMassIndex.OBESE_CLASSIFICATION;
+import static seedu.address.model.person.BodyMassIndex.OVERWEIGHT_CLASSIFICATION;
+import static seedu.address.model.person.BodyMassIndex.UNDERWEIGHT_CLASSIFICATION;
+
 
 import java.util.Arrays;
 
@@ -27,8 +35,29 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
 
         String[] classificationKeywords = trimmedArgs.split("\\s+");
 
+        checkClassificationKeywordValidity(classificationKeywords);
+
         return new ClassificationCommand(
                 new NameContainsClassificationPredicate(Arrays.asList(classificationKeywords)));
+    }
+
+    /*
+     * Checks the validity of the keywords input
+     */
+    public void checkClassificationKeywordValidity(String[] classificationKeywords) throws ParseException {
+        for (String keyword:classificationKeywords) {
+            if (!isValidClassifcationKeyword(keyword)) {
+                throw new ParseException(
+                        String.format(ClassificationCommand.INVALID_KEYWORD, ClassificationCommand.MESSAGE_USAGE));
+            }
+        }
+    }
+
+    public boolean isValidClassifcationKeyword(String keyword) {
+        return keyword.compareToIgnoreCase(ACCEPTABLE_CLASSIFICATION) == 0 ||
+                keyword.compareToIgnoreCase(OBESE_CLASSIFICATION) == 0 ||
+                keyword.compareToIgnoreCase(OVERWEIGHT_CLASSIFICATION) == 0 ||
+                keyword.compareToIgnoreCase(UNDERWEIGHT_CLASSIFICATION) == 0;
     }
 
 }
