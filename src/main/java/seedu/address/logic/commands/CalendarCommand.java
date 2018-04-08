@@ -1,8 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.io.IOException;
-
-import seedu.address.GoogleCalendar.GoogleCalendarApi;
 import seedu.address.commons.core.EventsCenter;
 import seedu.address.commons.events.ui.ShowCalendarEvent;
 
