@@ -1,7 +1,5 @@
 package seedu.address.commons.util;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
