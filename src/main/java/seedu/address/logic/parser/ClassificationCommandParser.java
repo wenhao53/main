@@ -9,7 +9,6 @@ import static seedu.address.model.person.BodyMassIndex.OBESE_CLASSIFICATION;
 import static seedu.address.model.person.BodyMassIndex.OVERWEIGHT_CLASSIFICATION;
 import static seedu.address.model.person.BodyMassIndex.UNDERWEIGHT_CLASSIFICATION;
 
-
 import java.util.Arrays;
 
 import seedu.address.logic.commands.ClassificationCommand;
@@ -41,8 +40,9 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
                 new NameContainsClassificationPredicate(Arrays.asList(classificationKeywords)));
     }
 
-    /*
-     * Checks the validity of the keywords input
+    /**
+     * Checks the validity of the keywords input in the context of a Classification Command
+     * @throws ParseException if the keyword does not match any of the acceptable keywords
      */
     public void checkClassificationKeywordValidity(String[] classificationKeywords) throws ParseException {
         for (String keyword:classificationKeywords) {
@@ -53,11 +53,16 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
         }
     }
 
+    /**
+     * Checks the given keyword in the parser to see it if matches any of the allowable classification
+     * @param keyword
+     * @return
+     */
     public boolean isValidClassifcationKeyword(String keyword) {
-        return keyword.compareToIgnoreCase(ACCEPTABLE_CLASSIFICATION) == 0 ||
-                keyword.compareToIgnoreCase(OBESE_CLASSIFICATION) == 0 ||
-                keyword.compareToIgnoreCase(OVERWEIGHT_CLASSIFICATION) == 0 ||
-                keyword.compareToIgnoreCase(UNDERWEIGHT_CLASSIFICATION) == 0;
+        return keyword.compareToIgnoreCase(ACCEPTABLE_CLASSIFICATION) == 0
+                || keyword.compareToIgnoreCase(OBESE_CLASSIFICATION) == 0
+                || keyword.compareToIgnoreCase(OVERWEIGHT_CLASSIFICATION) == 0
+                || keyword.compareToIgnoreCase(UNDERWEIGHT_CLASSIFICATION) == 0;
     }
 
 }
