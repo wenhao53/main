@@ -9,6 +9,8 @@ import org.junit.rules.ExpectedException;
 import seedu.address.model.CalendarEvent.CalendarEvent;
 import seedu.address.testutil.EventBuilder;
 
+//@@author wayneong95
+
 /**Test for AddEvent command*/
 public class AddEventCommandTest {
 

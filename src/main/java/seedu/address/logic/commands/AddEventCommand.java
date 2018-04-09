@@ -13,6 +13,8 @@ import seedu.address.commons.events.GoogleCalendar.AddCalendarEvent;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CalendarEvent.CalendarEvent;
 
+//@@author wayneong95
+
 /**
  * Adds an event to the Google Calendar.
  */

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
-
+//@@author wayneong95
 
 public class WeightTest {
 

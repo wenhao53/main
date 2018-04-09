@@ -34,6 +34,7 @@ import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
 import seedu.address.testutil.EventBuilder;
 
+//@@author wayneong95
 
 public class AddEventCommandParserTest {
     private AddEventCommandParser parser = new AddEventCommandParser();
