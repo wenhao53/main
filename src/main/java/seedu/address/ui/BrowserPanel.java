@@ -81,7 +81,7 @@ public class BrowserPanel extends UiPart<Region> {
     public void loadPersonCalories(Person person) {
         loadPage(CALCULATOR_PREFIX_URL
                 + CALCULATOR_AGE_PREFIX + person.getAge().value
-                + CALCULATOR_GENDER_PREFIX + person.getGender().value.toLowerCase()
+                + CALCULATOR_GENDER_PREFIX + person.getGender().value
                 + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value
                 + CALCULATOR_WEIGHT_PREFIX + person.getWeight().value
                 + CALCULATOR_ACTIVITY_LEVEL_PREFIX + "1.375"
