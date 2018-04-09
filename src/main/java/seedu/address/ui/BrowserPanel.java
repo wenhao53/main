@@ -25,6 +25,7 @@ public class BrowserPanel extends UiPart<Region> {
     public static final String SEARCH_PAGE_URL =
             "https://www.google.com.sg/search?q=";
 
+    //@@author hypertun
     public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";
 
     public static final String CALCULATOR_AGE_PREFIX = "&cage=";
@@ -39,6 +40,7 @@ public class BrowserPanel extends UiPart<Region> {
 
     public static final String CALCULATOR_SUFFIX_URL = "&printit=0";
 
+    //@@author
     private static final String FXML = "BrowserPanel.fxml";
 
     private final Logger logger = LogsCenter.getLogger(this.getClass());
@@ -72,13 +74,14 @@ public class BrowserPanel extends UiPart<Region> {
         loadPage(defaultPage.toExternalForm());
     }
 
+    //@@author hypertun
     /**
-     * Creates url from given person
+     * Creates calories from given person
      */
     public void loadPersonCalories(Person person) {
         loadPage(CALCULATOR_PREFIX_URL
                 + CALCULATOR_AGE_PREFIX + person.getAge().value
-                + CALCULATOR_GENDER_PREFIX + person.getGender().value
+                + CALCULATOR_GENDER_PREFIX + person.getGender().value.toLowerCase()
                 + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value
                 + CALCULATOR_WEIGHT_PREFIX + person.getWeight().value
                 + CALCULATOR_ACTIVITY_LEVEL_PREFIX + "1.375"
@@ -98,10 +101,12 @@ public class BrowserPanel extends UiPart<Region> {
         loadPersonPage(event.getNewSelection().person);
     }
 
+    //@@author hypertun
     @Subscribe
     private void handleShowCaloriesEvent(ShowCaloriesEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event,
                 "Processing Calories of " + event.person.getName().fullName));
         loadPersonCalories(event.person);
     }
+    //@@author
 }
