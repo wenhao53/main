@@ -42,16 +42,4 @@ public class EventEndDate {
     public String toString() {
         return endDate;
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventEndDate // instanceof handles nulls
-                && this.endDate.equals(((EventEndDate) other).endDate)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return endDate.hashCode();
-    }
 }

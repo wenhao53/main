@@ -40,16 +40,4 @@ public class EventStartDate {
     public String toString() {
         return startDate;
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventStartDate // instanceof handles nulls
-                && this.startDate.equals(((EventStartDate) other).startDate)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return startDate.hashCode();
-    }
 }

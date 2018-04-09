@@ -40,16 +40,4 @@ public class EventEndTime {
     public String toString() {
         return endTime;
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventEndTime // instanceof handles nulls
-                && this.endTime.equals(((EventEndTime) other).endTime)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return endTime.hashCode();
-    }
 }
