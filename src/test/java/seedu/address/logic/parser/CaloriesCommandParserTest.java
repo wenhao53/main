@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.CaloriesCommand;
 
+//@@author hypertun
 public class CaloriesCommandParserTest {
     private CaloriesCommandParser parser = new CaloriesCommandParser();
 
