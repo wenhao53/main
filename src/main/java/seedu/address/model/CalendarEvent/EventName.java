@@ -41,16 +41,4 @@ public class EventName {
     public String toString() {
         return eventName;
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventName // instanceof handles nulls
-                && this.eventName.equals(((EventName) other).eventName)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return eventName.hashCode();
-    }
 }
