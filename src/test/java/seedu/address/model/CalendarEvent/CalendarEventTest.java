@@ -12,6 +12,8 @@ import org.junit.Test;
 import seedu.address.testutil.Assert;
 import seedu.address.testutil.EventBuilder;
 
+//@@author wayneong95
+
 public class CalendarEventTest {
 
     @Test

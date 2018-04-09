@@ -3,6 +3,8 @@ package seedu.address.model.CalendarEvent;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wayneong95
+
 /**
  * Represents the name of an event in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidEventName(String)}
