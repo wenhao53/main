@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static org.junit.Assert.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EVENT_END_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.EVENT_END_TIME_DESC;
@@ -20,7 +19,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.CalendarEvent.EventEndDate.INVALID_END_DATE_MESSAGE;
 
 import org.junit.Test;

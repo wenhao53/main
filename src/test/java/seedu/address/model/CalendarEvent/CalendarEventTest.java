@@ -1,16 +1,16 @@
 package seedu.address.model.CalendarEvent;
 
-import org.junit.Test;
-import seedu.address.testutil.Assert;
-import seedu.address.testutil.EventBuilder;
-
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
+
+import org.junit.Test;
+
+import seedu.address.testutil.Assert;
+import seedu.address.testutil.EventBuilder;
 
 public class CalendarEventTest {
 
