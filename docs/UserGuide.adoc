@@ -181,12 +181,29 @@ Shows the Google Calendar page within the Personal Trainer Pro Application. +
 Format: `calendar`
 
 ****
-* Loads the Google Calendar page.
+* Loads the user's Google Calendar.
+* Upon first use of 'calendar' command, users will be prompted to allow access to the Personal Trainer App to
+manage their Google Calendar through a new tab in their browser. Click 'allow' to proceed.
+* Users can now login to their Google calendar normally and 'addEvent' command is enabled.
 ****
 
 Examples:
 
 * `calendar`
+
+=== Add event to Google Calendar : `addEvent`
+
+Adds an event to the Google Calendar on the signed-in Google account within the Personal Trainer Pro Application. +
+Format: `addEvent n/EVENT NAME sd/EVENT START DATE st/EVENT START TIME ed/EVENT END DATE et/EVENT END TIME`
+
+****
+* Adds an event to the Google Calendar on the signed-in Google account via Command Line Interface.
+* This command is only enabled after users allow access to Personal Trainer Pro to manage their Google Calendar.
+****
+
+Examples:
+
+* `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
 
 === Show Calories a person requires : `Calories`
 

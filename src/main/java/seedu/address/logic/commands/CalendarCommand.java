@@ -18,6 +18,11 @@ public class CalendarCommand extends Command {
     @Override
     public CommandResult execute() {
         EventsCenter.getInstance().post(new ShowCalendarEvent());
+        /*try {
+            GoogleCalendarApi.startCalendar();
+        } catch (IOException e) {
+            System.out.println("IOException");
+        }*/
         return new CommandResult(SHOWING_CALENDAR_MESSAGE);
     }
 }
