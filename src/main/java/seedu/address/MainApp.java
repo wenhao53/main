@@ -40,7 +40,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 0, true);
+    public static final Version VERSION = new Version(1, 4, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -54,7 +54,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("===========================[Initializing Personal Trainer Pro]===========================");
         super.init();
 
         config = initConfig(getApplicationParameter("config"));
@@ -194,7 +194,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("=========================== [ Stopping Personal Trainer Pro ] ===========================");
         ui.stop();
         try {
             storage.saveUserPrefs(userPrefs);
