@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.ReadOnlyCalendarEvent;
 
+//@@author wayneong95
+
 /**
  * Represents a Calendar event in the Personal Trainer Pro app.
  * Guarantees: details are present and not null, field values are validated.

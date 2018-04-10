@@ -22,6 +22,8 @@ import seedu.address.model.CalendarEvent.EventName;
 import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
 
+//@@author wayneong95
+
 /**
  * Parses input arguments and creates a new AddEventCommand object
  */

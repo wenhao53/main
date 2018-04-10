@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wayneong95
+
 /**
  * Represents a Person's weight (in Kg) in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}

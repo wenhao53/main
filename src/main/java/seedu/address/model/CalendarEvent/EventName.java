@@ -3,6 +3,8 @@ package seedu.address.model.CalendarEvent;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wayneong95
+
 /**
  * Represents the name of an event in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidEventName(String)}
@@ -40,17 +42,5 @@ public class EventName {
     @Override
     public String toString() {
         return eventName;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventName // instanceof handles nulls
-                && this.eventName.equals(((EventName) other).eventName)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return eventName.hashCode();
     }
 }

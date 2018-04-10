@@ -6,6 +6,8 @@ import seedu.address.model.CalendarEvent.EventName;
 import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
 
+//@@author wayneong95
+
 /**
  * Unmodifiable view of an event.
  */
