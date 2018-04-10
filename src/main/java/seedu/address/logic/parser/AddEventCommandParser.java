@@ -64,7 +64,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
             if (eventStartDate.toString().equals(eventEndDate.toString())) {
                 try {
-                    TimeRestrictions(eventStartTime, eventEndTime);
+                    timeRestrictions(eventStartTime, eventEndTime);
                 }
                 catch (Exception e) {
                     throw new ParseException(INVALID_END_TIME_MESSAGE);
@@ -115,7 +115,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
      * on the same day and throws an exception if so.
      */
 
-    public void TimeRestrictions (EventStartTime eventStartTime, EventEndTime eventEndTime) throws Exception {
+    public void timeRestrictions (EventStartTime eventStartTime, EventEndTime eventEndTime) throws Exception {
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:MM");
 
