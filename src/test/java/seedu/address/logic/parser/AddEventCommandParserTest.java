@@ -20,6 +20,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.model.CalendarEvent.EventEndDate.INVALID_END_DATE_MESSAGE;
+import static seedu.address.model.CalendarEvent.EventEndTime.INVALID_END_TIME_MESSAGE;
 
 import org.junit.Test;
 
@@ -63,6 +64,14 @@ public class AddEventCommandParserTest {
         //end date earlier than start date
         assertParseFailure(parser, EVENT_NAME_DESC + " sd/2018-05-20" + EVENT_START_TIME_DESC
                 + " ed/2018-05-19" + EVENT_END_TIME_DESC, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidEndTime_failure() {
+        String expectedMessage = String.format(INVALID_END_TIME_MESSAGE);
+        //end time earlier than start time
+        assertParseFailure(parser, EVENT_NAME_DESC + EVENT_START_DATE_DESC + " st/11:30"
+                + EVENT_END_DATE_DESC + " et/10:30", expectedMessage);
     }
 
     @Test
