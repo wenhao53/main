@@ -4,8 +4,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.ClassificationCommand.MESSAGE_USAGE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -65,9 +69,16 @@ public class ClassificationCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE);
         ClassificationCommand command = prepareCommand(" ");
-        assertCommandSuccess(command, expectedMessage, Collections.emptyList());
+        assertCommandFailure(command, expectedMessage);
+    }
+
+    @Test
+    public void execute_incorrectKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_INVALID_KEYWORD, MESSAGE_USAGE);
+        ClassificationCommand command = prepareCommand("notValid");
+        assertCommandFailure(command, expectedMessage);
     }
 
     @Test
@@ -171,5 +182,16 @@ public class ClassificationCommandTest {
         assertEquals(expectedMessage, commandResult.feedbackToUser);
         assertEquals(expectedList, model.getFilteredPersonList());
         assertEquals(expectedAddressBook, model.getAddressBook());
+    }
+
+    /**
+     * Asserts that {@code command} is not successfully executed, and<br>
+     *     - the command feedback is equal to {@code expectedMessage}<br>
+     *     - there is no {@code FilteredList<Person>} displayed<br>
+     *     - the {@code AddressBook} in model remains the same after executing the {@code command}
+     */
+    private void assertCommandFailure(ClassificationCommand command, String expectedMessage) {
+        CommandResult commandResult = command.execute();
+        assertNotEquals(expectedMessage, commandResult.feedbackToUser);
     }
 }
