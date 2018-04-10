@@ -33,11 +33,13 @@ public class ActivityLevel {
      * Returns true if a given string is a valid activityLevel.
      */
     public static boolean isValidActivityLevel(String test) {
-        if(test.equals("1.0") || test.equals("1.2") || test.equals("1.375") || test.equals("1.55")
-                || test.equals("1.725") || test.equals("1.9"))
-        { return true; }
-        else
-            { return false; }
+        if (test.equals("1.0") || test.equals("1.2") || test.equals("1.375") || test.equals("1.55")
+                || test.equals("1.725") || test.equals("1.9")) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
