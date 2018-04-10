@@ -15,8 +15,6 @@ public class EventEndTime {
     public static final String MESSAGE_END_TIME_CONSTRAINTS =
             "Event end time should only contain numbers in the HH:MM format. Eg. 11:30";
 
-    public static final String INVALID_END_TIME_MESSAGE = "End Time cannot be earlier than Start Time!";
-
     public static final String TIME_VALIDATION_REGEX = "^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
 
     public final String endTime;
