@@ -61,8 +61,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             Weight weight = ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT)).get();
             Gender gender = ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER)).get();
             Age age = ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE)).get();
-            ActivityLevel activityLevel = ParserUtil.parseActivityLevel(argMultimap.getValue(PREFIX_ACTIVITYLEVEL)).
-                    get();
+            ActivityLevel activityLevel = ParserUtil.parseActivityLevel(argMultimap.getValue(PREFIX_ACTIVITYLEVEL))
+                    .get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
             Person person = new Person(name, phone, email, address, height, weight, gender, age, activityLevel,

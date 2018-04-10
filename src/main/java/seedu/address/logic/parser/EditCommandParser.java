@@ -60,8 +60,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             ParserUtil.parseWeight(argMultimap.getValue(PREFIX_WEIGHT)).ifPresent(editPersonDescriptor::setWeight);
             ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER)).ifPresent(editPersonDescriptor::setGender);
             ParserUtil.parseAge(argMultimap.getValue(PREFIX_AGE)).ifPresent(editPersonDescriptor::setAge);
-            ParserUtil.parseActivityLevel(argMultimap.getValue(PREFIX_ACTIVITYLEVEL)).
-                    ifPresent(editPersonDescriptor::setActivityLevel);
+            ParserUtil.parseActivityLevel(argMultimap.getValue(PREFIX_ACTIVITYLEVEL))
+                    .ifPresent(editPersonDescriptor::setActivityLevel);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage(), ive);

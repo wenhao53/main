@@ -173,8 +173,8 @@ public class XmlAdaptedPerson {
         final Age age = new Age(this.age);
 
         if (this.activityLevel == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ActivityLevel.
-                    class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ActivityLevel
+                    .class.getSimpleName()));
         }
         if (!ActivityLevel.isValidActivityLevel(this.activityLevel)) {
             throw new IllegalValueException(ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);

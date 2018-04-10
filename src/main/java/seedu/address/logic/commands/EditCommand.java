@@ -130,8 +130,8 @@ public class EditCommand extends UndoableCommand {
         Weight updatedWeight = editPersonDescriptor.getWeight().orElse(personToEdit.getWeight());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
-        ActivityLevel updatedActivityLevel = editPersonDescriptor.getActivityLevel().orElse(personToEdit.
-                getActivityLevel());
+        ActivityLevel updatedActivityLevel = editPersonDescriptor.getActivityLevel().orElse(personToEdit
+                .getActivityLevel());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
