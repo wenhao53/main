@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_START_TIME;
 import static seedu.address.model.CalendarEvent.EventEndDate.INVALID_END_DATE_MESSAGE;
+import static seedu.address.model.CalendarEvent.EventEndTime.INVALID_END_TIME_MESSAGE;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,6 +60,17 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
             dateRestrictions(eventStartDate, eventEndDate);
 
+            //If event is on same day, check for time restrictions
+
+            if (eventStartDate.toString().equals(eventEndDate.toString())) {
+                try {
+                    timeRestrictions(eventStartTime, eventEndTime);
+                }
+                catch (Exception e) {
+                    throw new ParseException(INVALID_END_TIME_MESSAGE);
+                }
+            }
+
             CalendarEvent calendarEvent = new CalendarEvent(eventName, eventStartDate, eventStartTime,
                     eventEndDate, eventEndTime);
 
@@ -98,4 +110,23 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
     }
 
+    /**
+     * Checks if eventEndTime is earlier then eventStartTime if events are
+     * on the same day and throws an exception if so.
+     */
+
+    public void timeRestrictions (EventStartTime eventStartTime, EventEndTime eventEndTime) throws Exception {
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:MM");
+
+        try {
+            Date time1 = timeFormat.parse(eventStartTime.toString());
+            Date time2 = timeFormat.parse(eventEndTime.toString());
+            if (time2.before(time1)) {
+                throw new Exception("End Time cannot be earlier than Start Time!");
+            }
+        } catch (java.text.ParseException e) {
+            System.out.println("ParseException");
+        }
+    }
 }
