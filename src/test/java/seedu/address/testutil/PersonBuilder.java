@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.person.ActivityLevel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -28,6 +29,7 @@ public class PersonBuilder {
     public static final String DEFAULT_WEIGHT = "55.5";
     public static final String DEFAULT_GENDER = "f";
     public static final String DEFAULT_AGE = "22";
+    public static final String DEFAULT_ACTIVITYLEVEL = "1.2";
     public static final String DEFAULT_TAGS = "friends";
 
     private Name name;
@@ -38,6 +40,7 @@ public class PersonBuilder {
     private Weight weight;
     private Gender gender;
     private Age age;
+    private ActivityLevel activityLevel;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -49,6 +52,7 @@ public class PersonBuilder {
         weight = new Weight(DEFAULT_WEIGHT);
         gender = new Gender(DEFAULT_GENDER);
         age = new Age(DEFAULT_AGE);
+        activityLevel = new ActivityLevel(DEFAULT_ACTIVITYLEVEL);
         tags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
     }
 
@@ -64,6 +68,7 @@ public class PersonBuilder {
         weight = personToCopy.getWeight();
         gender = personToCopy.getGender();
         age = personToCopy.getAge();
+        activityLevel = personToCopy.getActivityLevel();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -139,8 +144,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ActivityLevel} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withActivityLevel(String activityLevel) {
+        this.activityLevel = new ActivityLevel(activityLevel);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, height, weight, gender, age, tags);
+        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, tags);
     }
 
 }

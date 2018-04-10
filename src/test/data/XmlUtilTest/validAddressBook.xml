@@ -9,6 +9,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -19,6 +20,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -29,6 +31,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -39,6 +42,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -49,6 +53,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -59,6 +64,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -69,6 +75,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Stefan Meier</name>
@@ -79,6 +86,7 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -89,5 +97,6 @@
         <weight isPrivate="false">55.5</weight>
         <gender isPrivate="false">f</gender>
         <age isPrivate="false">22</age>
+        <activityLevel isPrivate="false">1.2</activityLevel>
     </persons>
 </addressbook>
