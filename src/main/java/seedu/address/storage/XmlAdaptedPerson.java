@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlElement;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.ActivityLevel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -43,6 +44,8 @@ public class XmlAdaptedPerson {
     private String gender;
     @XmlElement(required = true)
     private String age;
+    @XmlElement(required = true)
+    private String activityLevel;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -57,7 +60,8 @@ public class XmlAdaptedPerson {
      * Constructs an {@code XmlAdaptedPerson} with the given person details.
      */
     public XmlAdaptedPerson(String name, String phone, String email, String address,
-                            String height, String weight, String gender, String age, List<XmlAdaptedTag> tagged) {
+                            String height, String weight, String gender, String age, String activityLevel,
+                            List<XmlAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -66,6 +70,7 @@ public class XmlAdaptedPerson {
         this.weight = weight;
         this.gender = gender;
         this.age = age;
+        this.activityLevel = activityLevel;
         if (tagged != null) {
             this.tagged = new ArrayList<>(tagged);
         }
@@ -85,6 +90,7 @@ public class XmlAdaptedPerson {
         weight = source.getWeight().value;
         gender = source.getGender().value;
         age = source.getAge().value;
+        activityLevel = source.getActivityLevel().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -166,10 +172,17 @@ public class XmlAdaptedPerson {
         }
         final Age age = new Age(this.age);
 
-
+        if (this.activityLevel == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ActivityLevel.
+                    class.getSimpleName()));
+        }
+        if (!ActivityLevel.isValidActivityLevel(this.activityLevel)) {
+            throw new IllegalValueException(ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
+        }
+        final ActivityLevel activityLevel = new ActivityLevel(this.activityLevel);
 
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, height, weight, gender, age, tags);
+        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, tags);
     }
 
     @Override
@@ -191,6 +204,7 @@ public class XmlAdaptedPerson {
                 && Objects.equals(weight, otherPerson.weight)
                 && Objects.equals(gender, otherPerson.gender)
                 && Objects.equals(age, otherPerson.age)
+                && Objects.equals(activityLevel, otherPerson.activityLevel)
                 && tagged.equals(otherPerson.tagged);
     }
 }

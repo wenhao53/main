@@ -11,6 +11,7 @@
         <weight>95.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
         <tagged>friends</tagged>
     </persons>
     <persons>
@@ -22,6 +23,7 @@
         <weight>95.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
         <tagged>owesMoney</tagged>
         <tagged>friends</tagged>
     </persons>
@@ -34,6 +36,7 @@
         <weight>55.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
     </persons>
     <persons>
         <name>Daniel Meier</name>
@@ -44,6 +47,7 @@
         <weight>55.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
     </persons>
     <persons>
         <name>Elle Meyer</name>
@@ -54,6 +58,7 @@
         <weight>55.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
     </persons>
     <persons>
         <name>Fiona Kunz</name>
@@ -64,6 +69,7 @@
         <weight>45.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
     </persons>
     <persons>
         <name>George Best</name>
@@ -74,6 +80,7 @@
         <weight>75.5</weight>
         <gender>f</gender>
         <age>22</age>
+        <activityLevel>1.2</activityLevel>
     </persons>
     <tags>friends</tags>
     <tags>owesMoney</tags>
