@@ -56,7 +56,7 @@ public class CommandTestUtil {
     public static final String VALID_AGE_AMY = "22";
     public static final String VALID_AGE_BOB = "23";
     public static final String VALID_ACTIVITYLEVEL_AMY = "1.2";
-    public static final String VALID_ACTIVITYLEVEL_BOB = "1.2";
+    public static final String VALID_ACTIVITYLEVEL_BOB = "1.9";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
