@@ -84,6 +84,12 @@
                <Font name="System Bold" size="12.0" />
             </font></Label>
          <Label fx:id="age" styleClass="cell_small_label" text="\$age" />
+         <Label text="Activity Level:">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Label fx:id="activityLevel" styleClass="cell_small_label" text="\$activityLevel" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

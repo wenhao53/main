@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -54,6 +55,8 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_BOB = "m";
     public static final String VALID_AGE_AMY = "22";
     public static final String VALID_AGE_BOB = "23";
+    public static final String VALID_ACTIVITYLEVEL_AMY = "1.2";
+    public static final String VALID_ACTIVITYLEVEL_BOB = "1.9";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -84,6 +87,8 @@ public class CommandTestUtil {
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
     public static final String AGE_DESC_AMY = " " + PREFIX_AGE + VALID_AGE_AMY;
     public static final String AGE_DESC_BOB = " " + PREFIX_AGE + VALID_AGE_BOB;
+    public static final String ACTIVITYLEVEL_DESC_AMY = " " + PREFIX_ACTIVITYLEVEL + VALID_ACTIVITYLEVEL_AMY;
+    public static final String ACTIVITYLEVEL_DESC_BOB = " " + PREFIX_ACTIVITYLEVEL + VALID_ACTIVITYLEVEL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -95,6 +100,8 @@ public class CommandTestUtil {
     public static final String INVALID_WEIGHT_DESC = " " + PREFIX_WEIGHT; // empty string not allowed for weight
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "Y"; // 'Y' not allowed for gender
     public static final String INVALID_AGE_DESC = " " + PREFIX_AGE + "Y"; // 'Y' not allowed for age
+    public static final String INVALID_ACTIVITYLEVEL_DESC = " " + PREFIX_ACTIVITYLEVEL + "Y";
+    // 'Y' not allowed for activity level
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String INVALID_EVENT_NAME = "Weights&Training";
@@ -124,11 +131,13 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withHeight(VALID_HEIGHT_AMY).withWeight(VALID_WEIGHT_AMY).withGender(VALID_GENDER_AMY)
                 .withAge(VALID_AGE_AMY)
+                .withActivityLevel(VALID_ACTIVITYLEVEL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withHeight(VALID_HEIGHT_BOB).withWeight(VALID_WEIGHT_BOB).withGender(VALID_GENDER_BOB)
                 .withAge(VALID_AGE_BOB)
+                .withActivityLevel(VALID_ACTIVITYLEVEL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

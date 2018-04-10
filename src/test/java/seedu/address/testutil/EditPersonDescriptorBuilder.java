@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.ActivityLevel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -44,6 +45,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setWeight(person.getWeight());
         descriptor.setGender(person.getGender());
         descriptor.setAge(person.getAge());
+        descriptor.setActivityLevel(person.getActivityLevel());
         descriptor.setTags(person.getTags());
     }
 
@@ -111,6 +113,13 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ActivityLevel} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withActivityLevel(String activityLevel) {
+        descriptor.setActivityLevel(new ActivityLevel(activityLevel));
+        return this;
+    }
 
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
