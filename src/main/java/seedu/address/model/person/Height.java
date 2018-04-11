@@ -1,3 +1,5 @@
+//@@author wenhao53
+
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
@@ -11,7 +13,7 @@ public class Height {
 
 
     public static final String MESSAGE_HEIGHT_CONSTRAINTS =
-            "Height(in cm) can only contain numbers and decimals, and should be at least 2 digits long";
+            "Height(in cm) can only contain numbers and decimals, and should be at between 10.0 to 400.0";
     public static final String HEIGHT_VALIDATION_REGEX = "\\d{2,}(\\.\\d+)?";
     public final String value;
 
@@ -30,7 +32,14 @@ public class Height {
      * Returns true if a given string is a valid height.
      */
     public static boolean isValidHeight(String test) {
-        return test.matches(HEIGHT_VALIDATION_REGEX);
+        return test.matches(HEIGHT_VALIDATION_REGEX) && heightWithinRange(test);
+    }
+
+    /**
+     * Returns true if a given Height string is within the allowable range of input
+     */
+    private static boolean heightWithinRange(String test) {
+        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
     }
 
     @Override

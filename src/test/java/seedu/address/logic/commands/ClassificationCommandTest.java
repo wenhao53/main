@@ -1,9 +1,15 @@
+//@@author wenhao53
+
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.ClassificationCommand.MESSAGE_USAGE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -63,9 +69,16 @@ public class ClassificationCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE);
         ClassificationCommand command = prepareCommand(" ");
-        assertCommandSuccess(command, expectedMessage, Collections.emptyList());
+        assertCommandFailure(command, expectedMessage);
+    }
+
+    @Test
+    public void execute_incorrectKeywords_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_INVALID_KEYWORD, MESSAGE_USAGE);
+        ClassificationCommand command = prepareCommand("notValid");
+        assertCommandFailure(command, expectedMessage);
     }
 
     @Test
@@ -86,14 +99,14 @@ public class ClassificationCommandTest {
     public void execute_overweightClassification_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         ClassificationCommand command = prepareCommand("overweight");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(GEORGE));
+        assertCommandSuccess(command, expectedMessage, Collections.singletonList(GEORGE));
     }
 
     @Test
     public void execute_underweightClassification_personFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         ClassificationCommand command = prepareCommand("underweight");
-        assertCommandSuccess(command, expectedMessage, Arrays.asList(FIONA));
+        assertCommandSuccess(command, expectedMessage, Collections.singletonList(FIONA));
     }
 
     @Test
@@ -101,6 +114,41 @@ public class ClassificationCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         ClassificationCommand command = prepareCommand("underweight overweight");
         assertCommandSuccess(command, expectedMessage, Arrays.asList(FIONA, GEORGE));
+    }
+
+    @Test
+    public void execute_underweightAndAcceptableClassification_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        ClassificationCommand command = prepareCommand("underweight acceptable");
+        assertCommandSuccess(command, expectedMessage, Arrays.asList(CARL, DANIEL, ELLE, FIONA));
+    }
+
+    @Test
+    public void execute_underweightAndObeseClassification_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        ClassificationCommand command = prepareCommand("underweight obese");
+        assertCommandSuccess(command, expectedMessage, Arrays.asList(ALICE, BENSON, FIONA));
+    }
+
+    @Test
+    public void execute_acceptableAndOverweightClassification_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        ClassificationCommand command = prepareCommand("overweight acceptable");
+        assertCommandSuccess(command, expectedMessage, Arrays.asList(CARL, DANIEL, ELLE, GEORGE));
+    }
+
+    @Test
+    public void execute_acceptableAndObeseClassification_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
+        ClassificationCommand command = prepareCommand("obese acceptable");
+        assertCommandSuccess(command, expectedMessage, Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE));
+    }
+
+    @Test
+    public void execute_overweightAndObeseClassification_personFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        ClassificationCommand command = prepareCommand("obese overweight");
+        assertCommandSuccess(command, expectedMessage, Arrays.asList(ALICE, BENSON, GEORGE));
     }
 
     @Test
@@ -134,5 +182,16 @@ public class ClassificationCommandTest {
         assertEquals(expectedMessage, commandResult.feedbackToUser);
         assertEquals(expectedList, model.getFilteredPersonList());
         assertEquals(expectedAddressBook, model.getAddressBook());
+    }
+
+    /**
+     * Asserts that {@code command} is not successfully executed, and<br>
+     *     - the command feedback is equal to {@code expectedMessage}<br>
+     *     - there is no {@code FilteredList<Person>} displayed<br>
+     *     - the {@code AddressBook} in model remains the same after executing the {@code command}
+     */
+    private void assertCommandFailure(ClassificationCommand command, String expectedMessage) {
+        CommandResult commandResult = command.execute();
+        assertNotEquals(expectedMessage, commandResult.feedbackToUser);
     }
 }

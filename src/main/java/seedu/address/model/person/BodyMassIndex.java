@@ -1,3 +1,5 @@
+//@@author wenhao53
+
 package seedu.address.model.person;
 
 /**
@@ -15,11 +17,11 @@ public class BodyMassIndex {
     public final String value;
     public final String classification;
 
-    private String bodyMassIndex;
     private double bodyMassIndexValue;
     private double heightValue;
     private double weightValue;
 
+    private String bodyMassIndexString;
 
     /**
      * Constructs a {@code BodyMassIndex}.
@@ -28,36 +30,23 @@ public class BodyMassIndex {
      * @param weight A valid weight (in kg).
      */
     public BodyMassIndex(String height, String weight) {
-        bodyMassIndex = getBodyMassIndexString(height, weight);
-        this.classification = getBodyMassIndexClassification(height, weight);
-        this.value = formatBodyMassIndexStringForDisplay(bodyMassIndex);
-    }
-
-
-    /*
-     * Formats the String representation of the BMI value of a Person to four characters (2 decimal places)
-     */
-    private String formatBodyMassIndexStringForDisplay(String value) {
-        return String.format("%.4s", value);
-
-    }
-
-
-    /*
-     * Returns the String representation of the BMI value of a Person when given valid Height and Weight
-     */
-    private String getBodyMassIndexString(String height, String weight) {
-        return Double.toString(getBodyMassIndexValue(height, weight));
-
-    }
-
-
-    /*
-     * Returns the BMI Classification of a Person when given valid Height and Weight
-     */
-
-    private String getBodyMassIndexClassification(String height, String weight) {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
+        this.classification = getBodyMassIndexClassificationFromValue(bodyMassIndexValue);
+        this.value = formatBodyMassIndexStringForDisplay(bodyMassIndexValue);
+    }
+
+    /*
+     * Formats the BMI value of a Person into a String, displayed to two decimal places.
+     */
+    private String formatBodyMassIndexStringForDisplay(Double value) {
+        return String.format("%.2f", value);
+
+    }
+
+    /*
+     * Returns the BMI Classification of a Person when given the BMI value.
+     */
+    private String getBodyMassIndexClassificationFromValue(Double bodyMassIndexValue) {
         if (bodyMassIndexValue < 18.5) {
             return UNDERWEIGHT_CLASSIFICATION;
         } else if (bodyMassIndexValue < 25) {
@@ -69,23 +58,21 @@ public class BodyMassIndex {
         }
     }
 
-
     /*
      * Returns the BMI value of a Person when given valid Height and Weight
      */
     private double getBodyMassIndexValue(String height, String weight) {
         heightValue = Double.parseDouble(height);
         weightValue = Double.parseDouble(weight);
-        bodyMassIndexValue = calculateBodyMassIndexValue(heightValue, weightValue);
+        bodyMassIndexValue = calculateBodyMassIndexValueFromHeightAndWeight(heightValue, weightValue);
         return bodyMassIndexValue;
 
     }
 
-
     /*
      * Returns the BMI value calculated from heightValue and weightValue
      */
-    private double calculateBodyMassIndexValue(double heightValue, double weightValue) {
+    private double calculateBodyMassIndexValueFromHeightAndWeight(double heightValue, double weightValue) {
         return weightValue / ((heightValue / 100) * (heightValue / 100));
     }
 
