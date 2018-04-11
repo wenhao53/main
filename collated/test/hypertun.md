@@ -113,6 +113,48 @@ public class CaloriesCommandParserTest {
     }
 }
 ```
+###### \java\seedu\address\model\person\ActivityLevelTest.java
+``` java
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import seedu.address.testutil.Assert;
+
+public class ActivityLevelTest {
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new ActivityLevel(null));
+    }
+
+    @Test
+    public void constructor_invalidAge_throwsIllegalArgumentException() {
+        String invalidActivityLevel = "1.44";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new ActivityLevel(invalidActivityLevel));
+    }
+
+    @Test
+    public void isValidAge() {
+        // null ActivityLevel
+        Assert.assertThrows(NullPointerException.class, () -> ActivityLevel.isValidActivityLevel(null));
+
+        // invalid activityLevel
+        assertFalse(ActivityLevel.isValidActivityLevel("")); // empty string
+        assertFalse(ActivityLevel.isValidActivityLevel(" ")); // space only
+        assertFalse(ActivityLevel.isValidActivityLevel("activityLevel")); // non-numeric
+        assertFalse(ActivityLevel.isValidActivityLevel("9p.2")); // alphabets within digits
+        assertFalse(ActivityLevel.isValidActivityLevel("9 3")); // spaces within digits
+        assertFalse(ActivityLevel.isValidActivityLevel("1.40")); // wrong number
+
+        // valid activityLevel numbers
+        assertTrue(ActivityLevel.isValidActivityLevel("1.2")); // basal
+        assertTrue(ActivityLevel.isValidActivityLevel("1.375"));
+        assertTrue(ActivityLevel.isValidActivityLevel("1.9")); // active
+    }
+}
+```
 ###### \java\seedu\address\model\person\AgeTest.java
 ``` java
 
@@ -205,7 +247,7 @@ public class GenderTest {
     public void toModelType_invalidGender_throwsIllegalValueException() {
         XmlAdaptedPerson person =
                 new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_HEIGHT, VALID_WEIGHT, INVALID_GENDER, VALID_AGE, VALID_TAGS);
+                        VALID_HEIGHT, VALID_WEIGHT, INVALID_GENDER, VALID_AGE, VALID_ACTIVITYLEVEL, VALID_TAGS);
         String expectedMessage = Gender.MESSAGE_GENDER_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -213,7 +255,7 @@ public class GenderTest {
     @Test
     public void toModelType_nullGender_throwsIllegalValueException() {
         XmlAdaptedPerson person = new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_HEIGHT, VALID_WEIGHT, null, VALID_AGE, VALID_TAGS);
+                VALID_ADDRESS, VALID_HEIGHT, VALID_WEIGHT, null, VALID_AGE, VALID_ACTIVITYLEVEL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -222,7 +264,7 @@ public class GenderTest {
     public void toModelType_invalidAge_throwsIllegalValueException() {
         XmlAdaptedPerson person =
                 new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, INVALID_AGE, VALID_TAGS);
+                        VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, INVALID_AGE, VALID_ACTIVITYLEVEL, VALID_TAGS);
         String expectedMessage = Age.MESSAGE_AGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -230,8 +272,25 @@ public class GenderTest {
     @Test
     public void toModelType_nullAge_throwsIllegalValueException() {
         XmlAdaptedPerson person = new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                VALID_ADDRESS, VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, null, VALID_TAGS);
+                VALID_ADDRESS, VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, null, VALID_ACTIVITYLEVEL, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Age.class.getSimpleName());
+        Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidActivityLevel_throwsIllegalValueException() {
+        XmlAdaptedPerson person =
+                new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, VALID_AGE, INVALID_ACTIVITYLEVEL, VALID_TAGS);
+        String expectedMessage = ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS;
+        Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullActivityLevel_throwsIllegalValueException() {
+        XmlAdaptedPerson person = new XmlAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_HEIGHT, VALID_WEIGHT, VALID_GENDER, VALID_AGE, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ActivityLevel.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 ```
