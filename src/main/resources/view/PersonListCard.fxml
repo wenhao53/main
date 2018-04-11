@@ -33,9 +33,7 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <Label text="(" />
-            <Label fx:id="gender" alignment="CENTER" style="-fx-text-fill: red;" styleClass="cell_small_label" text="\$gender" />
-            <Label text=")" />
+            <Label fx:id="gender" alignment="CENTER" style="-fx-text-fill: yellow;" styleClass="cell_small_label" text="\$gender" />
       </HBox>
         <!-- @@author -->
          <HBox id="cardPane" fx:id="cardPane1">

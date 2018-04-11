@@ -199,7 +199,7 @@ Examples:
 === Add event to Google Calendar : `addEvent`
 
 Adds an event to the Google Calendar on the signed-in Google account within the Personal Trainer Pro Application. +
-Format: `addEvent n/EVENT NAME sd/EVENT START DATE st/EVENT START TIME ed/EVENT END DATE et/EVENT END TIME`
+Format: `addEvent n/EVENT_NAME sd/EVENT_START_DATE st/EVENT_START_TIME ed/EVENT_END_DATE et/EVENT_END_TIME`
 
 ****
 * Adds an event to the Google Calendar on the signed-in Google account via Command Line Interface.
@@ -344,10 +344,15 @@ e.g. `edit 2 n/James Lee e/jameslee@example.com`
 e.g. `find James Jake`
 * *List* : `list`
 * *Filter* : `bmi KEYWORD [MORE_KEYWORDS]` +
-e.g.   `bmi overweight underweight`
+e.g. `bmi overweight underweight`
 * *Help* : `help`
 * *Select* : `select INDEX` +
-e.g.`select 2`
+e.g. `select 2`
+* *Calories* : `calories INDEX` +
+e.g. `calories 2`
+* *Calendar* : `calendar`
+* *addEvent* : `addEvent n/EVENT_NAME sd/EVENT_START_DATE st/EVENT_START_TIME ed/EVENT_END_DATE et/EVENT_END_TIME` +
+e.g. `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`

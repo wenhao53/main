@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -23,6 +24,8 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+
+    private String bmiClass;
 
     @FXML
     private HBox cardPane;
@@ -62,11 +65,22 @@ public class PersonCard extends UiPart<Region> {
         height.setText(person.getHeight().value);
         weight.setText(person.getWeight().value);
         bodyMassIndex.setText(person.getBodyMassIndex().value);
-        gender.setText(person.getGender().value);
+        gender.setText("(" + person.getGender().value.toUpperCase() + ")");
         age.setText(person.getAge().value);
         activityLevel.setText(person.getActivityLevel().value);
         person.getTags().forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        //@@author wenhao53
+        bmiClass = person.getBodyMassIndexClassification();
+        setBackgroundColourAccordingToClassification(cardPane, bmiClass);
     }
+
+    private void setBackgroundColourAccordingToClassification(HBox cardPane, String bmiClass) {
+        ObservableList<String> styleClass = cardPane.getStyleClass();
+        styleClass.setAll("cardPane", bmiClass);
+    }
+
+    //@@author
 
     @Override
     public boolean equals(Object other) {
