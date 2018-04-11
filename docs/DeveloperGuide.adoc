@@ -382,32 +382,25 @@ client will differ in colour according to the BMI classification for that partic
 Current BMI standards set by the World Health Organisation (WHO) are as follows:
 [width="59%",cols="32%,<48%,<20%",options="header",]
 |=======================================================================
-|Classification |BMI Range |Background Colour
-|**Underweight** |BMI < 18.5 |Orange
+|Classification |BMI Range |Background Colour (Dark Theme)
+|**Underweight** |BMI < 18.5 |Dark Yellow
 
-|**Acceptable** |18.5 &le; BMI &le; 24.9 |Green
+|**Acceptable** |18.5 &le; BMI &le; 24.9 |Dark Green
 
-|**Overweight** |25 &le; BMI &le; 29.9 |Orange
+|**Overweight** |25 &le; BMI &le; 29.9 |Dark Yellow
 
-|**Obese** |BMI &ge; 30 |Red
+|**Obese** |BMI &ge; 30 |Dark Red
 |=======================================================================
 
 
-==== Current Implementation [as of v1.4]
-
-Currently, each client is saved as a person with weight and height attributes. This is sufficient to facilitate the calculation of their BMI.
+Each client is saved as a person with weight and height attributes facilitate the calculation of their BMI.
 Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
 This will allow the BMI to be re-calculated each time a client's weight or height (or both) is updated.
+The background colour of the PersonCard will be updated automatically according to the BMI Classification
 
 The BMI for individual clients is calculated using the following formula: **BMI = weight / (height / 100)^2^ **.
 
 The BMI of each client is stored as a Person attribute and is currently displayed (to 4 significant figures) in the PersonCard.
-
-==== Future implementation [by v1.5]
-
-The BMI and Gender of each Person will help to determine the BMI classification according to the above table.
-Once the classification has been implemented and integrated into the UI (using the background colour of the PersonCard),
-the BMI for individual clients will be removed from the PersonCard to allow for a more intuitive display minimise the cluttering of information in the application.
 
 
 ==== Design Considerations
@@ -418,7 +411,7 @@ the BMI for individual clients will be removed from the PersonCard to allow for 
 ** Pros: Easy to see at first glance which client is in which classification, minimise information included in a Person card.
 ** Cons: Determining a client's actual BMI will require the trainer to perform a manual calculation since the actual BMI value is not reflected in the application.
 
-* **Alternative 2:** Display client's BMI classification as tags to their Person card `currently implemented`
+* **Alternative 2:** Display client's BMI classification as tags to their Person card
 ** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
 ** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
 in a way that will not affect the storage or retrieval of other tags associated with each client.
@@ -429,6 +422,7 @@ in a way that will not affect the storage or retrieval of other tags associated 
 As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
 The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
 to the BMI classification (i.e. acceptable, overweight, underweight, obese)
+//end::bmiclassification[]
 
 
 // tag::undoredo[]
