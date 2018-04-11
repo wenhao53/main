@@ -20,7 +20,7 @@ Personal Trainer Pro is a desktop application used by personal trainers and thei
 
 * *Minor enhancement*: added a weight attribute that stores the users' weight, which is essential since this is a fitness application.
 
-* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+* *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/functional/wayneong95.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/test/wayneong95.md[Test code]]
 
 * *Other contributions*:
 
@@ -35,8 +35,6 @@ Personal Trainer Pro is a desktop application used by personal trainers and thei
 *** Reported bugs and suggestions for other teams in the class (examples: https://github.com/CS2103JAN2018-W09-B1/main/issues/134, https://github.com/CS2103JAN2018-W09-B1/main/issues/130, https://github.com/CS2103JAN2018-W09-B1/main/issues/126)
 ** Tools:
 *** Integrated a third party service (Google Calendar) to the project (https://github.com/CS2103JAN2018-F12-B2/main/pull/56)
-
-_{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
 
