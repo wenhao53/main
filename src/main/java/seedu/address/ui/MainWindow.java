@@ -172,6 +172,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.show();
     }
 
+    //@@author wayneong95
+
     /**
      * Switch to calendar window.
      */
@@ -189,6 +191,8 @@ public class MainWindow extends UiPart<Stage> {
     private void handleBrowser() {
         browserPlaceholder.getChildren().setAll(browserPanel.getRoot());
     }
+
+    //@@author
 
     void show() {
         primaryStage.show();
