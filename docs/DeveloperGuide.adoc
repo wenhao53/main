@@ -231,7 +231,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 
-// tag::Google Calendar API[]
+// tag::GoogleCalendarApi[]
 @by Wei Sheng
 
 === Integrated Google Calendar Services
@@ -287,6 +287,7 @@ Pros: Ease of usage for users and supports Command Line Interface
 Cons: Browser window for Google Calendar within the application cannot be too big as it is limited by the positioning of other
 fxml objects such as the status bar and person list panel. This may make it harder for users to view as compared to opening up Google
 Calendar on a separate browser.
+                    // end::GoogleCalendarApi[]
 
 //tag:: gender[]
 @by Ivan

@@ -181,6 +181,7 @@ Selects the 2nd person in the address book.
 `s 1` +
 Selects the 1st person in the results of the `find` command.
 
+        // tag::calendar[]
 === Show Google Calendar : `calendar`
 
 Shows the User's Google Calendar within the Personal Trainer Pro Application. +
@@ -195,7 +196,9 @@ Format: `calendar`
 Examples:
 
 * `calendar`
+        // end::calendar[]
 
+        // tag::addEvent[]
 === Add event to Google Calendar : `addEvent`
 
 Adds an event to the Google Calendar on the signed-in Google account within the Personal Trainer Pro Application. +
@@ -215,6 +218,7 @@ Once logged in to Google Calendar, be sure to tick your calendar in the left pan
 Examples:
 
 * `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
+        // end::addEvent[]
 
 === Show Calories a person requires : `Calories`
 
