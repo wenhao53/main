@@ -38,6 +38,7 @@ public class Name {
         return test.matches(NAME_VALIDATION_REGEX);
     }
 
+    //@@author wenhao53
     /**
      * Returns true if two Names in comparison are alphabetically the same (regardless of case).
      */
@@ -46,6 +47,8 @@ public class Name {
                 || (other instanceof Name // instanceof handles nulls
                 && this.fullName.toLowerCase().equals(((Name) other).fullName.toLowerCase())); // state check
     }
+
+    //@@author
 
     @Override
     public String toString() {

@@ -12,6 +12,7 @@ public class Config {
 
     // Config values customizable through config file
     private String appTitle = "Personal Trainer Pro";
+
     private Level logLevel = Level.INFO;
     private String userPrefsFilePath = "preferences.json";
 

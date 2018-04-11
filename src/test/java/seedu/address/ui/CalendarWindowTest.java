@@ -13,6 +13,8 @@ import guitests.guihandles.CalendarWindowHandle;
 import seedu.address.MainApp;
 import seedu.address.commons.events.ui.ShowCalendarEvent;
 
+//@@author wayneong95
+
 public class CalendarWindowTest extends GuiUnitTest {
     private ShowCalendarEvent showCalendarEventstub;
 

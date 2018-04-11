@@ -3,6 +3,8 @@ package seedu.address.commons.events.GoogleCalendar;
 import seedu.address.commons.events.BaseEvent;
 import seedu.address.model.CalendarEvent.CalendarEvent;
 
+//@@author wayneong95
+
 /**
  * An event requesting to add an event to the calendar.
  */

@@ -1,3 +1,5 @@
+//@@author wenhao53
+
 package seedu.address.logic.commands;
 
 import seedu.address.model.person.NameContainsClassificationPredicate;
@@ -10,10 +12,14 @@ public class ClassificationCommand extends Command {
 
     public static final String COMMAND_WORD = "bmi";
 
+    public static final String INVALID_KEYWORD = "Invalid keyword! \n%1$s";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose BMI classification matches "
-            + "any of the specified keywords (case-sensitive) and displays them as a list with index numbers.\n"
+            + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " overweight";
+            + "Example: " + COMMAND_WORD + " overweight\n"
+            + "KEYWORD: 'Underweight'(BMI < 18.5), 'Acceptable' (18.5 <= BMI <= 24.9), "
+                    + "'Overweight' (25 <= BMI <= 29.9), 'Obese' (BMI > 30)\n";
 
     private final NameContainsClassificationPredicate predicate;
 
