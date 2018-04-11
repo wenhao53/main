@@ -3,6 +3,8 @@ package seedu.address.model.CalendarEvent;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wayneong95
+
 /**
  * Represents the start date of an event in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -39,17 +41,5 @@ public class EventStartDate {
     @Override
     public String toString() {
         return startDate;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventStartDate // instanceof handles nulls
-                && this.startDate.equals(((EventStartDate) other).startDate)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return startDate.hashCode();
     }
 }

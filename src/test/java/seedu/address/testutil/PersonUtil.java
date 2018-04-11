@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -38,6 +39,7 @@ public class PersonUtil {
         sb.append(PREFIX_WEIGHT + person.getWeight().value + " ");
         sb.append(PREFIX_GENDER + person.getGender().value + " ");
         sb.append(PREFIX_AGE + person.getAge().value + " ");
+        sb.append(PREFIX_ACTIVITYLEVEL + person.getActivityLevel().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

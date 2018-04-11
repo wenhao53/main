@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ACTIVITYLEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -23,6 +24,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.person.ActivityLevel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -60,6 +62,7 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_WEIGHT + "WEIGHT] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_AGE + "AGE] "
+            + "[" + PREFIX_ACTIVITYLEVEL + "ACTIVITY LEVEL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -127,10 +130,12 @@ public class EditCommand extends UndoableCommand {
         Weight updatedWeight = editPersonDescriptor.getWeight().orElse(personToEdit.getWeight());
         Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Age updatedAge = editPersonDescriptor.getAge().orElse(personToEdit.getAge());
+        ActivityLevel updatedActivityLevel = editPersonDescriptor.getActivityLevel().orElse(personToEdit
+                .getActivityLevel());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
-                updatedGender, updatedAge, updatedTags);
+                updatedGender, updatedAge, updatedActivityLevel, updatedTags);
     }
 
     @Override
@@ -165,6 +170,7 @@ public class EditCommand extends UndoableCommand {
         private Weight weight;
         private Gender gender;
         private Age age;
+        private ActivityLevel activityLevel;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -182,6 +188,7 @@ public class EditCommand extends UndoableCommand {
             setWeight(toCopy.weight);
             setGender(toCopy.gender);
             setAge(toCopy.age);
+            setActivityLevel(toCopy.activityLevel);
             setTags(toCopy.tags);
         }
 
@@ -190,7 +197,7 @@ public class EditCommand extends UndoableCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address,
-                    this.height, this.weight, this.gender, this.age, this.tags);
+                    this.height, this.weight, this.gender, this.age, this.activityLevel, this.tags);
         }
 
         public void setName(Name name) {
@@ -257,6 +264,14 @@ public class EditCommand extends UndoableCommand {
             return Optional.ofNullable(age);
         }
 
+        public void setActivityLevel(ActivityLevel activityLevel) {
+            this.activityLevel = activityLevel;
+        }
+
+        public Optional<ActivityLevel> getActivityLevel() {
+            return Optional.ofNullable(activityLevel);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -297,6 +312,7 @@ public class EditCommand extends UndoableCommand {
                     && getWeight().equals(e.getWeight())
                     && getGender().equals(e.getGender())
                     && getAge().equals(e.getAge())
+                    && getActivityLevel().equals(e.getActivityLevel())
                     && getTags().equals(e.getTags());
         }
     }

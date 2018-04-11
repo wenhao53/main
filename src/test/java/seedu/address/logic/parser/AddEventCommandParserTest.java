@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_NAME_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME;
@@ -19,10 +20,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.model.CalendarEvent.EventEndDate.INVALID_END_DATE_MESSAGE;
+import static seedu.address.model.CalendarEvent.EventEndTime.INVALID_END_TIME_MESSAGE;
 
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.CalendarEvent.CalendarEvent;
 import seedu.address.model.CalendarEvent.EventEndDate;
 import seedu.address.model.CalendarEvent.EventEndTime;
@@ -31,6 +35,7 @@ import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
 import seedu.address.testutil.EventBuilder;
 
+//@@author wayneong95
 
 public class AddEventCommandParserTest {
     private AddEventCommandParser parser = new AddEventCommandParser();
@@ -43,16 +48,14 @@ public class AddEventCommandParserTest {
                 .withEndDate(VALID_END_DATE)
                 .withEndTime(VALID_END_TIME)
                 .build();
-
-        /*
-        Test only works on manual testing but not during system testing.
-        Possibly due to different instances of addEvent command. Use only for manual testing.
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + EVENT_NAME_DESC + EVENT_START_DATE_DESC
-                + EVENT_START_TIME_DESC + EVENT_END_DATE_DESC + EVENT_END_TIME_DESC,
-                new AddEventCommand(expectedEvent));
-        */
-
+        try {
+            Command actual = parser.parse(PREAMBLE_WHITESPACE + EVENT_NAME_DESC + EVENT_START_DATE_DESC
+                    + EVENT_START_TIME_DESC + EVENT_END_DATE_DESC + EVENT_END_TIME_DESC);
+            Command expected = new AddEventCommand(expectedEvent);
+            expected.equals(actual);
+        } catch (ParseException pe) {
+            throw new IllegalArgumentException("Invalid userInput.", pe);
+        }
     }
 
     @Test
@@ -61,6 +64,14 @@ public class AddEventCommandParserTest {
         //end date earlier than start date
         assertParseFailure(parser, EVENT_NAME_DESC + " sd/2018-05-20" + EVENT_START_TIME_DESC
                 + " ed/2018-05-19" + EVENT_END_TIME_DESC, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidEndTime_failure() {
+        String expectedMessage = String.format(INVALID_END_TIME_MESSAGE);
+        //end time earlier than start time
+        assertParseFailure(parser, EVENT_NAME_DESC + EVENT_START_DATE_DESC + " st/11:30"
+                + EVENT_END_DATE_DESC + " et/10:30", expectedMessage);
     }
 
     @Test

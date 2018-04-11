@@ -15,6 +15,7 @@ import seedu.address.model.CalendarEvent.EventEndTime;
 import seedu.address.model.CalendarEvent.EventName;
 import seedu.address.model.CalendarEvent.EventStartDate;
 import seedu.address.model.CalendarEvent.EventStartTime;
+import seedu.address.model.person.ActivityLevel;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
@@ -100,6 +101,7 @@ public class ParserUtil {
         return phone.isPresent() ? Optional.of(parsePhone(phone.get())) : Optional.empty();
     }
 
+    //@@author wenhao53
     /**
      * Parses a {@code String height} into a {@code Height}.
      * Leading and trailing whitespaces will be trimmed.
@@ -242,6 +244,32 @@ public class ParserUtil {
     public static Optional<Age> parseAge(Optional<String> age) throws IllegalValueException {
         requireNonNull(age);
         return age.isPresent() ? Optional.of(parseAge(age.get())) : Optional.empty();
+    }
+
+    /**
+     * Parses a {@code String activityLevel} into a {@code ActivityLevel}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalValueException if the given {@code activityLevel} is invalid.
+     */
+    public static ActivityLevel parseActivityLevel(String activityLevel) throws IllegalValueException {
+        requireNonNull(activityLevel);
+        String trimmedActivityLevel = activityLevel.trim();
+        if (!ActivityLevel.isValidActivityLevel(trimmedActivityLevel)) {
+            throw new IllegalValueException(ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
+        }
+        return new ActivityLevel(trimmedActivityLevel);
+    }
+
+    /**
+     * Parses a {@code Optional<String> activityLevel} into an {@code Optional<ActivityLevel>}
+     * if {@code activityLevel} is present.
+     * See header comment of this class regarding the use of {@code Optional} parameters.
+     */
+    public static Optional<ActivityLevel> parseActivityLevel(Optional<String> activityLevel) throws
+            IllegalValueException {
+        requireNonNull(activityLevel);
+        return activityLevel.isPresent() ? Optional.of(parseActivityLevel(activityLevel.get())) : Optional.empty();
     }
 
     /**

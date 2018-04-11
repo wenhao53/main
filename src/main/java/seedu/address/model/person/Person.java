@@ -25,6 +25,7 @@ public class Person {
     private final String bodyMassIndexClassification;
     private final Gender gender;
     private final Age age;
+    private final ActivityLevel activityLevel;
 
     private final UniqueTagList tags;
 
@@ -32,7 +33,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Height height,
-                  Weight weight, Gender gender, Age age, Set<Tag> tags) {
+                  Weight weight, Gender gender, Age age, ActivityLevel activityLevel, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, height, weight, age, tags);
         this.name = name;
         this.phone = phone;
@@ -44,6 +45,7 @@ public class Person {
         this.bodyMassIndexClassification = bodyMassIndex.classification;
         this.gender = gender;
         this.age = age;
+        this.activityLevel = activityLevel;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
     }
@@ -87,6 +89,10 @@ public class Person {
     public Age getAge() {
         return age;
     }
+
+    public ActivityLevel getActivityLevel() {
+        return activityLevel;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -114,13 +120,14 @@ public class Person {
                 && otherPerson.getHeight().equals(this.getHeight())
                 && otherPerson.getWeight().equals(this.getWeight())
                 && otherPerson.getGender().equals(this.getGender())
-                && otherPerson.getAge().equals(this.getAge());
+                && otherPerson.getAge().equals(this.getAge())
+                && otherPerson.getActivityLevel().equals(this.getActivityLevel());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, height, weight, gender, age, tags);
+        return Objects.hash(name, phone, email, address, height, weight, gender, age, activityLevel, tags);
     }
 
     @Override
@@ -141,6 +148,8 @@ public class Person {
                 .append(getGender())
                 .append(" Age: ")
                 .append(getAge())
+                .append(" Activity Level: ")
+                .append(getActivityLevel())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
