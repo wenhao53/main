@@ -371,36 +371,43 @@ As one can see it will throw an exception be it either command when a duplicate 
 // tag::bmiclassification[]
 @by Wenhao
 
-=== Auto-assigning and Sorting of BMI Classification labels to clients
+=== Auto-assigning and Sorting of BMI Classification labels to clients (To be implemented)
 
 The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
 Acceptable, or Underweight), so as to allow the user to identify which clients need more help in reaching their desired BMI range.
 
-The BMI classification will be adapted from the standards set by the World Health Organisation (WHO). The background colour of the PersonCard for each
+The BMI classification will be adapted from the standards set by the World Health Organisation (WHO). The background colour of the Person card for each
 client will differ in colour according to the BMI classification for that particular client.
 
 Current BMI standards set by the World Health Organisation (WHO) are as follows:
 [width="59%",cols="32%,<48%,<20%",options="header",]
 |=======================================================================
-|Classification |BMI Range |Background Colour (Dark Theme)
-|**Underweight** |BMI < 18.5 |Dark Yellow
+|Classification |BMI Range |Background Colour
+|**Underweight** |BMI < 18.5 |Orange
 
-|**Acceptable** |18.5 &le; BMI &le; 24.9 |Dark Green
+|**Acceptable** |18.5 &le; BMI &le; 24.9 |Green
 
-|**Overweight** |25 &le; BMI &le; 29.9 |Dark Yellow
+|**Overweight** |25 &le; BMI &le; 29.9 |Orange
 
-|**Obese** |BMI &ge; 30 |Dark Red
+|**Obese** |BMI &ge; 30 |Red
 |=======================================================================
 
 
-Each client is saved as a person with weight and height attributes. This is sufficient to facilitate the calculation of their BMI.
+==== Current Implementation [as of v1.4]
+
+Currently, each client is saved as a person with weight and height attributes. This is sufficient to facilitate the calculation of their BMI.
 Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
 This will allow the BMI to be re-calculated each time a client's weight or height (or both) is updated.
-The background colour of the each client's PersonCard will be updated automatically if there is any change in BMI Classification
 
 The BMI for individual clients is calculated using the following formula: **BMI = weight / (height / 100)^2^ **.
 
 The BMI of each client is stored as a Person attribute and is currently displayed (to 4 significant figures) in the PersonCard.
+
+==== Future implementation [by v1.5]
+
+The BMI and Gender of each Person will help to determine the BMI classification according to the above table.
+Once the classification has been implemented and integrated into the UI (using the background colour of the PersonCard),
+the BMI for individual clients will be removed from the PersonCard to allow for a more intuitive display minimise the cluttering of information in the application.
 
 
 ==== Design Considerations
@@ -421,8 +428,8 @@ in a way that will not affect the storage or retrieval of other tags associated 
 
 As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
 The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
-to the BMI classification (i.e. acceptable, overweight, underweight, obese). Combinations of keywords are acceptable.
-// end::bmiclassification[]
+to the BMI classification (i.e. acceptable, overweight, underweight, obese)
+
 
 // tag::undoredo[]
 === Undo/Redo feature
@@ -552,6 +559,12 @@ image::UndoRedoActivityDiagram.png[width="650"]
 ** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two * different things.
 // end::undoredo[]
 
+// tag::dataencryption[]
+=== [Proposed] Data Encryption
+
+_{Explain here how the data encryption feature will be implemented}_
+
+// end::dataencryption[]
 
 === Logging
 
