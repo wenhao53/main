@@ -10,7 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.GoogleCalendar.AddCalendarEvent;
 import seedu.address.model.CalendarEvent.CalendarEvent;
 
-//@@author wayneong95
+//@@author wayneong95-reused
 
 /**
  * Some code referenced from CS2103AUG2017-W15-B2.
@@ -42,6 +42,8 @@ public class AddEventManager {
         }
         return instance;
     }
+
+    //@@author wayneong95
 
     @Subscribe
     public void handleNewAddCalendarEvent(AddCalendarEvent event) throws IOException {
