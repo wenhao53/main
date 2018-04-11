@@ -84,7 +84,7 @@ public class BrowserPanel extends UiPart<Region> {
                 + CALCULATOR_GENDER_PREFIX + person.getGender().value
                 + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value
                 + CALCULATOR_WEIGHT_PREFIX + person.getWeight().value
-                + CALCULATOR_ACTIVITY_LEVEL_PREFIX + "1.375"
+                + CALCULATOR_ACTIVITY_LEVEL_PREFIX + person.getActivityLevel().value
                 + CALCULATOR_SUFFIX_URL);
     }
 
