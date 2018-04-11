@@ -12,7 +12,7 @@ public class ClassificationCommand extends Command {
 
     public static final String COMMAND_WORD = "bmi";
 
-    public static final String INVALID_KEYWORD = "Invalid keyword! \n%1$s";
+    public static final String INVALID_KEYWORD = "One or more invalid keyword(s) found! \n%1$s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose BMI classification matches "
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
