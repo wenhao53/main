@@ -13,7 +13,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/CS2103JAN2018-F12-B2/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103JAN2018-F12-B2`      Since: `Feb 2018`      Licence: `MIT`
 
 == Introduction
 
@@ -28,7 +28,7 @@ Personal Trainers can make use of the application to manage their clients, sched
 Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `PTP.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -41,7 +41,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 * *`list`* : lists all clients
 * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/169.0 w/55.5 g/M age/22` : adds a contact named `John Doe` to the Personal Trainer Pro application.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
-* **`sort`: sorts the clients in the list according to BMI
 * *`exit`* : exits the app
 
 .  Refer to <<Features>> for details of each command.
@@ -65,15 +64,15 @@ Format: `help`
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT g/GENDER age/AGE [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT g/GENDER age/AGE al/ACTIVITYLEVEL [t/TAG]...`
 
 [TIP]
 A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/173.0 w/55.5 g/M age/22 `
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 h/169.0 w/66.7 g/f age/21 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/173.0 w/55.5 g/M age/22 al/1.2 `
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 h/169.0 w/66.7 g/f age/21 al/1.9 t/criminal`
 
 === Listing all persons : `list`
 
@@ -86,6 +85,13 @@ Alias: `l`
 Shows a filtered list of all persons in the PTP application whose BMI classification matches the given search query. +
 Format: `bmi KEYWORD [MORE_KEYWORDS]`
 
+Keywords (any of the below):
+
+* `Underweight` (BMI < 18.5)
+* `Acceptable` (18.5 &le; BMI &le; 24.9)
+* `Overweight` (25 &le; BMI &le; 29.9)
+* `Obese` (BMI &ge; 30)
+
 Examples:
 
 * `bmi overweight`
@@ -94,7 +100,7 @@ Examples:
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [g/GENDER] [age/AGE] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [g/GENDER] [age/AGE] [al/ACTIVITYLEVEL] [t/TAG]...`
 Alias: `e`
 
 ****
@@ -196,7 +202,7 @@ Examples:
 === Add event to Google Calendar : `addEvent`
 
 Adds an event to the Google Calendar on the signed-in Google account within the Personal Trainer Pro Application. +
-Format: `addEvent n/EVENT NAME sd/EVENT START DATE st/EVENT START TIME ed/EVENT END DATE et/EVENT END TIME`
+Format: `addEvent n/EVENT_NAME sd/EVENT_START_DATE st/EVENT_START_TIME ed/EVENT_END_DATE et/EVENT_END_TIME`
 
 ****
 * Adds an event to the Google Calendar on the signed-in Google account via Command Line Interface.
@@ -331,21 +337,26 @@ _{explain how the user can enable/disable data encryption}_
 
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT g/GENDER age/AGE [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 h/169.0 w/55.5 g/M age/22 t/friend t/colleague`
+* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT g/GENDER age/AGE al/ACTIVITYLEVEL [t/TAG]...` +
+e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 h/169.0 w/55.5 g/M age/22 al/1.9 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [g/GENDER] [age/AGE] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [g/GENDER] [age/AGE] [al/ACTIVITYLEVEL] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *List* : `list`
 * *Filter* : `bmi KEYWORD [MORE_KEYWORDS]` +
-e.g.   `bmi overweight underweight`
+e.g. `bmi overweight underweight`
 * *Help* : `help`
 * *Select* : `select INDEX` +
-e.g.`select 2`
+e.g. `select 2`
+* *Calories* : `calories INDEX` +
+e.g. `calories 2`
+* *Calendar* : `calendar`
+* *addEvent* : `addEvent n/EVENT_NAME sd/EVENT_START_DATE st/EVENT_START_TIME ed/EVENT_END_DATE et/EVENT_END_TIME` +
+e.g. `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
