@@ -20,14 +20,16 @@ public class ClassificationCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClassificationCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ClassificationCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsClassifcationCommand() {
         // no leading and trailing whitespaces
         ClassificationCommand expectedClassificationCommand =
-                new ClassificationCommand(new NameContainsClassificationPredicate(Arrays.asList("underweight", "overweight")));
+                new ClassificationCommand(new NameContainsClassificationPredicate(
+                        Arrays.asList("underweight", "overweight")));
         assertParseSuccess(parser, "underweight overweight", expectedClassificationCommand);
 
         // multiple whitespaces between keywords
@@ -36,7 +38,8 @@ public class ClassificationCommandParserTest {
 
     @Test
     public void parse_invalidArg_throwsParseException() {
-        assertParseFailure(parser, "notAValidKeyword", String.format(MESSAGE_INVALID_KEYWORD, ClassificationCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "notAValidKeyword", String.format(MESSAGE_INVALID_KEYWORD,
+                ClassificationCommand.MESSAGE_USAGE));
     }
 
 
