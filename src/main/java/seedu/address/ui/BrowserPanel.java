@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowCaloriesEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.HtmlFormatter;
 
 /**
  * The Browser Panel of the App.
@@ -56,11 +57,14 @@ public class BrowserPanel extends UiPart<Region> {
 
         loadDefaultPage();
         registerAsAnEventHandler(this);
+
     }
 
+    //@@author hypertun
     private void loadPersonPage(Person person) {
-        loadPage(SEARCH_PAGE_URL + person.getName().fullName);
+        browser.getEngine().loadContent(HtmlFormatter.getHtmlFormat(person));
     }
+    //@@author
 
     public void loadPage(String url) {
         Platform.runLater(() -> browser.getEngine().load(url));
