@@ -23,7 +23,7 @@ Allowing the personal trainer to know at a quick glance how many of his clients 
 * *Minor enhancement*: added a *filtering command to sieve of clients of the same BMI classification* that complements the justification above
 * *Minor enhancement*: added a height and BMI attribute to facilitate the classification of clients according to BMI.(Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/27/[#27], https://github.com/CS2103JAN2018-F12-B2/main/pull/38/[#38])
 
-* *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/functional/wenhao53.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/test/wenhao53.md[Test code]]
+* *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/src/master/collated/functional/wenhao53.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/src/master/collated/test/wenhao53.md[Test code]]
 
 * *Future implementations*: To make use of Google Charts API to provide an interactive display in Weight Logging for each client.
 * *Other contributions*:
