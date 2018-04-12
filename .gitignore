@@ -9,7 +9,6 @@ lib/*
 *.log.*
 *.csv
 src/test/data/sandbox/
-config.json
 preferences.json
 .DS_Store
 ./screenshot*.png
