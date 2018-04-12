@@ -319,24 +319,36 @@
     -fx-background-color: #ddffdd;
     -fx-border-color: derive(#ddffdd, -30%);
     -fx-border-width: 2;
+    -fx-padding: 2 3 2 3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .OBESE {
     -fx-background-color: #ffdddd;
     -fx-border-color: derive(#ffdddd, -30%);
     -fx-border-width: 2;
+    -fx-padding: 2 3 2 3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .OVERWEIGHT {
     -fx-background-color: #ffffdd;
     -fx-border-color: derive(#ffffdd, -30%);
     -fx-border-width: 2;
+    -fx-padding: 2 3 2 3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .UNDERWEIGHT {
     -fx-background-color: #ffffdd;
     -fx-border-color: derive(#ffffdd, -30%);
     -fx-border-width: 2;
+    -fx-padding: 2 3 2 3;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 /* @@author */
