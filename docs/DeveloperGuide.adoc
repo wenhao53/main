@@ -372,7 +372,7 @@ As one can see it will throw an exception be it either command when a duplicate 
 // tag::bmiclassification[]
 @by Wenhao
 
-=== Auto-assigning and Sorting of BMI Classification labels to clients (To be implemented)
+=== Auto-assigning and Sorting of BMI Classification labels to clients
 
 The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
 Acceptable, or Underweight), so as to allow the user to identify which clients need more help in reaching their desired BMI range.
