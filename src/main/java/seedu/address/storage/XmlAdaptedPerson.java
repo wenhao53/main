@@ -19,6 +19,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.WeightLog;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -182,7 +183,9 @@ public class XmlAdaptedPerson {
         final ActivityLevel activityLevel = new ActivityLevel(this.activityLevel);
 
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, tags);
+
+        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel,
+                new WeightLog(weight), tags);
     }
 
     @Override

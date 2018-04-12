@@ -134,7 +134,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return new Person(
                 person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
                 person.getHeight(), person.getWeight(), person.getGender(), person.getAge(), person.getActivityLevel(),
-                correctTagReferences);
+                person.getWeightLog(), correctTagReferences);
     }
 
     /**

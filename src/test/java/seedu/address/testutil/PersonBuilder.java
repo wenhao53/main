@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.WeightLog;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -41,6 +42,7 @@ public class PersonBuilder {
     private Gender gender;
     private Age age;
     private ActivityLevel activityLevel;
+    private WeightLog weightLog;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -69,6 +71,7 @@ public class PersonBuilder {
         gender = personToCopy.getGender();
         age = personToCopy.getAge();
         activityLevel = personToCopy.getActivityLevel();
+        weightLog = personToCopy.getWeightLog();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -153,7 +156,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, tags);
+        return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, weightLog, tags);
     }
 
 }

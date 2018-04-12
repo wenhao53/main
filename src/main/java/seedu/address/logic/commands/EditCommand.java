@@ -14,6 +14,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.WeightLog;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
@@ -71,6 +73,7 @@ public class EditCommand extends UndoableCommand {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_WEIGHT_LOG_UPDATED = "Weight log updated for Person: %1$s";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -134,8 +137,19 @@ public class EditCommand extends UndoableCommand {
                 .getActivityLevel());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        WeightLog weightLogToUpdate = personToEdit.getWeightLog();
+
+        // Extracts the weight log from the old person to add the new weight before assigning it to the new person
+        if (updatedWeight != null) {
+            weightLogToUpdate.addNewEntry(new Date(), updatedWeight);
+
+            return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedHeight, updatedWeight, updatedGender, updatedAge, updatedActivityLevel,
+                    weightLogToUpdate, updatedTags);
+        }
+
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
-                updatedGender, updatedAge, updatedActivityLevel, updatedTags);
+                updatedGender, updatedAge, updatedActivityLevel, weightLogToUpdate, updatedTags);
     }
 
     @Override
@@ -199,6 +213,7 @@ public class EditCommand extends UndoableCommand {
             return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address,
                     this.height, this.weight, this.gender, this.age, this.activityLevel, this.tags);
         }
+
 
         public void setName(Name name) {
             this.name = name;

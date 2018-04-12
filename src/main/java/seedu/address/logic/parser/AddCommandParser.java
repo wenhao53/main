@@ -28,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
+import seedu.address.model.person.WeightLog;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -66,7 +67,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
             Person person = new Person(name, phone, email, address, height, weight, gender, age, activityLevel,
-                    tagList);
+                    new WeightLog(weight), tagList);
 
             return new AddCommand(person);
         } catch (IllegalValueException ive) {

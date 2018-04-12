@@ -26,14 +26,16 @@ public class Person {
     private final Gender gender;
     private final Age age;
     private final ActivityLevel activityLevel;
-
     private final UniqueTagList tags;
+
+    private WeightLog weightLog;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Height height,
-                  Weight weight, Gender gender, Age age, ActivityLevel activityLevel, Set<Tag> tags) {
+                  Weight weight, Gender gender, Age age, ActivityLevel activityLevel,
+                  WeightLog weightLog, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, height, weight, age, tags);
         this.name = name;
         this.phone = phone;
@@ -46,6 +48,7 @@ public class Person {
         this.gender = gender;
         this.age = age;
         this.activityLevel = activityLevel;
+        this.weightLog = weightLog;
         // protect internal tags from changes in the arg list
         this.tags = new UniqueTagList(tags);
     }
@@ -93,6 +96,11 @@ public class Person {
     public ActivityLevel getActivityLevel() {
         return activityLevel;
     }
+
+    public WeightLog getWeightLog() {
+        return weightLog;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
