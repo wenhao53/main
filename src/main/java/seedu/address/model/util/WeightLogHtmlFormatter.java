@@ -42,13 +42,16 @@ public class WeightLogHtmlFormatter {
     }
 
 
+    /**
+     * Converts a given a {@code weightLog} stored as an ArrayList into a String for HTML display.
+     */
     private static String convertWeightLogToString(WeightLog weightLog) {
-        final String TABSPACE = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        final String twoTabspaces = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
         String logString = "";
         for (int entry = 0; entry < weightLog.list.size(); entry++) {
             logString = String.format("%s %s %s %s", logString,
-                    "[" + weightLog.list.get(entry).getKey().toString() + "]", TABSPACE,
+                    "[" + weightLog.list.get(entry).getKey().toString() + "]", twoTabspaces,
                     weightLog.list.get(entry).getValue().toString() + "kg <br>");
         }
         return logString;

@@ -14,7 +14,7 @@ import javafx.util.Pair;
  */
 public class WeightLog {
 
-    public ArrayList<Pair<Date, Double>> list;
+    private ArrayList<Pair<Date, Double>> list;
 
     /**
      * Constructs a new {@code WeightLog}.
@@ -29,7 +29,7 @@ public class WeightLog {
      * @param date A date representing the moment where the Person was created.
      * @param weight A valid weight (in Kg).
      */
-    public void addNewEntry(Date date,Weight weight) {
+    public void addNewEntry(Date date, Weight weight) {
         list.add(new Pair(date, getDoubleValueFromWeight(weight)));
     }
 
