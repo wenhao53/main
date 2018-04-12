@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= Personal Trainer Pro- Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,9 +10,9 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103JAN2018-F12-B2/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `CS2103JAN2018-F12-B2`      Since: `Feb 2018`      Licence: `MIT`
 
 == Setting up
 
@@ -68,7 +68,7 @@ Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> docume
 
 ==== Updating documentation to match your fork
 
-After forking the repo, links in the documentation will still point to the `se-edu/addressbook-level4` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `se-edu/addressbook-level4`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
+After forking the repo, links in the documentation will still point to the `CS2103JAN2018-F12-B2/main` repo. If you plan to develop this as a separate product (i.e. instead of contributing to the `CS2103JAN2018-F12-B2/main`) , you should replace the URL in the variable `repoURL` in `DeveloperGuide.adoc` and `UserGuide.adoc` with the URL of your fork.
 
 ==== Setting up CI
 
@@ -140,7 +140,7 @@ The _Sequence Diagram_ below shows how the components interact for the scenario 
 image::SDforDeletePerson.png[width="800"]
 
 [NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+Note how the `Model` simply raises a `AddressBookChangedEvent` when the Personal Trainer Pro data are changed, instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
@@ -229,6 +229,202 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+// tag::GoogleCalendarApi[]
+@by Wei Sheng
+
+=== Integrated Google Calendar Services
+
+The integrated Google Calendar API will allow personal trainers and clients to access their google calendar within the app for increased
+ease and functionality. The trainers and clients will be able to interact with the google calendar through a mouse click or Command Line
+Interface. The proposed commands to be implemented are as follows:
+
+. calendar: Opens up the user's Google Calendar
+
+. addEvent: Allow users to add an event to their Google Calendar (Eg. training sessions with their clients)
+
+. deleteEvent: Deletes an event in the case where trainers/clients are unable to make it [v2.0]
+
+. findAll: Find all the sessions for a particular client for ease of viewing [v2.0]
+
+==== Current Implementation [v1.5]
+
+The Google Calendar is displayed within the PTP application upon calling of the 'calendar' command and
+supports Command Line Interface via the 'addEvent' command.
+
+The 'calendar' command interacts primarily with the UI but also other components of the application. The following sequence diagram shows how
+the 'calendar' command works.
+
+.Component interactions for `calendar` command
+image::calendarCommand.PNG[width="800"]
+
+The 'addEvent' command interacts primarily with the Google Calendar Api but also other components of the application including the
+CalendarEvent class under the Model component. The following sequence diagram shows how the 'addEvent' command works.
+
+.Component interactions for `addEvent` command
+image::addEventCommand.PNG[width="800"]
+
+==== Future implementation [V2.0]
+
+More features will be implemented to allow increased ease of use for the users of Personal Trainer Pro such as the 'deleteEvent' command
+and the 'findAll' command.
+
+==== Design Consideration
+
+===== Aspect: Implementation of Google Calendar API
+
+Alternative 1: Open up in a new browser
+
+Pros: Easy to implement and debug
+
+Cons: Troublesome for users to keep switching between the PTP app and browser, and lacks Command Line Interface
+
+Alternative 2 (current choice): Open Google Calendar within the PTP application
+
+Pros: Ease of usage for users and supports Command Line Interface
+
+Cons: Browser window for Google Calendar within the application cannot be too big as it is limited by the positioning of other
+fxml objects such as the status bar and person list panel. This may make it harder for users to view as compared to opening up Google
+Calendar on a separate browser.
+                    // end::GoogleCalendarApi[]
+
+//tag:: gender[]
+@by Ivan
+
+==== Gender attribute : Current Implementation
+
+The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
+
+The Gender attribute resides as an attribute to a person under 'model'. This means that every Person added by the AddCommand line must have a gender.
+
+Gender is implemented in this way:
+[source,java]
+---
+public class Gender {
+
+    public static final String MESSAGE_GENDER_CONSTRAINTS =
+            "Gender can only be the alphabets M or F or m or f";
+    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
+    public final String value;
+     //... rest of attribute functions ...
+
+     // Test for regex is shown below
+     public static boolean isValidGender(String test) {
+             return test.matches(GENDER_VALIDATION_REGEX);
+         }
+
+     //... rest of attribute functions ...
+    }
+---
+
+Supposed the user has just created a person using the command line but the gender is null or not within the regex this will cause a failure in execution of the AddCommand and a display of the 'MESSAGE_GENDER_CONSTRAINTS'.
+
+The same applies to the Editfunction where the same checks will apply. However this attribute differs from the name attribute as it can be duplicated to different persons.
+
+AddCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        requireNonNull(model);
+        try {
+            model.addPerson(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+    }
+---
+
+EditCommand:
+[source,java]
+---
+    @Override
+    public CommandResult executeUndoableCommand() throws CommandException {
+        try {
+            model.updatePerson(personToEdit, editedPerson);
+        } catch (DuplicatePersonException dpe) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        } catch (PersonNotFoundException pnfe) {
+            throw new AssertionError("The target person cannot be missing");
+        }
+        //... rest of edit command ...
+    }
+---
+
+As one can see it will throw an exception be it either command when a duplicate person is found.
+
+==== Design Considerations
+
+===== Aspect: Implementation of `Gender` attribute
+
+* **Alternative 1 (current choice):** Add a new gender attribute to person 'g/'.
+** Pros: We will not lose any undone/redone functionality as it is now part of the default behaviour.
+** Cons: It will now require constant addition of the gender attribute to a person even when the gender attribute is not needed in some cases.
+* **Alternative 2:** Add gender as a tag
+** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
+** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+
+
+
+// tag::bmiclassification[]
+@by Wenhao
+
+=== Auto-assigning and Sorting of BMI Classification labels to clients (To be implemented)
+
+The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
+Acceptable, or Underweight), so as to allow the user to identify which clients need more help in reaching their desired BMI range.
+
+The BMI classification will be adapted from the standards set by the World Health Organisation (WHO). The background colour of the Person card for each
+client will differ in colour according to the BMI classification for that particular client.
+
+Current BMI standards set by the World Health Organisation (WHO) are as follows:
+[width="59%",cols="32%,<48%,<20%",options="header",]
+|=======================================================================
+|Classification |BMI Range |Background Colour (Light Theme)
+|**Underweight** |BMI < 18.5 |Light Yellow
+
+|**Acceptable** |18.5 &le; BMI &le; 24.9 |Light Green
+
+|**Overweight** |25 &le; BMI &le; 29.9 |Light Yellow
+
+|**Obese** |BMI &ge; 30 |Light Red
+|=======================================================================
+
+
+Each client is saved as a person with weight and height attributes facilitate the calculation of their BMI.
+Having the weight and height attributes in a Person allows the easy updating using the `edit` command in the application.
+This will allow the BMI to be re-calculated each time a client's weight or height (or both) is updated.
+The background colour of the PersonCard will be updated automatically according to the BMI Classification
+
+The BMI for individual clients is calculated using the following formula: **BMI = weight / (height / 100)^2^ **.
+
+The BMI of each client is stored as a Person attribute and is currently displayed (to 4 significant figures) in the PersonCard.
+
+
+==== Design Considerations
+
+===== Aspect: Display of BMI Classification
+
+* **Alternative 1 (current choice):** Individual client's BMI will not be shown as a number, but classification is reflected using the Person card's background colour
+** Pros: Easy to see at first glance which client is in which classification, minimise information included in a Person card.
+** Cons: Determining a client's actual BMI will require the trainer to perform a manual calculation since the actual BMI value is not reflected in the application.
+
+* **Alternative 2:** Display client's BMI classification as tags to their Person card
+** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
+** Cons: Displaying each client's BMI values as tags may interfere with the implementation and display of any existing tags and it is crucial to ensure the implementation of this tag, if desired,
+in a way that will not affect the storage or retrieval of other tags associated with each client.
+
+
+=== Classification Command to filter clients displayed
+
+As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
+The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
+to the BMI classification (i.e. acceptable, overweight, underweight, obese)
+//end::bmiclassification[]
+
 
 // tag::undoredo[]
 === Undo/Redo feature
@@ -780,15 +976,44 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
 [appendix]
 == Product Scope
 
+*Feature Contribution*:
+
+* Ivan:
+* Minor - Html and css design of the person card so as to improve aesthetics instead of the boring google search page.
+* Major - Mainly, a function to estimate the approximate calories needed to reach the goal of the client and
+  then a page with the exercises the clients can do with links to video they can watch from the application. Secondly,
+  a function to log the past weights of the clients so that they and the trainers can track their progress.
+  A chart will also be plotted based on their progress.
+
+* Wenhao:
+* Minor - Sorting command to sort the list of clients by BMI range
+* Major - Automatically generate weight classification (Overweight/Acceptable/Underweight) based on
+  current attributes of each client. This will be listed in a similar fashion to tags under a client's name
+
+* Wei Sheng:
+* Minor - Weight Attribute added. Since this is an application for fitness trainers, the weight of the clients is
+essential as it allows the trainers to gauge the physical fitness of the clients.
+* Major - Integrated google calendar to allow the trainer to add training sessions with the clients and for the
+clients to view the training sessions they have signed up for.
+
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of clients
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
 * is reasonably comfortable using CLI apps
+* personal trainers who keep records of clients
+* personal trainers who want to track clients' progress
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+
+
+*Value proposition*:
+
+* manage clients faster than a typical mouse/GUI driven app
+* group clients according to BMI classification
+* track individual client's progress using a chart for weight changes
+* set goals for clients and see clients' feedback
 
 [appendix]
 == User Stories
@@ -806,17 +1031,21 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |update the weight of my client |track his/her weight progress
+
+|`* * *` |user |filter my clients according to BMI classification |easily view clients with similar BMI
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |user |track the weight changes of my clients |view my clients' progression till date using past weight updates
 |=======================================================================
 
-_{More to be added}_
+
 
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+(For all use cases below, the *System* is the `Personal Trainer Pro` and the *Actor* is the `user`, unless specified otherwise)
 
 [discrete]
 === Use case: Delete person
@@ -844,7 +1073,89 @@ Use case ends.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+
+=== Use case: Add person
+
+*MSS*
+
+1. User requests to add person
+2. AddressBook prompts for data input
+3. User inputs data for person to be added
+4. AddressBook adds the new person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. Person of the same name (regardless of case) is already in AddressBook
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+=== Use case: Add goal for person
+
+*MSS*
+
+1. User requests to add goal
+2. AddressBook prompts for data input
+3. User inputs person name and goal to be added
+4. AddressBook adds the new goal for the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 3b. The input goal is empty.
++
+[none]
+** 3b1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
+=== Use case: Track weight changes for person
+
+*MSS*
+
+1. User requests to track weight changes
+2. AddressBook prompts for data input
+3. User inputs person to track past weight
+4. AddressBook displays a chart showing past changes in weight
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. There are no changes to track.
++
+[none]
+** 4a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+
 
 [appendix]
 == Non Functional Requirements
@@ -852,6 +1163,9 @@ _{More to be added}_
 .  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to display data in a simple and clean format so a user is able to view the data with ease.
+.  New information submitted by user should be updated immediately.
+.  Client details should only be accessible to the client and the Trainer.
 
 _{More to be added}_
 
@@ -863,6 +1177,33 @@ Windows, Linux, Unix, OS-X
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[personal-trainer]] Personal trainer::
+Target audience
+
+[[trainer]] Trainer::
+Same as above
+
+[[client]] Client::
+Indirect target audience, due the the fact the employer-employee relationship between them and trainers
+
+[[track]] Track::
+Understanding the fitness(e.g. weight loss/gain, calories, protein) progress of the clients
+
+[[meal-plans]] Meal plan::
+A combination of dietary information that should be followed
+
+[[training]] Training::
+A period of time when client is working out
+
+[[session]] Session::
+Same as above
+
+[[appointment]] Appointment::
+Same as above
+
+[[goals]] Goals::
+A combination of desirable attributes that clients want to achieve
 
 [appendix]
 == Product Survey
