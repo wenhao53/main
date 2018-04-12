@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static guitests.guihandles.WebViewUtil.waitUntilBrowserLoaded;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static seedu.address.testutil.EventsUtil.postNow;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.ui.BrowserPanel.DEFAULT_PAGE;
@@ -15,12 +16,16 @@ import org.junit.Test;
 import guitests.guihandles.BrowserPanelHandle;
 import seedu.address.MainApp;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
+import seedu.address.model.util.HtmlFormatter;
 
 public class BrowserPanelTest extends GuiUnitTest {
     private PersonPanelSelectionChangedEvent selectionChangedEventStub;
 
     private BrowserPanel browserPanel;
     private BrowserPanelHandle browserPanelHandle;
+
+    private static final String EMPTY_STRING = "";
+    private static final String HTML_REMOVAL_REGEX = "\\<.*?>";
 
     @Before
     public void setUp() {
@@ -38,11 +43,11 @@ public class BrowserPanelTest extends GuiUnitTest {
         URL expectedDefaultPageUrl = MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE);
         assertEquals(expectedDefaultPageUrl, browserPanelHandle.getLoadedUrl());
 
-        // associated web page of a person
+        // associated person card of a person
         postNow(selectionChangedEventStub);
-        URL expectedPersonUrl = new URL(BrowserPanel.SEARCH_PAGE_URL + ALICE.getName().fullName.replaceAll(" ", "%20"));
+        String expectedHtmlContent = HtmlFormatter.getHtmlFormat(ALICE).replaceAll(HTML_REMOVAL_REGEX,EMPTY_STRING);
 
         waitUntilBrowserLoaded(browserPanelHandle);
-        assertEquals(expectedPersonUrl, browserPanelHandle.getLoadedUrl());
+        assertEquals(expectedHtmlContent, browserPanelHandle.getLoadedHtml());
     }
 }
