@@ -13,9 +13,9 @@ import seedu.address.model.person.WeightLog;
 /**
  * HTML formatter for Person class.
  */
-public class HtmlFormatter {
+public class WeightLogHtmlFormatter {
 
-    public static String getHtmlFormat(Person person) {
+    public static String getWeightLogHtmlFormat(Person person) {
 
         URL themeCss = MainApp.class.getResource(FXML_FILE_FOLDER + "LightTheme.css");
         URL weightLogCss = MainApp.class.getResource(FXML_FILE_FOLDER + "weightLog.css");

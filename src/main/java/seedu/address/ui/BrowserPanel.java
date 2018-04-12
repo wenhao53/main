@@ -16,7 +16,7 @@ import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowCaloriesEvent;
 import seedu.address.commons.events.ui.ShowWeightLogEvent;
 import seedu.address.model.person.Person;
-import seedu.address.model.util.HtmlFormatter;
+import seedu.address.model.util.WeightLogHtmlFormatter;
 
 /**
  * The Browser Panel of the App.
@@ -95,7 +95,7 @@ public class BrowserPanel extends UiPart<Region> {
      *  Displays a HTML page that contains a line chart showing past weight changes of the given person
      */
     public void loadPersonWeightLog(Person person) {
-        browser.getEngine().loadContent(HtmlFormatter.getHtmlFormat(person));
+        browser.getEngine().loadContent(WeightLogHtmlFormatter.getWeightLogHtmlFormat(person));
     }
     //@@author
 
