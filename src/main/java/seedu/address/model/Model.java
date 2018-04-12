@@ -29,6 +29,8 @@ public interface Model {
     /** Shows calories of given person */
     void showCalories(Person person) throws PersonNotFoundException;
 
+    /** Shows weight log of given person */
+    void showWeightLog(Person personToShowWeightLog) throws PersonNotFoundException;
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *

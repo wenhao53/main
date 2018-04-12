@@ -14,6 +14,7 @@ import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowCaloriesEvent;
+import seedu.address.commons.events.ui.ShowWeightLogEvent;
 import seedu.address.model.person.Person;
 
 /**
@@ -88,6 +89,14 @@ public class BrowserPanel extends UiPart<Region> {
                 + CALCULATOR_SUFFIX_URL);
     }
 
+    //@@author wenhao53
+    /**
+     *  Displays a HTML page that contains a line chart showing past weight changes of the given person
+     */
+    public void loadPersonWeightLog(Person person) {
+        loadPage(SEARCH_PAGE_URL + person.getName().fullName); // TO CHANGE THIS.
+    }
+
     /**
      * Frees resources allocated to the browser.
      */
@@ -107,6 +116,15 @@ public class BrowserPanel extends UiPart<Region> {
         logger.info(LogsCenter.getEventHandlingLogMessage(event,
                 "Processing Calories of " + event.person.getName().fullName));
         loadPersonCalories(event.person);
+    }
+    //@@author
+
+    //@@author wenhao53
+    @Subscribe
+    private void handleShowWeightLogEvent(ShowWeightLogEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event,
+                "Processing weight log of " + event.person.getName().fullName));
+        loadPersonWeightLog(event.person);
     }
     //@@author
 }

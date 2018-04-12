@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.WeightLogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -86,6 +87,9 @@ public class AddressBookParser {
         case CaloriesCommand.COMMAND_WORD:
         case CaloriesCommand.COMMAND_ALIAS:
             return new CaloriesCommandParser().parse(arguments);
+
+        case WeightLogCommand.COMMAND_WORD:
+            return new WeightLogCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
         case ListCommand.COMMAND_ALIAS:
