@@ -16,6 +16,7 @@ import seedu.address.commons.events.ui.PersonPanelSelectionChangedEvent;
 import seedu.address.commons.events.ui.ShowCaloriesEvent;
 import seedu.address.commons.events.ui.ShowWeightLogEvent;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.HtmlFormatter;
 
 /**
  * The Browser Panel of the App.
@@ -23,8 +24,8 @@ import seedu.address.model.person.Person;
 public class BrowserPanel extends UiPart<Region> {
 
     public static final String DEFAULT_PAGE = "default.html";
-    public static final String SEARCH_PAGE_URL =
-            "https://www.google.com.sg/search?q=";
+    public static final String SEARCH_PAGE_URL = "https://www.google.com.sg/search?q=";
+    public static final String WEIGHT_LOG_URL =  "WeightLog.html";
 
     //@@author hypertun
     public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";
@@ -94,8 +95,9 @@ public class BrowserPanel extends UiPart<Region> {
      *  Displays a HTML page that contains a line chart showing past weight changes of the given person
      */
     public void loadPersonWeightLog(Person person) {
-        loadPage(SEARCH_PAGE_URL + person.getName().fullName); // TO CHANGE THIS.
+        browser.getEngine().loadContent(HtmlFormatter.getHtmlFormat(person));
     }
+    //@@author
 
     /**
      * Frees resources allocated to the browser.

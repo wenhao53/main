@@ -18,9 +18,9 @@ public class WeightLogCommand extends Command {
     public static final String COMMAND_WORD = "log";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays weight log of a person.\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_WEIGHT_LOG_SUCCESS = "Weight log for %1$s displayed: %1$s";
+    public static final String MESSAGE_WEIGHT_LOG_SUCCESS = "Weight log for %1$s displayed!";
 
     private final Index index;
 
@@ -45,9 +45,7 @@ public class WeightLogCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_WEIGHT_LOG_SUCCESS,
-                personToShowWeightLog.getName().fullName) + personToShowWeightLog.getWeightLog().toString());
-        // temp toString() to check
-        // personToShowWeightLog.getAddress()
+                personToShowWeightLog.getName().fullName));
     }
 
     @Override
