@@ -25,6 +25,13 @@ public class WeightLog {
     }
 
     /**
+     * Returns the ArrayList that contains the information in the WeightLog.
+     */
+    public ArrayList<Pair<Date, Double>> getList() {
+        return this.list;
+    }
+
+    /**
      * Adds a new weight entry into the log.
      * @param date A date representing the moment where the Person was created.
      * @param weight A valid weight (in Kg).

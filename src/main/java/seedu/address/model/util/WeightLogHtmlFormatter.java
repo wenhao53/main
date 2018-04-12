@@ -49,10 +49,10 @@ public class WeightLogHtmlFormatter {
         final String twoTabspaces = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 
         String logString = "";
-        for (int entry = 0; entry < weightLog.list.size(); entry++) {
+        for (int entry = 0; entry < weightLog.getList().size(); entry++) {
             logString = String.format("%s %s %s %s", logString,
-                    "[" + weightLog.list.get(entry).getKey().toString() + "]", twoTabspaces,
-                    weightLog.list.get(entry).getValue().toString() + "kg <br>");
+                    "[" + weightLog.getList().get(entry).getKey().toString() + "]", twoTabspaces,
+                    weightLog.getList().get(entry).getValue().toString() + "kg <br>");
         }
         return logString;
 
