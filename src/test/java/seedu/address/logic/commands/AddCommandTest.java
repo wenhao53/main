@@ -107,6 +107,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void showWeightLog(Person person) {
+            fail("This method should not be called. ");
+        }
+
+        @Override
         public void resetData(ReadOnlyAddressBook newData) {
             fail("This method should not be called.");
         }

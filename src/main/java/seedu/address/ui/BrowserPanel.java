@@ -25,8 +25,6 @@ import seedu.address.model.util.WeightLogHtmlFormatter;
 public class BrowserPanel extends UiPart<Region> {
 
     public static final String DEFAULT_PAGE = "default.html";
-    public static final String SEARCH_PAGE_URL = "https://www.google.com.sg/search?q=";
-    public static final String WEIGHT_LOG_URL =  "WeightLog.html";
 
     //@@author hypertun
     public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";
