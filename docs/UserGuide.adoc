@@ -80,6 +80,7 @@ Shows a list of all persons in the PTP application. +
 Format: `list`
 Alias: `l`
 
+// tag::filter[]
 === Filtering all persons according to BMI Classification : `bmi`
 
 Shows a filtered list of all persons in the PTP application whose BMI classification matches the given search query. +
@@ -96,6 +97,7 @@ Examples:
 
 * `bmi overweight`
 * `bmi overweight underweight obese`
+// end::filter[]
 
 === Editing a person : `edit`
 

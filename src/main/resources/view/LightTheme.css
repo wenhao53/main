@@ -1,4 +1,4 @@
-//@@author wayneong95
+/* @@author wayneong95 */
 
 .background {
     -fx-background-color: white;
@@ -310,12 +310,36 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
+/* @@author wenhao53 */
 
 #cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 1;
-    -fx-border-color: #dddddd;
 }
+
+.ACCEPTABLE {
+    -fx-background-color: #ddffdd;
+    -fx-border-color: derive(#ddffdd, -30%);
+    -fx-border-width: 2;
+}
+
+.OBESE {
+    -fx-background-color: #ffdddd;
+    -fx-border-color: derive(#ffdddd, -30%);
+    -fx-border-width: 2;
+}
+
+.OVERWEIGHT {
+    -fx-background-color: #ffffdd;
+    -fx-border-color: derive(#ffffdd, -30%);
+    -fx-border-width: 2;
+}
+
+.UNDERWEIGHT {
+    -fx-background-color: #ffffdd;
+    -fx-border-color: derive(#ffffdd, -30%);
+    -fx-border-width: 2;
+}
+
+/* @@author */
 
 #commandTypeLabel {
     -fx-font-size: 11px;
