@@ -137,6 +137,8 @@ public class EditCommand extends UndoableCommand {
                 .getActivityLevel());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+        //@@author wenhao53-unused
+        /* removed implementation of weightlog due to time constraints and unable to resolve test issues */
         WeightLog weightLogToUpdate = personToEdit.getWeightLog();
 
         // Extracts the weight log from the old person to add the new weight before assigning it to the new person
@@ -150,6 +152,7 @@ public class EditCommand extends UndoableCommand {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedHeight, updatedWeight,
                 updatedGender, updatedAge, updatedActivityLevel, weightLogToUpdate, updatedTags);
+        //@@author
     }
 
     @Override

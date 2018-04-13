@@ -1,5 +1,6 @@
-//@@author wenhao53
+//@@author wenhao53-unused
 
+/* removed implementation of weightlog due to time constraints and unable to resolve test issues */
 package seedu.address.model.util;
 
 import static seedu.address.ui.UiPart.FXML_FILE_FOLDER;
