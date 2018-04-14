@@ -1206,23 +1206,6 @@ Same as above
 A combination of desirable attributes that clients want to achieve
 
 [appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
-
-[appendix]
 == Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -1244,7 +1227,18 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
+. Shutdown
+
+.. Type 'exit' on the Command Line Interface bar in order to close or shutdown the application.
+.. To reload the application look at the section 'Initial launch' above.
+
+=== Viewing the help interface
+
+. Using the help command and interface to view the user guide.
+
+.. Prerequisites: None.
+.. Test case: `help` +
+   Expected: The help interface appears, the user guide is displayed within the help interface for the user.
 
 === Deleting a person
 
@@ -1255,18 +1249,56 @@ _{ more test cases ... }_
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
-_{ more test cases ... }_
+=== Adding a person
 
-=== Saving data
+. Adding a person to the list. Alias `a` can be used.
 
-. Dealing with missing/corrupted data files
+.. Prerequisites: Add a person using the `add` command.
+.. Test case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 h/169.0 w/66.7 g/f age/21 al/1.9 t/criminal` +
+   Expected: Person called Betsy is created and added to the list with the above attributes and the tag of criminal. This will be accompanied with a confirmation message.
+.. Test case: `a n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/173.0 w/55.5 g/M age/22 al/1.2` +
+   Expected: Person called John is created and added to the list with the above attributes and with no tags. The alias a is used for the add command.
+.. Other incorrect add commands to try: `add`, `add John Doe 98765432 ....` (where prefixes are not given) +
+   Expected: Error message relevant to error is shown.
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+=== Editing a person
 
-_{ more test cases ... }_
+. Editing a person on the list. Alias `e` can be used.
+
+.. Prerequisites: Edit a person using the `edit` command. A person on the list to be edited.
+.. Test case: `edit 1 h/170` +
+   Expected: First contact is edited on the list. The height of the first contact is changed to 170.
+.. Test case: `e 0 w/60` +
+   Expected: No person is edited. Error details shown in the status message.
+.. Other incorrect edit commands to try: `edit`, `e x w/50` (where x is larger than the list size) +
+   Expected: Similar to previous.
+
+=== Selecting a person
+
+. Selects a person from the list and shows the person card on the browser, hovering mouse over the person card will display more attributes. Alias `s` can be used.
+
+.. Prerequisites: Selects a person using the `select` command. A person on the list to be selected.
+.. Test case: `select 1` +
+   Expected: First contact is on the list is selected. The person card is displayed on the browser.
+.. Test case: `s 0` +
+   Expected: No person is selected. Error details shown in the status message.
+.. Other incorrect select commands to try: `select`, `s x` (where x is larger than the list size) +
+   Expected: Similar to previous
+
+=== Show Calories a person requires : `Calories`
+
+. Selects the person and shows the amount of calories needed to increase, decrease or maintain in weight. Alias `cal` can be used.
+
+.. Prerequisites: Shows the calories of a person using the `Calories` command. A person on the list that has all attributes filled in.
+.. Test case: `Calories 1` +
+   Expected: Calories of the first contact on the list is shown in the browser panel.
+.. Test case: `Cal 0` +
+   Expected: Calories is not shown. Error details shown in status message.
+.. Other incorrect calories commands to try: `calories`, `cal x` (where x is larger than the list size) +
+   Expected: Similar to previous.
 
 // tag::GoogleCalendar[]
 === Show Google Calendar
