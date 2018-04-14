@@ -8,8 +8,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.WeightLogCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+//@@author wenhao53
 /**
- * Parses input arguments and creates a new CaloriesCommand object
+ * Parses input arguments and creates a new WeightLogCommand object
  */
 public class WeightLogCommandParser implements Parser<WeightLogCommand> {
 

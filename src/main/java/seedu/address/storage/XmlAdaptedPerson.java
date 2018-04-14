@@ -47,10 +47,8 @@ public class XmlAdaptedPerson {
     private String age;
     @XmlElement(required = true)
     private String activityLevel;
-
     @XmlElement(required = true)
     private String weightLog;
-
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -187,9 +185,7 @@ public class XmlAdaptedPerson {
             throw new IllegalValueException(ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
         }
         final ActivityLevel activityLevel = new ActivityLevel(this.activityLevel);
-
-        // final WeightLog weightLog = new WeightLog(this.weightLog);
-
+        
         final Set<Tag> tags = new HashSet<>(personTags);
 
         return new Person(name, phone, email, address, height, weight, gender, age, activityLevel,

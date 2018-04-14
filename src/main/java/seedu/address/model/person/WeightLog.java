@@ -7,8 +7,8 @@ import javafx.util.Pair;
 
 //@@author wenhao53
 /**
- * Represents a Person's weight history (in Kg) in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
+ * Represents a Person's weight history (in Kg) since the startup of the Personal Trainer Pro app.
+ * Guarantees: contains weight data that is valid as declared in {@link #isValidWeight(String)}
  */
 public class WeightLog {
 
