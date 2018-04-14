@@ -20,17 +20,19 @@ Personal Trainer Pro is a desktop application used by personal trainers and thei
 
 * *Minor enhancement*: added a weight attribute that stores the users' weight, which is essential since this is a fitness application.
 
+* *Minor enhancement*: revamped the UI from a dark theme to a brighter and more positive light theme to match our product, which is a fitness application.
+
 * *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/functional/wayneong95.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/test/wayneong95.md[Test code]]
 
 * *Other contributions*:
 
 ** Project management:
 *** Managed v1.5rc release on GitHub
+*** Proposed initial idea of a fitness application for personal trainers and clients
 ** Enhancements to existing features:
-*** Updated the GUI color scheme (Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/107)
-*** Wrote additional tests for existing features to increase coverage from 85% to 88% (Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/90)
+*** Wrote additional tests for existing features to increase coverage from 85% to 88% (Pull request https://github.com/CS2103JAN2018-F12-B2/main/pull/90)
 ** Documentation:
-*** Update user and developer guide: https://github.com/CS2103JAN2018-F12-B2/main/pull/100
+*** Constantly checks and updates user and developer guide. (examples: https://github.com/CS2103JAN2018-F12-B2/main/pull/44/files, https://github.com/CS2103JAN2018-F12-B2/main/pull/100, https://github.com/CS2103JAN2018-F12-B2/main/pull/120
 ** Community:
 *** Reported bugs and suggestions for other teams in the class (examples: https://github.com/CS2103JAN2018-W09-B1/main/issues/134, https://github.com/CS2103JAN2018-W09-B1/main/issues/130, https://github.com/CS2103JAN2018-W09-B1/main/issues/126)
 ** Tools:
@@ -54,5 +56,7 @@ include::../UserGuide.adoc[tag=addEvent]
 |===
 
 include::../DeveloperGuide.adoc[tag=GoogleCalendarApi]
+
 include::../DeveloperGuide.adoc[tag=GoogleCalendar]
+
 ---
