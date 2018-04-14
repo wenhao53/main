@@ -366,6 +366,7 @@ As one can see it will throw an exception be it either command when a duplicate 
 * **Alternative 2:** Add gender as a tag
 ** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
 ** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+//end::gender[]
 
 
 
@@ -1169,6 +1170,7 @@ Use case resumes at step 2.
 
 _{More to be added}_
 
+//tag::glossary[]
 [appendix]
 == Glossary
 
@@ -1204,6 +1206,7 @@ Same as above
 
 [[goals]] Goals::
 A combination of desirable attributes that clients want to achieve
+//end::glossary[]
 
 [appendix]
 == Instructions for Manual Testing
