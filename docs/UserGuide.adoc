@@ -223,6 +223,7 @@ Examples:
 * `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
 //end::addEvent[]
 
+//tag::calories[]
 === Show Calories a person requires : `Calories`
 
 Selects the person identified by the index number and shows the amount of calories needed to increase or decrease in weight. +
@@ -243,6 +244,7 @@ Shows the calories of the 2nd person in the address book.
 * `find Betsy` +
 `cal 1` +
 Shows the calories of the 1st person in the results of the `find` command.
+//end::calories[]
 
 === Scheduling appointments with clients `[coming in v2.0]`
 
