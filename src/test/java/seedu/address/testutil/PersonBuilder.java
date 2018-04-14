@@ -155,6 +155,15 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code WeightLog} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withWeightLog(String weight) {
+        this.weightLog = new WeightLog(new Weight(weight));
+        return this;
+    }
+
+
     public Person build() {
         return new Person(name, phone, email, address, height, weight, gender, age, activityLevel, weightLog, tags);
     }

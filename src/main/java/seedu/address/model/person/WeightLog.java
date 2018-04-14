@@ -1,6 +1,3 @@
-//@@author wenhao53-unused
-
-/* removed implementation of weightlog due to time constraints and unable to resolve test issues */
 package seedu.address.model.person;
 
 import java.util.ArrayList;
@@ -8,7 +5,7 @@ import java.util.Date;
 
 import javafx.util.Pair;
 
-
+//@@author wenhao53
 /**
  * Represents a Person's weight history (in Kg) in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
@@ -56,7 +53,4 @@ public class WeightLog {
         }
         return toDisplayAsString;
     }
-
-
-
 }
