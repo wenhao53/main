@@ -1,5 +1,5 @@
 # wayneong95-reused
-###### \java\seedu\address\GoogleCalendar\AddEventManager.java
+###### /java/seedu/address/GoogleCalendar/AddEventManager.java
 ``` java
 
 /**

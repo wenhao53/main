@@ -1,6 +1,3 @@
-//@@author wenhao53-unused
-
-/* removed implementation of weightlog due to time constraints and unable to resolve test issues */
 package seedu.address.logic.commands;
 
 import java.util.List;
@@ -11,6 +8,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
+//@@author wenhao53-unused
+// Feature is working but was unable to solve the many tests that were failing.
 /**
  * Opens up the Weight Log of a specified person in the Personal Trainer Pro
  */
@@ -21,7 +20,8 @@ public class WeightLogCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays weight log of a person.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_WEIGHT_LOG_SUCCESS = "Weight log for %1$s displayed!";
+    public static final String MESSAGE_WEIGHT_LOG_SUCCESS = "Weight log for %1$s displayed! Displaying all weight "
+            + "changes since application startup.";
 
     private final Index index;
 

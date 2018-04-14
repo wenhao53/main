@@ -1,5 +1,5 @@
 # hypertun-reused
-###### \resources\view\PersonCard.css
+###### /resources/view/PersonCard.css
 ``` css
 body {
     background:#485b6e;
