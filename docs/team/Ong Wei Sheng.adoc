@@ -25,7 +25,7 @@ Personal Trainer Pro is a desktop application used by personal trainers and thei
 * *Other contributions*:
 
 ** Project management:
-***
+*** Managed v1.5rc release on GitHub
 ** Enhancements to existing features:
 *** Updated the GUI color scheme (Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/107)
 *** Wrote additional tests for existing features to increase coverage from 85% to 88% (Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/90)
