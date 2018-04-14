@@ -13,7 +13,8 @@ public class Weight {
 
 
     public static final String MESSAGE_WEIGHT_CONSTRAINTS =
-            "Weight(in Kg) can only contain numbers and decimals, and should be at least 2 digits long";
+            "Weight(in Kg) can only contain numbers and decimals, and should be at least 2 digits long."
+            + "Weight is only valid between 10.0 to 600.0";
     public static final String WEIGHT_VALIDATION_REGEX = "\\d{2,}(\\.\\d+)?";
     public final String value;
 
@@ -40,14 +41,14 @@ public class Weight {
      * Returns true if a given Weight string is within the allowable range of input
      */
     private static boolean weightWithinRange(String test) {
-        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
+        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 600.0;
     }
 
     //@@author
 
     @Override
     public String toString() {
-        return value;
+        return String.format("%.5s", value).replace(' ', '0');
     }
 
     @Override
