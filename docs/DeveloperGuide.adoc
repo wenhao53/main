@@ -287,7 +287,7 @@ Pros: Ease of usage for users and supports Command Line Interface
 Cons: Browser window for Google Calendar within the application cannot be too big as it is limited by the positioning of other
 fxml objects such as the status bar and person list panel. This may make it harder for users to view as compared to opening up Google
 Calendar on a separate browser.
-                    // end::GoogleCalendarApi[]
+// end::GoogleCalendarApi[]
 
 //tag:: gender[]
 @by Ivan
@@ -1267,3 +1267,27 @@ _{ more test cases ... }_
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
 
 _{ more test cases ... }_
+
+// tag::GoogleCalendar[]
+=== Show Google Calendar
+
+. Show the Google Calendar
+
+.. Prerequisites: User must log in for the first time upon use of 'calendar' command.
+.. Test case: `calendar` +
+Expected: Google Calendar is shown in the UI.
+
+=== Adding a calendar event
+
+. Adds a calendar event in the users' Google Calendar
+
+.. Prerequisites: User have to be logged in to their Google account. User have to allow Personal Trainer Pro (PTP) to manage their Google calendar upon first use of 'addEvent' command (will be prompted via a new browser). If user chose the wrong Google Account or did not allow PTP to manage their calendar, locate the credentials under 'C:\Users\[User's name]\.credentials\calendar-java-quickstart' and delete the credential to start over. Reopen the application and repeat the steps.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30 ` +
+Expected: New calendar event is added. 'New event added: Weights Training Start Date: 2017-11-30 Start Time: 11:30 End Date: 2017-11-30 End Time: 13:30' shown in result display. Refresh Google Calendar by using 'calendar' command to see updated Google Calendar.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-10-30 et/13:30 `
+Expected: Event not added due to invalid end date. 'End Date cannot be earlier than Start Date!' shown in result display.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/10:30  `
+Expected: Event not added due to invalid end time. 'End Time cannot be earlier than Start Time!' shown in result display.
+.. Other incorrect addEvent commands to try: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/hh:30 `, `addEvent n/Weights Training sd/2017-mm-30 st/11:30 ed/2017-11-30 et/11:30` +
+Expected: Error messages for the individual fields will be displayed. Eg. 'Event end time should only contain numbers in the HH:MM format. Eg. 11:30'
+// end::GoogleCalendar[]
