@@ -289,7 +289,7 @@ fxml objects such as the status bar and person list panel. This may make it hard
 Calendar on a separate browser.
 // end::GoogleCalendarApi[]
 
-//tag:: gender[]
+//tag::gender[]
 @by Ivan
 
 ==== Gender attribute : Current Implementation
