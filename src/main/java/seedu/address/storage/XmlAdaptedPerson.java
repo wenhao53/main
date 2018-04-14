@@ -185,7 +185,6 @@ public class XmlAdaptedPerson {
             throw new IllegalValueException(ActivityLevel.MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
         }
         final ActivityLevel activityLevel = new ActivityLevel(this.activityLevel);
-        
         final Set<Tag> tags = new HashSet<>(personTags);
 
         return new Person(name, phone, email, address, height, weight, gender, age, activityLevel,
