@@ -54,5 +54,5 @@ include::../UserGuide.adoc[tag=addEvent]
 |===
 
 include::../DeveloperGuide.adoc[tag=GoogleCalendarApi]
-
+include::../DeveloperGuide.adoc[tag=GoogleCalendar]
 ---
