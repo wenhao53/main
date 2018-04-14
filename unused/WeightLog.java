@@ -1,6 +1,3 @@
-//@@author wenhao53-unused
-
-/* removed implementation of weightlog due to time constraints and unable to resolve test issues */
 package seedu.address.model.person;
 
 import java.util.ArrayList;
@@ -8,10 +5,11 @@ import java.util.Date;
 
 import javafx.util.Pair;
 
-
+//@@author wenhao53-unused
+// Feature is working but was unable to solve the many tests that were failing.
 /**
- * Represents a Person's weight history (in Kg) in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidWeight(String)}
+ * Represents a Person's weight history (in Kg) since the startup of the Personal Trainer Pro app.
+ * Guarantees: contains weight data that is valid as declared in {@link #isValidWeight(String)}
  */
 public class WeightLog {
 
@@ -50,13 +48,10 @@ public class WeightLog {
 
     @Override
     public String toString() {
-        String toDisplayAsString = " ";
+        String toDisplayAsString = "";
         for (Pair entry:list) {
-            toDisplayAsString += " " + entry.getValue().toString();
+            toDisplayAsString += entry.getValue().toString() + " ";
         }
         return toDisplayAsString;
     }
-
-
-
 }

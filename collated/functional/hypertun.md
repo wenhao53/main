@@ -1,5 +1,91 @@
 # hypertun
-###### \java\seedu\address\commons\events\ui\ShowCaloriesEvent.java
+###### /resources/view/PersonListCard.fxml
+``` fxml
+         <Label text="Name(Gender):">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Label>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <Label fx:id="gender" alignment="CENTER" style="-fx-text-fill: crimson;" styleClass="cell_small_label" text="\$gender" />
+      </HBox>
+```
+###### /java/seedu/address/ui/BrowserPanel.java
+``` java
+    public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";
+
+    public static final String CALCULATOR_AGE_PREFIX = "&cage=";
+
+    public static final String CALCULATOR_GENDER_PREFIX = "&csex=";
+
+    public static final String CALCULATOR_HEIGHT_PREFIX = "&cheightfeet=5&cheightinch=10&cpound=160&cheightmeter=";
+
+    public static final String CALCULATOR_WEIGHT_PREFIX = "&ckg=";
+
+    public static final String CALCULATOR_ACTIVITY_LEVEL_PREFIX = "&cactivity=";
+
+    public static final String CALCULATOR_SUFFIX_URL = "&printit=0";
+
+```
+###### /java/seedu/address/ui/BrowserPanel.java
+``` java
+    private void loadPersonPage(Person person) {
+        browser.getEngine().loadContent(HtmlFormatter.getHtmlFormat(person));
+    }
+```
+###### /java/seedu/address/ui/BrowserPanel.java
+``` java
+    /**
+     * Creates calories from given person
+     */
+    public void loadPersonCalories(Person person) {
+        loadPage(CALCULATOR_PREFIX_URL
+                + CALCULATOR_AGE_PREFIX + person.getAge().value
+                + CALCULATOR_GENDER_PREFIX + person.getGender().value
+                + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value
+                + CALCULATOR_WEIGHT_PREFIX + person.getWeight().value
+                + CALCULATOR_ACTIVITY_LEVEL_PREFIX + person.getActivityLevel().value
+                + CALCULATOR_SUFFIX_URL);
+    }
+
+    /**
+     * Frees resources allocated to the browser.
+     */
+    public void freeResources() {
+        browser = null;
+    }
+
+    @Subscribe
+    public void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        loadPersonPage(event.getNewSelection().person);
+    }
+
+```
+###### /java/seedu/address/ui/BrowserPanel.java
+``` java
+    @Subscribe
+    private void handleShowCaloriesEvent(ShowCaloriesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event,
+                "Processing Calories of " + event.person.getName().fullName));
+        loadPersonCalories(event.person);
+    }
+```
+###### /java/seedu/address/ui/MainWindow.java
+``` java
+    @Subscribe
+    private void handleShowCaloriesEvent(ShowCaloriesEvent event) {
+        logger.info(LogsCenter.getEventHandlingLogMessage(event));
+        handleBrowser();
+    }
+```
+###### /java/seedu/address/commons/events/ui/ShowCaloriesEvent.java
 ``` java
 /**
  * Event raised on 'goal' command's successful execution
@@ -18,166 +104,7 @@ public class ShowCaloriesEvent extends BaseEvent {
     }
 }
 ```
-###### \java\seedu\address\model\person\ActivityLevel.java
-``` java
-/**
- * Represents a Person's activity in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidActivityLevel(String)}
- */
-public class ActivityLevel {
-
-    public static final String MESSAGE_ACTIVITYLEVEL_CONSTRAINTS =
-            "Activity Level can only be Basal Metabolic Rate(1.0), Sedentary(1.2) - little to no exercise per week,"
-                    + " Lightly Active(1.375) - exercise 1-3 times per week,"
-                    + " Moderately Active(1.55) - exercise 3-5 times per week,"
-                    + " Very Active(1.725) -  exercise 6-7 times per week,"
-                    + " Extra Active(1.9) - very hard exercise or physical job";
-    public final String value;
-
-    /**
-     * Constructs a {@code ActivityLevel}.
-     *
-     * @param activityLevel A valid ActivityLevel.
-     */
-    public ActivityLevel(String activityLevel) {
-        requireNonNull(activityLevel);
-        checkArgument(isValidActivityLevel(activityLevel), MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
-        this.value = activityLevel;
-    }
-
-    /**
-     * Returns true if a given string is a valid activityLevel.
-     */
-    public static boolean isValidActivityLevel(String test) {
-        if (test.equals("1.0") || test.equals("1.2") || test.equals("1.375") || test.equals("1.55")
-                || test.equals("1.725") || test.equals("1.9")) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ActivityLevel // instanceof handles nulls
-                && this.value.equals(((ActivityLevel) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-}
-
-```
-###### \java\seedu\address\model\person\Age.java
-``` java
-/**
- * Represents a Person's age in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
- */
-public class Age {
-
-    public static final String MESSAGE_AGE_CONSTRAINTS =
-            "Age can only be up to three numbers long";
-    public static final String AGE_VALIDATION_REGEX = "\\d{1,3}+";
-    public final String value;
-
-    /**
-     * Constructs a {@code Age}.
-     *
-     * @param age A valid age.
-     */
-    public Age(String age) {
-        requireNonNull(age);
-        checkArgument(isValidAge(age), MESSAGE_AGE_CONSTRAINTS);
-        this.value = age;
-    }
-
-    /**
-     * Returns true if a given string is a valid age.
-     */
-    public static boolean isValidAge(String test) {
-        return test.matches(AGE_VALIDATION_REGEX);
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Age // instanceof handles nulls
-                && this.value.equals(((Age) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-}
-```
-###### \java\seedu\address\model\person\Gender.java
-``` java
-/**
- * Represents a Person's Gender (whether male or female) in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
- */
-public class Gender {
-
-    public static final String MESSAGE_GENDER_CONSTRAINTS =
-            "Gender can only be the alphabets M or F or m or f";
-    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
-    public final String value;
-
-    /**
-     * Constructs a {@code Gender}.
-     *
-     * @param sex A valid gender.
-     */
-    public Gender(String sex) {
-        requireNonNull(sex);
-        checkArgument(isValidGender(sex), MESSAGE_GENDER_CONSTRAINTS);
-        this.value = sex.toLowerCase();
-    }
-
-    /**
-     * Returns true if a given string is a valid Gender.
-     */
-    public static boolean isValidGender(String test) {
-        return test.matches(GENDER_VALIDATION_REGEX);
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Gender // instanceof handles nulls
-                && this.value.equals(((Gender) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-}
-```
-###### \java\seedu\address\model\util\HtmlFormatter.java
+###### /java/seedu/address/model/util/HtmlFormatter.java
 ``` java
 /**
  * Change PersonCard to html format
@@ -256,89 +183,162 @@ public class HtmlFormatter {
     }
 }
 ```
-###### \java\seedu\address\ui\BrowserPanel.java
+###### /java/seedu/address/model/person/ActivityLevel.java
 ``` java
-    public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";
+/**
+ * Represents a Person's activity in the Personal Trainer Pro app.
+ * Guarantees: immutable; is valid as declared in {@link #isValidActivityLevel(String)}
+ */
+public class ActivityLevel {
 
-    public static final String CALCULATOR_AGE_PREFIX = "&cage=";
+    public static final String MESSAGE_ACTIVITYLEVEL_CONSTRAINTS =
+            "Activity Level can only be Basal Metabolic Rate(1.0), Sedentary(1.2) - little to no exercise per week,"
+                    + " Lightly Active(1.375) - exercise 1-3 times per week,"
+                    + " Moderately Active(1.55) - exercise 3-5 times per week,"
+                    + " Very Active(1.725) -  exercise 6-7 times per week,"
+                    + " Extra Active(1.9) - very hard exercise or physical job";
+    public final String value;
 
-    public static final String CALCULATOR_GENDER_PREFIX = "&csex=";
-
-    public static final String CALCULATOR_HEIGHT_PREFIX = "&cheightfeet=5&cheightinch=10&cpound=160&cheightmeter=";
-
-    public static final String CALCULATOR_WEIGHT_PREFIX = "&ckg=";
-
-    public static final String CALCULATOR_ACTIVITY_LEVEL_PREFIX = "&cactivity=";
-
-    public static final String CALCULATOR_SUFFIX_URL = "&printit=0";
-
-```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
-    private void loadPersonPage(Person person) {
-        browser.getEngine().loadContent(HtmlFormatter.getHtmlFormat(person));
-    }
-```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
     /**
-     * Creates calories from given person
+     * Constructs a {@code ActivityLevel}.
+     *
+     * @param activityLevel A valid ActivityLevel.
      */
-    public void loadPersonCalories(Person person) {
-        loadPage(CALCULATOR_PREFIX_URL
-                + CALCULATOR_AGE_PREFIX + person.getAge().value
-                + CALCULATOR_GENDER_PREFIX + person.getGender().value
-                + CALCULATOR_HEIGHT_PREFIX + person.getHeight().value
-                + CALCULATOR_WEIGHT_PREFIX + person.getWeight().value
-                + CALCULATOR_ACTIVITY_LEVEL_PREFIX + person.getActivityLevel().value
-                + CALCULATOR_SUFFIX_URL);
+    public ActivityLevel(String activityLevel) {
+        requireNonNull(activityLevel);
+        checkArgument(isValidActivityLevel(activityLevel), MESSAGE_ACTIVITYLEVEL_CONSTRAINTS);
+        this.value = activityLevel;
     }
 
     /**
-     * Frees resources allocated to the browser.
+     * Returns true if a given string is a valid activityLevel.
      */
-    public void freeResources() {
-        browser = null;
+    public static boolean isValidActivityLevel(String test) {
+        if (test.equals("1.0") || test.equals("1.2") || test.equals("1.375") || test.equals("1.55")
+                || test.equals("1.725") || test.equals("1.9")) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
-    @Subscribe
-    public void handlePersonPanelSelectionChangedEvent(PersonPanelSelectionChangedEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        loadPersonPage(event.getNewSelection().person);
+    @Override
+    public String toString() {
+        return value;
     }
 
-```
-###### \java\seedu\address\ui\BrowserPanel.java
-``` java
-    @Subscribe
-    private void handleShowCaloriesEvent(ShowCaloriesEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event,
-                "Processing Calories of " + event.person.getName().fullName));
-        loadPersonCalories(event.person);
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ActivityLevel // instanceof handles nulls
+                && this.value.equals(((ActivityLevel) other).value)); // state check
     }
-```
-###### \java\seedu\address\ui\MainWindow.java
-``` java
-    @Subscribe
-    private void handleShowCaloriesEvent(ShowCaloriesEvent event) {
-        logger.info(LogsCenter.getEventHandlingLogMessage(event));
-        handleBrowser();
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
+
+}
+
 ```
-###### \resources\view\PersonListCard.fxml
-``` fxml
-         <Label text="Name(Gender):">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <Label fx:id="gender" alignment="CENTER" style="-fx-text-fill: yellow;" styleClass="cell_small_label" text="\$gender" />
-      </HBox>
+###### /java/seedu/address/model/person/Age.java
+``` java
+/**
+ * Represents a Person's age in the Personal Trainer Pro app.
+ * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
+ */
+public class Age {
+
+    public static final String MESSAGE_AGE_CONSTRAINTS =
+            "Age can only be up to three numbers long";
+    public static final String AGE_VALIDATION_REGEX = "\\d{1,3}+";
+    public final String value;
+
+    /**
+     * Constructs a {@code Age}.
+     *
+     * @param age A valid age.
+     */
+    public Age(String age) {
+        requireNonNull(age);
+        checkArgument(isValidAge(age), MESSAGE_AGE_CONSTRAINTS);
+        this.value = age;
+    }
+
+    /**
+     * Returns true if a given string is a valid age.
+     */
+    public static boolean isValidAge(String test) {
+        return test.matches(AGE_VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Age // instanceof handles nulls
+                && this.value.equals(((Age) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+}
+```
+###### /java/seedu/address/model/person/Gender.java
+``` java
+/**
+ * Represents a Person's Gender (whether male or female) in the Personal Trainer Pro app.
+ * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
+ */
+public class Gender {
+
+    public static final String MESSAGE_GENDER_CONSTRAINTS =
+            "Gender can only be the alphabets M or F or m or f";
+    public static final String GENDER_VALIDATION_REGEX = "[mfMF]{1}+";
+    public final String value;
+
+    /**
+     * Constructs a {@code Gender}.
+     *
+     * @param sex A valid gender.
+     */
+    public Gender(String sex) {
+        requireNonNull(sex);
+        checkArgument(isValidGender(sex), MESSAGE_GENDER_CONSTRAINTS);
+        this.value = sex.toLowerCase();
+    }
+
+    /**
+     * Returns true if a given string is a valid Gender.
+     */
+    public static boolean isValidGender(String test) {
+        return test.matches(GENDER_VALIDATION_REGEX);
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Gender // instanceof handles nulls
+                && this.value.equals(((Gender) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+}
 ```

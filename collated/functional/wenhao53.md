@@ -1,49 +1,79 @@
 # wenhao53
-###### \java\seedu\address\logic\commands\ClassificationCommand.java
-``` java
+###### /resources/view/LightTheme.css
+``` css
 
-package seedu.address.logic.commands;
-
-import seedu.address.model.person.NameContainsClassificationPredicate;
-
-/**
- * Finds and lists all persons in the Personal Trainer Pro application whose BodyMassIndexClassification matches
- * any of the given keywords.
- */
-public class ClassificationCommand extends Command {
-
-    public static final String COMMAND_WORD = "bmi";
-
-    public static final String INVALID_KEYWORD = "One or more invalid keyword(s) found! \n%1$s";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose BMI classification matches "
-            + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " overweight\n"
-            + "KEYWORD: 'Underweight'(BMI < 18.5), 'Acceptable' (18.5 <= BMI <= 24.9), "
-                    + "'Overweight' (25 <= BMI <= 29.9), 'Obese' (BMI > 30)\n";
-
-    private final NameContainsClassificationPredicate predicate;
-
-    public ClassificationCommand(NameContainsClassificationPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    @Override
-    public CommandResult execute() {
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(getMessageForPersonListShownSummary(model.getFilteredPersonList().size()));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ClassificationCommand // instanceof handles nulls
-                && this.predicate.equals(((ClassificationCommand) other).predicate)); // state check
-    }
+#cardPane {
 }
+
+.ACCEPTABLE {
+    -fx-background-color: #ddffdd;
+    -fx-border-color: derive(#ddffdd, -30%);
+    -fx-border-width: 2;
+}
+
+.OBESE {
+    -fx-background-color: #ffdddd;
+    -fx-border-color: derive(#ffdddd, -30%);
+    -fx-border-width: 2;
+}
+
+.OVERWEIGHT {
+    -fx-background-color: #ffffdd;
+    -fx-border-color: derive(#ffffdd, -30%);
+    -fx-border-width: 2;
+}
+
+.UNDERWEIGHT {
+    -fx-background-color: #ffffdd;
+    -fx-border-color: derive(#ffffdd, -30%);
+    -fx-border-width: 2;
+}
+
 ```
-###### \java\seedu\address\logic\parser\ClassificationCommandParser.java
+###### /resources/view/DarkTheme.css
+``` css
+
+#cardPane {
+}
+
+.ACCEPTABLE {
+    -fx-background-color: #003000;
+    -fx-border-color: derive(#003000, 25%);
+    -fx-border-width: 2;
+}
+
+.OBESE {
+    -fx-background-color: #500000;
+    -fx-border-color: derive(#500000, 25%);
+    -fx-border-width: 2;
+}
+
+.OVERWEIGHT {
+    -fx-background-color: #553300;
+    -fx-border-color: derive(#553300, 25%);
+    -fx-border-width: 2;
+}
+
+.UNDERWEIGHT {
+    -fx-background-color: #553300;
+    -fx-border-color: derive(#553300, 25%);
+    -fx-border-width: 2;
+}
+
+```
+###### /java/seedu/address/ui/PersonCard.java
+``` java
+        bmiClass = person.getBodyMassIndexClassification();
+        setBackgroundColourAccordingToClassification(cardPane, bmiClass);
+    }
+
+    private void setBackgroundColourAccordingToClassification(HBox cardPane, String bmiClass) {
+        ObservableList<String> styleClass = cardPane.getStyleClass();
+        styleClass.setAll("cardPane", bmiClass);
+    }
+
+```
+###### /java/seedu/address/logic/parser/ClassificationCommandParser.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -111,7 +141,7 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
 
 }
 ```
-###### \java\seedu\address\logic\parser\ParserUtil.java
+###### /java/seedu/address/logic/parser/ParserUtil.java
 ``` java
     /**
      * Parses a {@code String height} into a {@code Height}.
@@ -439,7 +469,115 @@ public class ClassificationCommandParser implements Parser<ClassificationCommand
     }
 }
 ```
-###### \java\seedu\address\model\person\BodyMassIndex.java
+###### /java/seedu/address/logic/commands/ClassificationCommand.java
+``` java
+
+package seedu.address.logic.commands;
+
+import seedu.address.model.person.NameContainsClassificationPredicate;
+
+/**
+ * Finds and lists all persons in the Personal Trainer Pro application whose BodyMassIndexClassification matches
+ * any of the given keywords.
+ */
+public class ClassificationCommand extends Command {
+
+    public static final String COMMAND_WORD = "bmi";
+
+    public static final String INVALID_KEYWORD = "One or more invalid keyword(s) found! \n%1$s";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose BMI classification matches "
+            + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " overweight\n"
+            + "KEYWORD: 'Underweight'(BMI < 18.5), 'Acceptable' (18.5 <= BMI <= 24.9), "
+                    + "'Overweight' (25 <= BMI <= 29.9), 'Obese' (BMI > 30)\n";
+
+    private final NameContainsClassificationPredicate predicate;
+
+    public ClassificationCommand(NameContainsClassificationPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    @Override
+    public CommandResult execute() {
+        model.updateFilteredPersonList(predicate);
+        return new CommandResult(getMessageForPersonListShownSummary(model.getFilteredPersonList().size()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClassificationCommand // instanceof handles nulls
+                && this.predicate.equals(((ClassificationCommand) other).predicate)); // state check
+    }
+}
+```
+###### /java/seedu/address/model/person/Height.java
+``` java
+
+package seedu.address.model.person;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
+/**
+ * Represents a Person's height (in cm) in the Personal Trainer Pro app.
+ * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}
+ */
+public class Height {
+
+
+    public static final String MESSAGE_HEIGHT_CONSTRAINTS =
+            "Height(in cm) can only contain numbers and decimals, and should be at between 10.0 to 400.0";
+    public static final String HEIGHT_VALIDATION_REGEX = "\\d{2,}(\\.\\d+)?";
+    public final String value;
+
+    /**
+     * Constructs a {@code Height}.
+     *
+     * @param height A valid height (in cm).
+     */
+    public Height(String height) {
+        requireNonNull(height);
+        checkArgument(isValidHeight(height), MESSAGE_HEIGHT_CONSTRAINTS);
+        this.value = height;
+    }
+
+    /**
+     * Returns true if a given string is a valid height.
+     */
+    public static boolean isValidHeight(String test) {
+        return test.matches(HEIGHT_VALIDATION_REGEX) && heightWithinRange(test);
+    }
+
+    /**
+     * Returns true if a given Height string is within the allowable range of input
+     */
+    private static boolean heightWithinRange(String test) {
+        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Height // instanceof handles nulls
+                && this.value.equals(((Height) other).value)); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
+}
+```
+###### /java/seedu/address/model/person/BodyMassIndex.java
 ``` java
 
 package seedu.address.model.person;
@@ -530,71 +668,7 @@ public class BodyMassIndex {
 
 }
 ```
-###### \java\seedu\address\model\person\Height.java
-``` java
-
-package seedu.address.model.person;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
-/**
- * Represents a Person's height (in cm) in the Personal Trainer Pro app.
- * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}
- */
-public class Height {
-
-
-    public static final String MESSAGE_HEIGHT_CONSTRAINTS =
-            "Height(in cm) can only contain numbers and decimals, and should be at between 10.0 to 400.0";
-    public static final String HEIGHT_VALIDATION_REGEX = "\\d{2,}(\\.\\d+)?";
-    public final String value;
-
-    /**
-     * Constructs a {@code Height}.
-     *
-     * @param height A valid height (in cm).
-     */
-    public Height(String height) {
-        requireNonNull(height);
-        checkArgument(isValidHeight(height), MESSAGE_HEIGHT_CONSTRAINTS);
-        this.value = height;
-    }
-
-    /**
-     * Returns true if a given string is a valid height.
-     */
-    public static boolean isValidHeight(String test) {
-        return test.matches(HEIGHT_VALIDATION_REGEX) && heightWithinRange(test);
-    }
-
-    /**
-     * Returns true if a given Height string is within the allowable range of input
-     */
-    private static boolean heightWithinRange(String test) {
-        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Height // instanceof handles nulls
-                && this.value.equals(((Height) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
-}
-```
-###### \java\seedu\address\model\person\Name.java
+###### /java/seedu/address/model/person/Name.java
 ``` java
     /**
      * Returns true if two Names in comparison are alphabetically the same (regardless of case).
@@ -606,7 +680,17 @@ public class Height {
     }
 
 ```
-###### \java\seedu\address\model\person\NameContainsClassificationPredicate.java
+###### /java/seedu/address/model/person/Weight.java
+``` java
+    /**
+     * Returns true if a given Weight string is within the allowable range of input
+     */
+    private static boolean weightWithinRange(String test) {
+        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
+    }
+
+```
+###### /java/seedu/address/model/person/NameContainsClassificationPredicate.java
 ``` java
 
 package seedu.address.model.person;
@@ -640,57 +724,4 @@ public class NameContainsClassificationPredicate implements Predicate<Person> {
     }
 
 }
-```
-###### \java\seedu\address\model\person\Weight.java
-``` java
-    /**
-     * Returns true if a given Weight string is within the allowable range of input
-     */
-    private static boolean weightWithinRange(String test) {
-        return Double.parseDouble(test) >= 10.0 && Double.parseDouble(test) <= 400.0;
-    }
-
-```
-###### \java\seedu\address\ui\PersonCard.java
-``` java
-        bmiClass = person.getBodyMassIndexClassification();
-        setBackgroundColourAccordingToClassification(cardPane, bmiClass);
-    }
-
-    private void setBackgroundColourAccordingToClassification(HBox cardPane, String bmiClass) {
-        ObservableList<String> styleClass = cardPane.getStyleClass();
-        styleClass.setAll("cardPane", bmiClass);
-    }
-
-```
-###### \resources\view\DarkTheme.css
-``` css
-
-#cardPane {
-}
-
-.ACCEPTABLE {
-    -fx-background-color: #003000;
-    -fx-border-color: derive(#003000, 25%);
-    -fx-border-width: 2;
-}
-
-.OBESE {
-    -fx-background-color: #500000;
-    -fx-border-color: derive(#500000, 25%);
-    -fx-border-width: 2;
-}
-
-.OVERWEIGHT {
-    -fx-background-color: #553300;
-    -fx-border-color: derive(#553300, 25%);
-    -fx-border-width: 2;
-}
-
-.UNDERWEIGHT {
-    -fx-background-color: #553300;
-    -fx-border-color: derive(#553300, 25%);
-    -fx-border-width: 2;
-}
-
 ```

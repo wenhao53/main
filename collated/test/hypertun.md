@@ -1,5 +1,31 @@
 # hypertun
-###### \java\seedu\address\logic\commands\CaloriesCommandTest.java
+###### /java/seedu/address/logic/parser/AddressBookParserTest.java
+``` java
+    @Test
+    public void parseCommand_calories() throws Exception {
+        CaloriesCommand command = (CaloriesCommand) parser.parseCommand(
+                CaloriesCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new CaloriesCommand(INDEX_FIRST_PERSON), command);
+    }
+```
+###### /java/seedu/address/logic/parser/CaloriesCommandParserTest.java
+``` java
+public class CaloriesCommandParserTest {
+    private CaloriesCommandParser parser = new CaloriesCommandParser();
+
+    @Test
+    public void parse_validArgs_returnsCaloriesCommand() throws Exception {
+        assertParseSuccess(parser, "1", new CaloriesCommand(INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() throws Exception {
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CaloriesCommand.MESSAGE_USAGE));
+    }
+}
+```
+###### /java/seedu/address/logic/commands/CaloriesCommandTest.java
 ``` java
 public class CaloriesCommandTest {
     @Rule
@@ -87,161 +113,7 @@ public class CaloriesCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\AddressBookParserTest.java
-``` java
-    @Test
-    public void parseCommand_calories() throws Exception {
-        CaloriesCommand command = (CaloriesCommand) parser.parseCommand(
-                CaloriesCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new CaloriesCommand(INDEX_FIRST_PERSON), command);
-    }
-```
-###### \java\seedu\address\logic\parser\CaloriesCommandParserTest.java
-``` java
-public class CaloriesCommandParserTest {
-    private CaloriesCommandParser parser = new CaloriesCommandParser();
-
-    @Test
-    public void parse_validArgs_returnsCaloriesCommand() throws Exception {
-        assertParseSuccess(parser, "1", new CaloriesCommand(INDEX_FIRST_PERSON));
-    }
-
-    @Test
-    public void parse_invalidArgs_throwsParseException() throws Exception {
-        assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CaloriesCommand.MESSAGE_USAGE));
-    }
-}
-```
-###### \java\seedu\address\model\person\ActivityLevelTest.java
-``` java
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import seedu.address.testutil.Assert;
-
-public class ActivityLevelTest {
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new ActivityLevel(null));
-    }
-
-    @Test
-    public void constructor_invalidAge_throwsIllegalArgumentException() {
-        String invalidActivityLevel = "1.44";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new ActivityLevel(invalidActivityLevel));
-    }
-
-    @Test
-    public void isValidAge() {
-        // null ActivityLevel
-        Assert.assertThrows(NullPointerException.class, () -> ActivityLevel.isValidActivityLevel(null));
-
-        // invalid activityLevel
-        assertFalse(ActivityLevel.isValidActivityLevel("")); // empty string
-        assertFalse(ActivityLevel.isValidActivityLevel(" ")); // space only
-        assertFalse(ActivityLevel.isValidActivityLevel("activityLevel")); // non-numeric
-        assertFalse(ActivityLevel.isValidActivityLevel("9p.2")); // alphabets within digits
-        assertFalse(ActivityLevel.isValidActivityLevel("9 3")); // spaces within digits
-        assertFalse(ActivityLevel.isValidActivityLevel("1.40")); // wrong number
-
-        // valid activityLevel numbers
-        assertTrue(ActivityLevel.isValidActivityLevel("1.2")); // basal
-        assertTrue(ActivityLevel.isValidActivityLevel("1.375"));
-        assertTrue(ActivityLevel.isValidActivityLevel("1.9")); // active
-    }
-}
-```
-###### \java\seedu\address\model\person\AgeTest.java
-``` java
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import seedu.address.testutil.Assert;
-
-public class AgeTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Age(null));
-    }
-
-    @Test
-    public void constructor_invalidAge_throwsIllegalArgumentException() {
-        String invalidAge = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Age(invalidAge));
-    }
-
-    @Test
-    public void isValidAge() {
-        // null Age
-        Assert.assertThrows(NullPointerException.class, () -> Age.isValidAge(null));
-
-        // invalid age
-        assertFalse(Age.isValidAge("")); // empty string
-        assertFalse(Age.isValidAge(" ")); // spaces only
-        assertFalse(Age.isValidAge("Age")); // non-numeric
-        assertFalse(Age.isValidAge("9p.2")); // alphabets within digits
-        assertFalse(Age.isValidAge("9 3")); // spaces within digits
-
-        // valid age numbers
-        assertTrue(Age.isValidAge("1")); // exactly 1 numbers
-        assertTrue(Age.isValidAge("95"));
-        assertTrue(Age.isValidAge("100")); // heavy age
-    }
-}
-```
-###### \java\seedu\address\model\person\GenderTest.java
-``` java
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import seedu.address.testutil.Assert;
-
-public class GenderTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Gender(null));
-    }
-
-    @Test
-    public void constructor_invalidWeight_throwsIllegalArgumentException() {
-        String invalidGender = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Gender(invalidGender));
-    }
-
-    @Test
-    public void isValidGender() {
-        // null gender
-        Assert.assertThrows(NullPointerException.class, () -> Gender.isValidGender(null));
-
-        // invalid gender
-        assertFalse(Gender.isValidGender("")); // empty string
-        assertFalse(Gender.isValidGender(" ")); // spaces only
-        assertFalse(Gender.isValidGender("gender")); // non-numeric
-        assertFalse(Gender.isValidGender("9p.2")); // alphabets within digits
-        assertFalse(Gender.isValidGender("9 5")); // spaces within digits
-        assertFalse(Gender.isValidGender("y ")); // other alphabets
-
-        // valid gender
-        assertTrue(Gender.isValidGender("m")); // exactly m
-        assertTrue(Gender.isValidGender("f")); // exactly f
-        assertTrue(Gender.isValidGender("M")); // exactly M
-        assertTrue(Gender.isValidGender("F")); // exactly F
-    }
-}
-```
-###### \java\seedu\address\storage\XmlAdaptedPersonTest.java
+###### /java/seedu/address/storage/XmlAdaptedPersonTest.java
 ``` java
     @Test
     public void toModelType_invalidGender_throwsIllegalValueException() {
@@ -293,4 +165,132 @@ public class GenderTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ActivityLevel.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+```
+###### /java/seedu/address/model/person/ActivityLevelTest.java
+``` java
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import seedu.address.testutil.Assert;
+
+public class ActivityLevelTest {
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new ActivityLevel(null));
+    }
+
+    @Test
+    public void constructor_invalidAge_throwsIllegalArgumentException() {
+        String invalidActivityLevel = "1.44";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new ActivityLevel(invalidActivityLevel));
+    }
+
+    @Test
+    public void isValidAge() {
+        // null ActivityLevel
+        Assert.assertThrows(NullPointerException.class, () -> ActivityLevel.isValidActivityLevel(null));
+
+        // invalid activityLevel
+        assertFalse(ActivityLevel.isValidActivityLevel("")); // empty string
+        assertFalse(ActivityLevel.isValidActivityLevel(" ")); // space only
+        assertFalse(ActivityLevel.isValidActivityLevel("activityLevel")); // non-numeric
+        assertFalse(ActivityLevel.isValidActivityLevel("9p.2")); // alphabets within digits
+        assertFalse(ActivityLevel.isValidActivityLevel("9 3")); // spaces within digits
+        assertFalse(ActivityLevel.isValidActivityLevel("1.40")); // wrong number
+
+        // valid activityLevel numbers
+        assertTrue(ActivityLevel.isValidActivityLevel("1.2")); // basal
+        assertTrue(ActivityLevel.isValidActivityLevel("1.375"));
+        assertTrue(ActivityLevel.isValidActivityLevel("1.9")); // active
+    }
+}
+```
+###### /java/seedu/address/model/person/AgeTest.java
+``` java
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import seedu.address.testutil.Assert;
+
+public class AgeTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new Age(null));
+    }
+
+    @Test
+    public void constructor_invalidAge_throwsIllegalArgumentException() {
+        String invalidAge = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Age(invalidAge));
+    }
+
+    @Test
+    public void isValidAge() {
+        // null Age
+        Assert.assertThrows(NullPointerException.class, () -> Age.isValidAge(null));
+
+        // invalid age
+        assertFalse(Age.isValidAge("")); // empty string
+        assertFalse(Age.isValidAge(" ")); // spaces only
+        assertFalse(Age.isValidAge("Age")); // non-numeric
+        assertFalse(Age.isValidAge("9p.2")); // alphabets within digits
+        assertFalse(Age.isValidAge("9 3")); // spaces within digits
+
+        // valid age numbers
+        assertTrue(Age.isValidAge("1")); // exactly 1 numbers
+        assertTrue(Age.isValidAge("95"));
+        assertTrue(Age.isValidAge("100")); // heavy age
+    }
+}
+```
+###### /java/seedu/address/model/person/GenderTest.java
+``` java
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import seedu.address.testutil.Assert;
+
+public class GenderTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new Gender(null));
+    }
+
+    @Test
+    public void constructor_invalidWeight_throwsIllegalArgumentException() {
+        String invalidGender = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Gender(invalidGender));
+    }
+
+    @Test
+    public void isValidGender() {
+        // null gender
+        Assert.assertThrows(NullPointerException.class, () -> Gender.isValidGender(null));
+
+        // invalid gender
+        assertFalse(Gender.isValidGender("")); // empty string
+        assertFalse(Gender.isValidGender(" ")); // spaces only
+        assertFalse(Gender.isValidGender("gender")); // non-numeric
+        assertFalse(Gender.isValidGender("9p.2")); // alphabets within digits
+        assertFalse(Gender.isValidGender("9 5")); // spaces within digits
+        assertFalse(Gender.isValidGender("y ")); // other alphabets
+
+        // valid gender
+        assertTrue(Gender.isValidGender("m")); // exactly m
+        assertTrue(Gender.isValidGender("f")); // exactly f
+        assertTrue(Gender.isValidGender("M")); // exactly M
+        assertTrue(Gender.isValidGender("F")); // exactly F
+    }
+}
 ```
