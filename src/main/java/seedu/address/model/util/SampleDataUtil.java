@@ -76,7 +76,7 @@ public class SampleDataUtil {
                 new Address("26 Aquarium Depths, #01-02"), new Height("149.0"), new Weight("105.5"),
                     new Gender("M"), new Age("72"), new ActivityLevel("1.0"), getTagSet("boss")),
             new Person(new Name("Queen Trojan"), new Phone("90012491"), new Email("neighneigh@example.com"),
-                new Address("10 Ludibrium Tower, #03-01"), new Height("169.0"), new Weight("55.5"),
+                new Address("10 Ludibrium Tower, #03-01"), new Height("169.0"), new Weight("105.5"),
                     new Gender("M"), new Age("22"), new ActivityLevel("1.2"), getTagSet("horse")),
             new Person(new Name("Sparta Kook"), new Phone("91102941"), new Email("commander@example.com"),
                 new Address("271 Euljiro-3-Ga"), new Height("172.0"), new Weight("82.5"),
