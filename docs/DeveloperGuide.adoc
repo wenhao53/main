@@ -1,4 +1,4 @@
-= Personal Trainer Pro- Developer Guide
+= Personal Trainer Pro (PTP) - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
