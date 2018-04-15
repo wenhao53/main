@@ -1,10 +1,9 @@
-//@@author wenhao53
-
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+//@@author wenhao53
 /**
  * Represents a Person's height (in cm) in the Personal Trainer Pro app.
  * Guarantees: immutable; is valid as declared in {@link #isValidHeight(String)}

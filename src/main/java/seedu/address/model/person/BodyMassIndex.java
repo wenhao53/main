@@ -1,7 +1,6 @@
-//@@author wenhao53
-
 package seedu.address.model.person;
 
+//@@author wenhao53
 /**
  * Represents a Person's Body Mass Index (BMI) (in kg/m^2) in the Personal Trainer Pro app.
  * Guarantees: mutable; is valid long as Height as declared in {@link #isValidHeight(String)} and Weight as
@@ -21,8 +20,6 @@ public class BodyMassIndex {
     private double heightValue;
     private double weightValue;
 
-    private String bodyMassIndexString;
-
     /**
      * Constructs a {@code BodyMassIndex}.
      *
@@ -32,13 +29,13 @@ public class BodyMassIndex {
     public BodyMassIndex(String height, String weight) {
         bodyMassIndexValue = getBodyMassIndexValue(height, weight);
         this.classification = getBodyMassIndexClassificationFromValue(bodyMassIndexValue);
-        this.value = formatBodyMassIndexStringForDisplay(bodyMassIndexValue);
+        this.value = convertBodyMassIndexValueToStringForDisplay(bodyMassIndexValue);
     }
 
     /*
      * Formats the BMI value of a Person into a String, displayed to two decimal places.
      */
-    private String formatBodyMassIndexStringForDisplay(Double value) {
+    private String convertBodyMassIndexValueToStringForDisplay(Double value) {
         return String.format("%.2f", value);
 
     }

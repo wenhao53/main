@@ -1,5 +1,3 @@
-//@@author wenhao53
-
 package seedu.address.model.person;
 
 import static org.junit.Assert.assertFalse;
@@ -9,7 +7,7 @@ import org.junit.Test;
 
 import seedu.address.testutil.Assert;
 
-
+//@@author wenhao53
 public class HeightTest {
 
     @Test

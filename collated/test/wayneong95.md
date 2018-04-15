@@ -1,124 +1,39 @@
 # wayneong95
-###### \java\guitests\guihandles\CalendarWindowHandle.java
+###### /java/seedu/address/ui/CalendarWindowTest.java
 ``` java
 
-/**
- * A handler for the {@code CalendarWindow} of the UI.
- */
-public class CalendarWindowHandle extends NodeHandle<Node> {
+public class CalendarWindowTest extends GuiUnitTest {
+    private ShowCalendarEvent showCalendarEventstub;
 
-    public static final String CALENDARWINDOW_ID = "#calendar";
+    private CalendarWindow calendarWindow;
+    private CalendarWindowHandle calendarWindowHandle;
 
-    private boolean isWebViewLoaded = true;
+    @Before
+    public void setUp() {
+        showCalendarEventstub = new ShowCalendarEvent();
+        guiRobot.interact(() -> calendarWindow = new CalendarWindow());
+        uiPartRule.setUiPart(calendarWindow);
 
-    private URL lastRememberedUrl;
-
-    public CalendarWindowHandle(Node calendarWindowNode) {
-        super(calendarWindowNode);
-
-        WebView webView = getChildNode(CALENDARWINDOW_ID);
-        WebEngine engine = webView.getEngine();
-        new GuiRobot().interact(() -> engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
-            if (newState == Worker.State.RUNNING) {
-                isWebViewLoaded = false;
-            } else if (newState == Worker.State.SUCCEEDED) {
-                isWebViewLoaded = true;
-            }
-        }));
+        calendarWindowHandle = new CalendarWindowHandle(calendarWindow.getRoot());
     }
 
-    /**
-     * Returns the {@code URL} of the currently loaded page.
-     */
-    public URL getLoadedUrl() {
-        return WebViewUtil.getLoadedUrl(getChildNode(CALENDARWINDOW_ID));
-    }
+    @Test
+    public void display() throws Exception {
+        // updated default window
+        URL expectedDefaultPageUrl = MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE);
+        assertFalse(expectedDefaultPageUrl.equals(calendarWindowHandle.getLoadedUrl()));
 
-    /**
-     * Remembers the {@code URL} of the currently loaded page.
-     */
-    public void rememberUrl() {
-        lastRememberedUrl = getLoadedUrl();
-    }
-
-    /**
-     * Returns true if the current {@code URL} is different from the value remembered by the most recent
-     * {@code rememberUrl()} call.
-     */
-    public boolean isUrlChanged() {
-        return !lastRememberedUrl.equals(getLoadedUrl());
-    }
-
-    /**
-     * Returns true if the browser is done loading a page, or if this browser has yet to load any page.
-     */
-    public boolean isLoaded() {
-        return isWebViewLoaded;
+        /*Does not work on Travis. Use for local testing.
+        // calendar window
+        postNow(showCalendarEventstub);
+        URL expectedCalendarWindow = new URL(CalendarWindow.CALENDAR_PAGE_URL);
+        waitUntilCalendarLoaded(calendarWindowHandle);
+        assertEquals(expectedCalendarWindow, calendarWindowHandle.getLoadedUrl());
+        */
     }
 }
 ```
-###### \java\seedu\address\logic\commands\AddEventCommandTest.java
-``` java
-
-/**Test for AddEvent command*/
-public class AddEventCommandTest {
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
-    @Test
-    public void constructor_nullEvent_throwsNullPointerException() {
-        thrown.expect(NullPointerException.class);
-        new AddEventCommand(null);
-    }
-    /* Works only on manual testing as it requires authentication by the user.
-    @Test
-    public void execute_event_addSuccessful() throws Exception {
-        CalendarEvent validEvent = new EventBuilder().build();
-
-        CommandResult commandResult = getAddEventCommandForEvent(validEvent).execute();
-
-        assertEquals(String.format(AddEventCommand.MESSAGE_SUCCESS, validEvent), commandResult.feedbackToUser);
-    } */
-
-    /**
-     * Tests for same command created by the same event.
-     */
-    @Test
-    public void addEvent_sameEvent() {
-        CalendarEvent event1 = new EventBuilder().withEventName("Weights Training").build();
-        AddEventCommand command1 = new AddEventCommand(event1);
-        AddEventCommand command2 = new AddEventCommand(event1);
-
-        //Tests if command1 is equals to command2.
-        assertTrue(command1.equals(command2));
-    }
-    /**
-     * Generates a new AddEventCommand with the details of the given CalendarEvent.
-     */
-    private AddEventCommand getAddEventCommandForEvent(CalendarEvent event) {
-        AddEventCommand command = new AddEventCommand(event);
-        return command;
-    }
-}
-```
-###### \java\seedu\address\logic\commands\CalendarCommandTest.java
-``` java
-
-public class CalendarCommandTest {
-    @Rule
-    public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
-
-    @Test
-    public void execute_calendar_success() {
-        CommandResult result = new CalendarCommand().execute();
-        assertEquals(SHOWING_CALENDAR_MESSAGE, result.feedbackToUser);
-        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof ShowCalendarEvent);
-        assertTrue(eventsCollectorRule.eventsCollector.getSize() == 1);
-    }
-}
-```
-###### \java\seedu\address\logic\parser\AddEventCommandParserTest.java
+###### /java/seedu/address/logic/parser/AddEventCommandParserTest.java
 ``` java
 
 public class AddEventCommandParserTest {
@@ -226,7 +141,149 @@ public class AddEventCommandParserTest {
     }
 }
 ```
-###### \java\seedu\address\model\CalendarEvent\CalendarEventTest.java
+###### /java/seedu/address/logic/commands/AddEventCommandTest.java
+``` java
+
+/**Test for AddEvent command*/
+public class AddEventCommandTest {
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void constructor_nullEvent_throwsNullPointerException() {
+        thrown.expect(NullPointerException.class);
+        new AddEventCommand(null);
+    }
+    /* Works only on manual testing as it requires authentication by the user.
+    @Test
+    public void execute_event_addSuccessful() throws Exception {
+        CalendarEvent validEvent = new EventBuilder().build();
+
+        CommandResult commandResult = getAddEventCommandForEvent(validEvent).execute();
+
+        assertEquals(String.format(AddEventCommand.MESSAGE_SUCCESS, validEvent), commandResult.feedbackToUser);
+    } */
+
+    /**
+     * Tests for same command created by the same event.
+     */
+    @Test
+    public void addEvent_sameEvent() {
+        CalendarEvent event1 = new EventBuilder().withEventName("Weights Training").build();
+        AddEventCommand command1 = new AddEventCommand(event1);
+        AddEventCommand command2 = new AddEventCommand(event1);
+
+        //Tests if command1 is equals to command2.
+        assertTrue(command1.equals(command2));
+    }
+    /**
+     * Generates a new AddEventCommand with the details of the given CalendarEvent.
+     */
+    private AddEventCommand getAddEventCommandForEvent(CalendarEvent event) {
+        AddEventCommand command = new AddEventCommand(event);
+        return command;
+    }
+}
+```
+###### /java/seedu/address/logic/commands/CalendarCommandTest.java
+``` java
+
+public class CalendarCommandTest {
+    @Rule
+    public final EventsCollectorRule eventsCollectorRule = new EventsCollectorRule();
+
+    @Test
+    public void execute_calendar_success() {
+        CommandResult result = new CalendarCommand().execute();
+        assertEquals(SHOWING_CALENDAR_MESSAGE, result.feedbackToUser);
+        assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof ShowCalendarEvent);
+        assertTrue(eventsCollectorRule.eventsCollector.getSize() == 1);
+    }
+}
+```
+###### /java/seedu/address/model/person/WeightTest.java
+``` java
+
+public class WeightTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new Weight(null));
+    }
+
+    @Test
+    public void constructor_invalidWeight_throwsIllegalArgumentException() {
+        String invalidWeight = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new Weight(invalidWeight));
+    }
+
+    @Test
+    public void isValidWeight() {
+        // null weight
+        Assert.assertThrows(NullPointerException.class, () -> Weight.isValidWeight(null));
+
+        // invalid weight
+        assertFalse(Weight.isValidWeight("")); // empty string
+        assertFalse(Weight.isValidWeight(" ")); // spaces only
+        assertFalse(Weight.isValidWeight("weight")); // non-numeric
+        assertFalse(Weight.isValidWeight("9p.2")); // alphabets within digits
+        assertFalse(Weight.isValidWeight("9 3")); // spaces within digits
+
+        // valid weight numbers
+        assertTrue(Weight.isValidWeight("91.1")); // exactly 3 numbers
+        assertTrue(Weight.isValidWeight("95"));
+        assertTrue(Weight.isValidWeight("105")); // heavy weight
+    }
+}
+```
+###### /java/seedu/address/model/CalendarEvent/EventTimeTest.java
+``` java
+
+public class EventTimeTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new EventStartTime(null));
+        Assert.assertThrows(NullPointerException.class, () -> new EventEndTime(null));
+    }
+
+    @Test
+    public void constructor_invalidTime_throwsIllegalArgumentException() {
+        String invalidEventTime = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new EventStartTime(invalidEventTime));
+        Assert.assertThrows(IllegalArgumentException.class, () -> new EventEndTime(invalidEventTime));
+    }
+
+    @Test
+    public void isValidEventTime() {
+        // null event time
+        Assert.assertThrows(NullPointerException.class, () -> EventStartTime.isValidTime(null));
+        Assert.assertThrows(NullPointerException.class, () -> EventEndTime.isValidTime(null));
+
+        // invalid event time
+        assertFalse(EventStartTime.isValidTime("")); // empty string
+        assertFalse(EventStartTime.isValidTime("17:MM")); // contains non-numeric characters
+        assertFalse(EventStartTime.isValidTime("17:%%")); // contains non-alphanumeric characters
+        assertFalse(EventStartTime.isValidTime("17:")); // missing minutes field
+        assertFalse(EventStartTime.isValidTime(":30")); // missing hours field
+        assertFalse(EventStartTime.isValidTime(":")); // missing both fields
+        assertFalse(EventEndTime.isValidTime("")); // empty string
+        assertFalse(EventEndTime.isValidTime("17:MM")); // contains non-numeric characters
+        assertFalse(EventEndTime.isValidTime("17:%%")); // contains non-alphanumeric characters
+        assertFalse(EventEndTime.isValidTime("17:")); // missing minutes field
+        assertFalse(EventEndTime.isValidTime(":30")); // missing hours field
+        assertFalse(EventEndTime.isValidTime(":")); // missing both fields
+
+        // valid eventName
+        assertTrue(EventStartTime.isValidTime("17:30")); // correct format
+        assertTrue(EventStartTime.isValidTime("15:30")); // correct format
+        assertTrue(EventEndTime.isValidTime("17:30")); // correct format
+        assertTrue(EventEndTime.isValidTime("15:30")); // correct format
+    }
+}
+```
+###### /java/seedu/address/model/CalendarEvent/CalendarEventTest.java
 ``` java
 
 public class CalendarEventTest {
@@ -251,7 +308,42 @@ public class CalendarEventTest {
     }
 }
 ```
-###### \java\seedu\address\model\CalendarEvent\EventDateTest.java
+###### /java/seedu/address/model/CalendarEvent/EventNameTest.java
+``` java
+
+public class EventNameTest {
+
+    @Test
+    public void constructor_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> new EventName(null));
+    }
+
+    @Test
+    public void constructor_invalidName_throwsIllegalArgumentException() {
+        String invalidEventName = "";
+        Assert.assertThrows(IllegalArgumentException.class, () -> new EventName(invalidEventName));
+    }
+
+    @Test
+    public void isValidEventName() {
+        // null eventName
+        Assert.assertThrows(NullPointerException.class, () -> EventName.isValidEventName(null));
+
+        // invalid eventName
+        assertFalse(EventName.isValidEventName("")); // empty string
+        assertFalse(EventName.isValidEventName("^")); // only non-alphanumeric characters
+        assertFalse(EventName.isValidEventName("Workout*")); // contains non-alphanumeric characters
+
+        // valid eventName
+        assertTrue(EventName.isValidEventName("weights training")); // alphabets only
+        assertTrue(EventName.isValidEventName("12345")); // numbers only
+        assertTrue(EventName.isValidEventName("2nd weight training")); // alphanumeric characters
+        assertTrue(EventName.isValidEventName("Weight Training")); // with capital letters
+        assertTrue(EventName.isValidEventName("Weight Training with Personal Trainer")); // long names
+    }
+}
+```
+###### /java/seedu/address/model/CalendarEvent/EventDateTest.java
 ``` java
 
 public class EventDateTest {
@@ -300,123 +392,7 @@ public class EventDateTest {
     }
 }
 ```
-###### \java\seedu\address\model\CalendarEvent\EventNameTest.java
-``` java
-
-public class EventNameTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new EventName(null));
-    }
-
-    @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidEventName = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new EventName(invalidEventName));
-    }
-
-    @Test
-    public void isValidEventName() {
-        // null eventName
-        Assert.assertThrows(NullPointerException.class, () -> EventName.isValidEventName(null));
-
-        // invalid eventName
-        assertFalse(EventName.isValidEventName("")); // empty string
-        assertFalse(EventName.isValidEventName("^")); // only non-alphanumeric characters
-        assertFalse(EventName.isValidEventName("Workout*")); // contains non-alphanumeric characters
-
-        // valid eventName
-        assertTrue(EventName.isValidEventName("weights training")); // alphabets only
-        assertTrue(EventName.isValidEventName("12345")); // numbers only
-        assertTrue(EventName.isValidEventName("2nd weight training")); // alphanumeric characters
-        assertTrue(EventName.isValidEventName("Weight Training")); // with capital letters
-        assertTrue(EventName.isValidEventName("Weight Training with Personal Trainer")); // long names
-    }
-}
-```
-###### \java\seedu\address\model\CalendarEvent\EventTimeTest.java
-``` java
-
-public class EventTimeTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new EventStartTime(null));
-        Assert.assertThrows(NullPointerException.class, () -> new EventEndTime(null));
-    }
-
-    @Test
-    public void constructor_invalidTime_throwsIllegalArgumentException() {
-        String invalidEventTime = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new EventStartTime(invalidEventTime));
-        Assert.assertThrows(IllegalArgumentException.class, () -> new EventEndTime(invalidEventTime));
-    }
-
-    @Test
-    public void isValidEventTime() {
-        // null event time
-        Assert.assertThrows(NullPointerException.class, () -> EventStartTime.isValidTime(null));
-        Assert.assertThrows(NullPointerException.class, () -> EventEndTime.isValidTime(null));
-
-        // invalid event time
-        assertFalse(EventStartTime.isValidTime("")); // empty string
-        assertFalse(EventStartTime.isValidTime("17:MM")); // contains non-numeric characters
-        assertFalse(EventStartTime.isValidTime("17:%%")); // contains non-alphanumeric characters
-        assertFalse(EventStartTime.isValidTime("17:")); // missing minutes field
-        assertFalse(EventStartTime.isValidTime(":30")); // missing hours field
-        assertFalse(EventStartTime.isValidTime(":")); // missing both fields
-        assertFalse(EventEndTime.isValidTime("")); // empty string
-        assertFalse(EventEndTime.isValidTime("17:MM")); // contains non-numeric characters
-        assertFalse(EventEndTime.isValidTime("17:%%")); // contains non-alphanumeric characters
-        assertFalse(EventEndTime.isValidTime("17:")); // missing minutes field
-        assertFalse(EventEndTime.isValidTime(":30")); // missing hours field
-        assertFalse(EventEndTime.isValidTime(":")); // missing both fields
-
-        // valid eventName
-        assertTrue(EventStartTime.isValidTime("17:30")); // correct format
-        assertTrue(EventStartTime.isValidTime("15:30")); // correct format
-        assertTrue(EventEndTime.isValidTime("17:30")); // correct format
-        assertTrue(EventEndTime.isValidTime("15:30")); // correct format
-    }
-}
-```
-###### \java\seedu\address\model\person\WeightTest.java
-``` java
-
-public class WeightTest {
-
-    @Test
-    public void constructor_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> new Weight(null));
-    }
-
-    @Test
-    public void constructor_invalidWeight_throwsIllegalArgumentException() {
-        String invalidWeight = "";
-        Assert.assertThrows(IllegalArgumentException.class, () -> new Weight(invalidWeight));
-    }
-
-    @Test
-    public void isValidWeight() {
-        // null weight
-        Assert.assertThrows(NullPointerException.class, () -> Weight.isValidWeight(null));
-
-        // invalid weight
-        assertFalse(Weight.isValidWeight("")); // empty string
-        assertFalse(Weight.isValidWeight(" ")); // spaces only
-        assertFalse(Weight.isValidWeight("weight")); // non-numeric
-        assertFalse(Weight.isValidWeight("9p.2")); // alphabets within digits
-        assertFalse(Weight.isValidWeight("9 3")); // spaces within digits
-
-        // valid weight numbers
-        assertTrue(Weight.isValidWeight("91.1")); // exactly 3 numbers
-        assertTrue(Weight.isValidWeight("95"));
-        assertTrue(Weight.isValidWeight("105")); // heavy weight
-    }
-}
-```
-###### \java\seedu\address\testutil\EventBuilder.java
+###### /java/seedu/address/testutil/EventBuilder.java
 ``` java
 
 /**
@@ -506,37 +482,61 @@ public class EventBuilder {
 
 }
 ```
-###### \java\seedu\address\ui\CalendarWindowTest.java
+###### /java/guitests/guihandles/CalendarWindowHandle.java
 ``` java
 
-public class CalendarWindowTest extends GuiUnitTest {
-    private ShowCalendarEvent showCalendarEventstub;
+/**
+ * A handler for the {@code CalendarWindow} of the UI.
+ */
+public class CalendarWindowHandle extends NodeHandle<Node> {
 
-    private CalendarWindow calendarWindow;
-    private CalendarWindowHandle calendarWindowHandle;
+    public static final String CALENDARWINDOW_ID = "#calendar";
 
-    @Before
-    public void setUp() {
-        showCalendarEventstub = new ShowCalendarEvent();
-        guiRobot.interact(() -> calendarWindow = new CalendarWindow());
-        uiPartRule.setUiPart(calendarWindow);
+    private boolean isWebViewLoaded = true;
 
-        calendarWindowHandle = new CalendarWindowHandle(calendarWindow.getRoot());
+    private URL lastRememberedUrl;
+
+    public CalendarWindowHandle(Node calendarWindowNode) {
+        super(calendarWindowNode);
+
+        WebView webView = getChildNode(CALENDARWINDOW_ID);
+        WebEngine engine = webView.getEngine();
+        new GuiRobot().interact(() -> engine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == Worker.State.RUNNING) {
+                isWebViewLoaded = false;
+            } else if (newState == Worker.State.SUCCEEDED) {
+                isWebViewLoaded = true;
+            }
+        }));
     }
 
-    @Test
-    public void display() throws Exception {
-        // updated default window
-        URL expectedDefaultPageUrl = MainApp.class.getResource(FXML_FILE_FOLDER + DEFAULT_PAGE);
-        assertFalse(expectedDefaultPageUrl.equals(calendarWindowHandle.getLoadedUrl()));
+    /**
+     * Returns the {@code URL} of the currently loaded page.
+     */
+    public URL getLoadedUrl() {
+        return WebViewUtil.getLoadedUrl(getChildNode(CALENDARWINDOW_ID));
+    }
 
-        /*Does not work on Travis. Use for local testing.
-        // calendar window
-        postNow(showCalendarEventstub);
-        URL expectedCalendarWindow = new URL(CalendarWindow.CALENDAR_PAGE_URL);
-        waitUntilCalendarLoaded(calendarWindowHandle);
-        assertEquals(expectedCalendarWindow, calendarWindowHandle.getLoadedUrl());
-        */
+    /**
+     * Remembers the {@code URL} of the currently loaded page.
+     */
+    public void rememberUrl() {
+        lastRememberedUrl = getLoadedUrl();
+    }
+
+    /**
+     * Returns true if the current {@code URL} is different from the value remembered by the most recent
+     * {@code rememberUrl()} call.
+     */
+    public boolean isUrlChanged() {
+        return !lastRememberedUrl.equals(getLoadedUrl());
+    }
+
+    /**
+     * Returns true if the browser is done loading a page, or if this browser has yet to load any page.
+     */
+    public boolean isLoaded() {
+        return isWebViewLoaded;
     }
 }
 ```
