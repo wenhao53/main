@@ -83,7 +83,7 @@ public class SampleDataUtil {
                     new Gender("M"), new Age("22"), new ActivityLevel("1.2"), getTagSet("korean")),
             new Person(new Name("Tropi Us"), new Phone("91239910"), new Email("grassbird@example.com"),
                 new Address("21 Grasslands Ave, #01-20"), new Height("189.0"), new Weight("65.5"),
-                    new Gender("M"), new Age("22"), new ActivityLevel("1.2"), getTagSet("grass type"))
+                    new Gender("M"), new Age("22"), new ActivityLevel("1.2"), getTagSet("grasstype"))
         };
     }
 
