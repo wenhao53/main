@@ -292,7 +292,7 @@ Calendar on a separate browser.
 //tag:: gender[]
 @by Ivan
 
-==== Gender attribute : Current Implementation
+=== Gender attribute : Current Implementation
 
 The Gender attribute only accepts male and female genders. This is shown by only accepting characters M, F, m and f and only single letters are accepted. The 'GENDER_VALIDATION_REGEX' ensures that only the selected single alphabets are able to be input into the command line.
 
@@ -372,6 +372,7 @@ As one can see it will throw an exception be it either command when a duplicate 
 
 @by Wenhao
 // tag::bmiclassification[]
+
 === Auto-assigning and Sorting of BMI Classification labels to clients
 
 The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
