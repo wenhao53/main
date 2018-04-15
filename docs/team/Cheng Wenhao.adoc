@@ -14,19 +14,19 @@ Personal Trainer Pro is a desktop application used by personal trainers and thei
 
 * *Major enhancement*: changed background colour for person card to be *attribute-dependent*
 ** What it does: The BMI of each person is automatically recalculated with any updates in height or weight. The classification of the BMI (Underweight, Acceptable, Overweight, Obese)
-changes after is reflected intuitively as the background colour of the PersonCard to reduce the cluttering of information displayed on the card.
+changes after is reflected as the change in background colour of the PersonCard.
 ** Justification: At times, personal trainers want to design a set of workout tailored for a group of people and more often than not, workouts are tailored based on the client's BMI.
 Allowing the personal trainer to know at a quick glance how many of his clients fall under which BMI classification would allow the trainer to better gauge what kind of workouts is needed.
-** Highlights: the background colour of the PersonCard is changed immediately upon any changes to the BMI classification with each edit command. Listing of clients with the same BMI classification is intuitive since all clients with the same BMI classification have the same background colour for their card.
+** Highlights: the background colour of the PersonCard is changed immediately upon any changes to the BMI classification with each edit command. This also reduces the cluttering of information displayed on the card.
 
-* *Minor enhancement*: added a *filtering command to sieve of clients of the same BMI classification* that complements the justification above
-* *Minor enhancement*: edited the case-sensitivity of the `add` command to ensure that clients with the exact same alphabetical name (may be different case) and same attributes will not be added as a duplicate.
+* *Minor enhancement*: added a *filtering command to sieve of clients of the same BMI classification* that complements the justification above.
 * *Minor enhancement*: added a height and BMI attribute to facilitate the classification of clients according to BMI.(Pull requests https://github.com/CS2103JAN2018-F12-B2/main/pull/27/[#27], https://github.com/CS2103JAN2018-F12-B2/main/pull/38/[#38])
 
-* *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/src/master/collated/functional/wenhao53.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/src/master/collated/test/wenhao53.md[Test code]]
+* *Code contributed*: [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/functional/wenhao53.md[Functional code]] [https://github.com/CS2103JAN2018-F12-B2/main/blob/master/collated/test/wenhao53.md[Test code]]
 
 * *Future implementations*: To make use of Google Charts API to provide an interactive display in Weight Logging for each client.
 This has already been done and tested working in a soft release but is not included in the `v1.5` release of the product due to testing inconsistencies and difficulties.
+
 * *Other contributions*:
 
 ** Project management:

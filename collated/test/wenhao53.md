@@ -1,21 +1,6 @@
 # wenhao53
 ###### /java/seedu/address/logic/parser/ClassificationCommandParserTest.java
 ``` java
-
-package seedu.address.logic.parser;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
-
-import org.junit.Test;
-
-import seedu.address.logic.commands.ClassificationCommand;
-import seedu.address.model.person.NameContainsClassificationPredicate;
-
 public class ClassificationCommandParserTest {
 
     private ClassificationCommandParser parser = new ClassificationCommandParser();
@@ -50,43 +35,8 @@ public class ClassificationCommandParserTest {
 ```
 ###### /java/seedu/address/logic/commands/ClassificationCommandTest.java
 ``` java
-
-package seedu.address.logic.commands;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_KEYWORD;
-import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.ClassificationCommand.MESSAGE_USAGE;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.Test;
-
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.UndoRedoStack;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsClassificationPredicate;
-import seedu.address.model.person.Person;
-
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ClassificationCommand}.
  */
 public class ClassificationCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -239,7 +189,7 @@ public class ClassificationCommandTest {
      * Asserts that {@code command} is not successfully executed, and<br>
      *     - the command feedback is equal to {@code expectedMessage}<br>
      *     - there is no {@code FilteredList<Person>} displayed<br>
-     *     - the {@code AddressBook} in model remains the same after executing the {@code command}
+     *     - the model remains the same after executing the {@code command}
      */
     private void assertCommandFailure(ClassificationCommand command, String expectedMessage) {
         CommandResult commandResult = command.execute();
@@ -249,17 +199,6 @@ public class ClassificationCommandTest {
 ```
 ###### /java/seedu/address/model/person/HeightTest.java
 ``` java
-
-package seedu.address.model.person;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import seedu.address.testutil.Assert;
-
-
 public class HeightTest {
 
     @Test

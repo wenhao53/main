@@ -369,9 +369,9 @@ As one can see it will throw an exception be it either command when a duplicate 
 
 
 
-// tag::bmiclassification[]
-@by Wenhao
 
+@by Wenhao
+// tag::bmiclassification[]
 === Auto-assigning and Sorting of BMI Classification labels to clients
 
 The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
@@ -422,8 +422,9 @@ in a way that will not affect the storage or retrieval of other tags associated 
 
 As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
 The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
-to the BMI classification (i.e. acceptable, overweight, underweight, obese)
-//end::bmiclassification[]
+to the BMI classification (i.e. acceptable, overweight, underweight, obese).
+
+// end::bmiclassification[]
 
 
 // tag::undoredo[]

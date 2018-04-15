@@ -1,5 +1,3 @@
-//@@author wenhao53
-
 package seedu.address.logic.commands;
 
 import static org.junit.Assert.assertEquals;
@@ -34,8 +32,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsClassificationPredicate;
 import seedu.address.model.person.Person;
 
+//@@author wenhao53
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code ClassificationCommand}.
  */
 public class ClassificationCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -188,7 +187,7 @@ public class ClassificationCommandTest {
      * Asserts that {@code command} is not successfully executed, and<br>
      *     - the command feedback is equal to {@code expectedMessage}<br>
      *     - there is no {@code FilteredList<Person>} displayed<br>
-     *     - the {@code AddressBook} in model remains the same after executing the {@code command}
+     *     - the model remains the same after executing the {@code command}
      */
     private void assertCommandFailure(ClassificationCommand command, String expectedMessage) {
         CommandResult commandResult = command.execute();

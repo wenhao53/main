@@ -125,6 +125,7 @@ public class ParserUtil {
         requireNonNull(height);
         return height.isPresent() ? Optional.of(parseHeight(height.get())) : Optional.empty();
     }
+    //@@author
 
     /**
      * Parses a {@code String weight} into a {@code Weight}.

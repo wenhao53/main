@@ -116,8 +116,8 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
@@ -312,6 +312,7 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
+
 ```
 ###### /java/seedu/address/ui/CalendarWindow.java
 ``` java
