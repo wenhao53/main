@@ -287,9 +287,9 @@ Pros: Ease of usage for users and supports Command Line Interface
 Cons: Browser window for Google Calendar within the application cannot be too big as it is limited by the positioning of other
 fxml objects such as the status bar and person list panel. This may make it harder for users to view as compared to opening up Google
 Calendar on a separate browser.
-                    // end::GoogleCalendarApi[]
+// end::GoogleCalendarApi[]
 
-//tag:: gender[]
+//tag::gender[]
 @by Ivan
 
 === Gender attribute : Current Implementation
@@ -366,6 +366,7 @@ As one can see it will throw an exception be it either command when a duplicate 
 * **Alternative 2:** Add gender as a tag
 ** Pros: It will not require a constant addition of the gender attribute, only added for the times it is needed.
 ** Cons: UI looks messy as some will have gender tags and some will not have gender tags which does not make sense, since everyone has a gender.
+//end::gender[]
 
 
 
@@ -1197,6 +1198,7 @@ Use case resumes at step 2.
 
 _{More to be added}_
 
+//tag::glossary[]
 [appendix]
 == Glossary
 
@@ -1232,23 +1234,7 @@ Same as above
 
 [[goals]] Goals::
 A combination of desirable attributes that clients want to achieve
-
-[appendix]
-== Product Survey
-
-*Product Name*
-
-Author: ...
-
-Pros:
-
-* ...
-* ...
-
-Cons:
-
-* ...
-* ...
+//end::glossary[]
 
 [appendix]
 == Instructions for Manual Testing
@@ -1272,7 +1258,18 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
+. Shutdown
+
+.. Type 'exit' on the Command Line Interface bar in order to close or shutdown the application.
+.. To reload the application look at the section 'Initial launch' above.
+
+=== Viewing the help interface
+
+. Using the help command and interface to view the user guide.
+
+.. Prerequisites: None.
+.. Test case: `help` +
+   Expected: The help interface appears, the user guide is displayed within the help interface for the user.
 
 === Deleting a person
 
@@ -1283,8 +1280,9 @@ _{ more test cases ... }_
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 .. Test case: `delete 0` +
    Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
+.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
+
 
 === Filtering persons according to BMI Classification
 
@@ -1308,10 +1306,73 @@ _{ more test cases ... }_
 .. Test case: `bmi notAValidKeyword overweight` +
    Expected: No change to persons listed, shows an error message saying one or more invalid keywords found.
 
-=== Saving data
+=== Adding a person
 
-. Dealing with missing/corrupted data files
+. Adding a person to the list. Alias `a` can be used.
 
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
+.. Prerequisites: Add a person using the `add` command.
+.. Test case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 h/169.0 w/66.7 g/f age/21 al/1.9 t/criminal` +
+   Expected: Person called Betsy is created and added to the list with the above attributes and the tag of criminal. This will be accompanied with a confirmation message.
+.. Test case: `a n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 h/173.0 w/55.5 g/M age/22 al/1.2` +
+   Expected: Person called John is created and added to the list with the above attributes and with no tags. The alias a is used for the add command.
+.. Other incorrect add commands to try: `add`, `add John Doe 98765432 ....` (where prefixes are not given) +
+   Expected: Error message relevant to error is shown.
 
-_{ more test cases ... }_
+=== Editing a person
+
+. Editing a person on the list. Alias `e` can be used.
+
+.. Prerequisites: Edit a person using the `edit` command. A person on the list to be edited.
+.. Test case: `edit 1 h/170` +
+   Expected: First contact is edited on the list. The height of the first contact is changed to 170.
+.. Test case: `e 0 w/60` +
+   Expected: No person is edited. Error details shown in the status message.
+.. Other incorrect edit commands to try: `edit`, `e x w/50` (where x is larger than the list size) +
+   Expected: Similar to previous.
+
+=== Selecting a person
+
+. Selects a person from the list and shows the person card on the browser, hovering mouse over the person card will display more attributes. Alias `s` can be used.
+
+.. Prerequisites: Selects a person using the `select` command. A person on the list to be selected.
+.. Test case: `select 1` +
+   Expected: First contact is on the list is selected. The person card is displayed on the browser.
+.. Test case: `s 0` +
+   Expected: No person is selected. Error details shown in the status message.
+.. Other incorrect select commands to try: `select`, `s x` (where x is larger than the list size) +
+   Expected: Similar to previous
+
+=== Show Calories a person requires : `Calories`
+
+. Selects the person and shows the amount of calories needed to increase, decrease or maintain in weight. Alias `cal` can be used.
+
+.. Prerequisites: Shows the calories of a person using the `Calories` command. A person on the list that has all attributes filled in.
+.. Test case: `Calories 1` +
+   Expected: Calories of the first contact on the list is shown in the browser panel.
+.. Test case: `Cal 0` +
+   Expected: Calories is not shown. Error details shown in status message.
+.. Other incorrect calories commands to try: `calories`, `cal x` (where x is larger than the list size) +
+   Expected: Similar to previous.
+
+// tag::GoogleCalendar[]
+=== Show Google Calendar
+
+. Show the Google Calendar
+.. Prerequisites: User must log in for the first time upon use of 'calendar' command.
+.. Test case: `calendar` +
+Expected: Google Calendar is shown in the UI.
+
+=== Adding a calendar event
+
+. Adds a calendar event in the users' Google Calendar
+
+.. Prerequisites: User have to be logged in to their Google account. User have to allow Personal Trainer Pro (PTP) to manage their Google calendar upon first use of 'addEvent' command (will be prompted via a new browser). If user chose the wrong Google Account or did not allow PTP to manage their calendar, locate the credentials under 'C:\Users\[User's name]\.credentials\calendar-java-quickstart' and delete the credential to start over. Reopen the application and repeat the steps.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30 ` +
+Expected: New calendar event is added. 'New event added: Weights Training Start Date: 2017-11-30 Start Time: 11:30 End Date: 2017-11-30 End Time: 13:30' shown in result display. Refresh Google Calendar by using 'calendar' command to see updated Google Calendar.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-10-30 et/13:30 `
+Expected: Event not added due to invalid end date. 'End Date cannot be earlier than Start Date!' shown in result display.
+.. Test case: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/10:30  `
+Expected: Event not added due to invalid end time. 'End Time cannot be earlier than Start Time!' shown in result display.
+.. Other incorrect addEvent commands to try: `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/hh:30 `, `addEvent n/Weights Training sd/2017-mm-30 st/11:30 ed/2017-11-30 et/11:30` +
+Expected: Error messages for the individual fields will be displayed. Eg. 'Event end time should only contain numbers in the HH:MM format. Eg. 11:30'
+// end::GoogleCalendar[]
