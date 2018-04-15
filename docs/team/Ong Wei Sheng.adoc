@@ -2,7 +2,7 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: Personal Trainer Pro Application
+== PROJECT: Personal Trainer Pro
 
 ---
 
