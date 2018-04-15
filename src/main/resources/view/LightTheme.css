@@ -114,8 +114,8 @@
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-color: #000000;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
@@ -310,9 +310,11 @@
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
 }
-/* @@author wenhao53 */
 
+/* @@author wenhao53 */
 #cardPane {
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
 }
 
 .ACCEPTABLE {
@@ -328,8 +330,8 @@
 }
 
 .OVERWEIGHT {
-    -fx-background-color: #ffffdd;
-    -fx-border-color: derive(#ffffdd, -30%);
+    -fx-background-color: #ffe3bf;
+    -fx-border-color: derive(#ffe3bf, -30%);
     -fx-border-width: 2;
 }
 
@@ -338,7 +340,6 @@
     -fx-border-color: derive(#ffffdd, -30%);
     -fx-border-width: 2;
 }
-
 /* @@author */
 
 #commandTypeLabel {
@@ -347,7 +348,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent transparent transparent transparent;
     -fx-background-insets: 0;
     -fx-border-color: #dddddd #dddddd #dddddd #dddddd;
     -fx-border-insets: 0;

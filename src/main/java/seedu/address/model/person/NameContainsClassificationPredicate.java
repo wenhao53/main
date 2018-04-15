@@ -1,5 +1,3 @@
-//@@author wenhao53
-
 package seedu.address.model.person;
 
 import java.util.List;
@@ -7,6 +5,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+//@@author wenhao53
 /**
  * Tests that a {@code Person}'s {@code BodyMassIndexClassification} matches the given search query.
  */

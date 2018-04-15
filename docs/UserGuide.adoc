@@ -246,6 +246,10 @@ Shows the calories of the 2nd person in the address book.
 Shows the calories of the 1st person in the results of the `find` command.
 //end::calories[]
 
+=== Weight Logging for clients `[coming in v2.0]`
+
+Users will be able to view the history of weight changes for each client in a graphical and list format.
+
 === Scheduling appointments with clients `[coming in v2.0]`
 
 === Cancelling appointments with clients `[coming in v2.0]`

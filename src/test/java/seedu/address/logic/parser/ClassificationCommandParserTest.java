@@ -1,5 +1,3 @@
-//@@author wenhao53
-
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -14,6 +12,7 @@ import org.junit.Test;
 import seedu.address.logic.commands.ClassificationCommand;
 import seedu.address.model.person.NameContainsClassificationPredicate;
 
+//@@author wenhao53
 public class ClassificationCommandParserTest {
 
     private ClassificationCommandParser parser = new ClassificationCommandParser();

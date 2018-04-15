@@ -1,21 +1,4 @@
 # hypertun
-###### /resources/view/PersonListCard.fxml
-``` fxml
-         <Label text="Name(Gender):">
-            <font>
-               <Font name="System Bold" size="12.0" />
-            </font></Label>
-      <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-            <Label fx:id="gender" alignment="CENTER" style="-fx-text-fill: crimson;" styleClass="cell_small_label" text="\$gender" />
-      </HBox>
-```
 ###### /java/seedu/address/ui/BrowserPanel.java
 ``` java
     public static final String CALCULATOR_PREFIX_URL = "http://www.calculator.net/calorie-calculator.html?ctype=metric";

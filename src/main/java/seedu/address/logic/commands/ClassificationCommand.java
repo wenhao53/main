@@ -1,9 +1,8 @@
-//@@author wenhao53
-
 package seedu.address.logic.commands;
 
 import seedu.address.model.person.NameContainsClassificationPredicate;
 
+//@@author wenhao53
 /**
  * Finds and lists all persons in the Personal Trainer Pro application whose BodyMassIndexClassification matches
  * any of the given keywords.

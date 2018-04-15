@@ -370,9 +370,9 @@ As one can see it will throw an exception be it either command when a duplicate 
 
 
 
-// tag::bmiclassification[]
-@by Wenhao
 
+@by Wenhao
+// tag::bmiclassification[]
 === Auto-assigning and Sorting of BMI Classification labels to clients
 
 The user will be able to have a quick glance at the list of clients that are sorted according to their BMI Classification (Obese, Overweight,
@@ -382,14 +382,14 @@ The BMI classification will be adapted from the standards set by the World Healt
 client will differ in colour according to the BMI classification for that particular client.
 
 Current BMI standards set by the World Health Organisation (WHO) are as follows:
-[width="59%",cols="32%,<48%,<20%",options="header",]
+[width="70%",cols="25%,<30%,<45%",options="header",]
 |=======================================================================
 |Classification |BMI Range |Background Colour (Light Theme)
 |**Underweight** |BMI < 18.5 |Light Yellow
 
 |**Acceptable** |18.5 &le; BMI &le; 24.9 |Light Green
 
-|**Overweight** |25 &le; BMI &le; 29.9 |Light Yellow
+|**Overweight** |25 &le; BMI &le; 29.9 |Light Orange
 
 |**Obese** |BMI &ge; 30 |Light Red
 |=======================================================================
@@ -411,7 +411,7 @@ The BMI of each client is stored as a Person attribute and is currently displaye
 
 * **Alternative 1 (current choice):** Individual client's BMI will not be shown as a number, but classification is reflected using the Person card's background colour
 ** Pros: Easy to see at first glance which client is in which classification, minimise information included in a Person card.
-** Cons: Determining a client's actual BMI will require the trainer to perform a manual calculation since the actual BMI value is not reflected in the application.
+** Cons: User has to select a client in order to view his/her BMI value.
 
 * **Alternative 2:** Display client's BMI classification as tags to their Person card
 ** Pros: Ease of viewing for trainer, actual BMI value will be available at first glance.
@@ -423,8 +423,9 @@ in a way that will not affect the storage or retrieval of other tags associated 
 
 As the user may have a large list of clients, he may wish to filter out clients that belong to a certain BMI classification.
 The `bmi` command was implemented to allow the user to filter the list of clients using the case-insensitive keywords that corresponds
-to the BMI classification (i.e. acceptable, overweight, underweight, obese)
-//end::bmiclassification[]
+to the BMI classification (i.e. acceptable, overweight, underweight, obese).
+
+// end::bmiclassification[]
 
 
 // tag::undoredo[]
@@ -987,9 +988,9 @@ See this https://github.com/se-edu/addressbook-level4/pull/599[PR] for the step-
   A chart will also be plotted based on their progress.
 
 * Wenhao:
-* Minor - Sorting command to sort the list of clients by BMI range
-* Major - Automatically generate weight classification (Overweight/Acceptable/Underweight) based on
-  current attributes of each client. This will be listed in a similar fashion to tags under a client's name
+* Minor - Filter command to group the list of clients by BMI Classifications
+* Major - Automatically generate BMI classifications (Overweight/Acceptable/Underweight) based on
+  current attributes of each client. BMI Classifications will be reflected as the background colour of the person's card
 
 * Wei Sheng:
 * Minor - Weight Attribute added. Since this is an application for fitness trainers, the weight of the clients is
@@ -1017,30 +1018,40 @@ clients to view the training sessions they have signed up for.
 * set goals for clients and see clients' feedback
 
 [appendix]
+// tag::userstories[]
 == User Stories
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="70%",cols="15%,15%,<35%,<35%",options="header",]
 |=======================================================================
 |Priority |As a ... |I want to ... |So that I can...
 |`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
 
-|`* * *` |user |add a new person |
+|`* * *` |user |add a new client |expand and record my client database
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |user |delete a client |remove entries that I no longer need
 
-|`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
+|`* * *` |user |edit a client | edit the attributes of my clients as they progress
+
+|`* * *` |user |find a client by name |locate details of clients without having to go through the entire list
 
 |`* * *` |user |update the weight of my client |track his/her weight progress
 
 |`* * *` |user |filter my clients according to BMI classification |easily view clients with similar BMI
 
+|`* * *` |user |schedule appointments with my clients |craft my schedule and ensure that I am able to balance my efforts among clients
+
+|`* *` |user |determine the caloric needs of my clients |help my clients to plan a healthy program that suits their needs
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |track the weight changes of my clients |view my clients' progression till date using past weight updates
-|=======================================================================
 
+|`*` |user |communicate with my clients |address any needs or instructions outside of workout sessions
+
+|=======================================================================
+// end::userstories[]
 
 
 [appendix]
@@ -1054,9 +1065,9 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 *MSS*
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Personal Trainer Pro shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Personal Trainer Pro deletes the person
 +
 Use case ends.
 
@@ -1070,29 +1081,29 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. Personal Trainer Pro shows an error message.
 +
 Use case resumes at step 2.
 
-
+// tag::usecases[]
 === Use case: Add person
 
 *MSS*
 
 1. User requests to add person
-2. AddressBook prompts for data input
+2. Personal Trainer Pro prompts for data input
 3. User inputs data for person to be added
-4. AddressBook adds the new person
+4. Personal Trainer Pro adds the new person
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 3a. Person of the same name (regardless of case) is already in AddressBook
+* 3a. Person of the same name (regardless of case) is already in Personal Trainer Pro
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. Personal Trainer Pro shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1102,9 +1113,9 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests to add goal
-2. AddressBook prompts for data input
+2. Personal Trainer Pro prompts for data input
 3. User inputs person name and goal to be added
-4. AddressBook adds the new goal for the person
+4. Personal Trainer Pro adds the new goal for the person
 +
 Use case ends.
 
@@ -1114,7 +1125,7 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. Personal Trainer Pro shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1122,7 +1133,29 @@ Use case resumes at step 2.
 * 3b. The input goal is empty.
 +
 [none]
-** 3b1. AddressBook shows an error message.
+** 3b1. Personal Trainer Pro shows an error message.
++
+Use case resumes at step 2.
+
+
+=== Use case: Filter persons according to BMI Classification
+
+*MSS*
+
+1. User requests to filter persons
+2. Personal Trainer Pro prompts for classification input
+3. User inputs BMI classification to filter
+4. Personal Trainer Pro displays a list of persons with that BMI classification
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 3a. User does not provide any input keywords, or provides invalid keywords
++
+[none]
+** 3a1. Personal Trainer Pro shows an error message.
 +
 Use case resumes at step 2.
 
@@ -1132,9 +1165,9 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests to track weight changes
-2. AddressBook prompts for data input
+2. Personal Trainer Pro prompts for data input
 3. User inputs person to track past weight
-4. AddressBook displays a chart showing past changes in weight
+4. Personal Trainer Pro displays a chart showing past changes in weight
 +
 Use case ends.
 
@@ -1144,17 +1177,11 @@ Use case ends.
 * 3a. The given index is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 3a1. Personal Trainer Pro shows an error message.
 +
 Use case resumes at step 2.
+// end::usecases[]
 
-[none]
-* 4a. There are no changes to track.
-+
-[none]
-** 4a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
 
 
 
@@ -1255,6 +1282,29 @@ These instructions only provide a starting point for testers to work on; testers
 .. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) +
    Expected: Similar to previous.
 
+
+=== Filtering persons according to BMI Classification
+
+. Filters persons according to BMI classification at any point of time
+
+.. Prerequisites: None
+.. Test case: `bmi obese` +
+   Expected: Shows all persons with obese BMI classification. Background colour of all person cards should be light red in colour.
+.. Test case: `bmi acceptable` +
+   Expected: Shows all persons with acceptable BMI classification. Background colour of all person cards should be light green in colour.
+.. Test case: `bmi underweight` +
+   Expected: Shows all persons with underweight BMI classification. Background colour of all person cards should be light yellow in colour.
+.. Test case: `bmi overweight` +
+   Expected: Shows all persons with overweight BMI classification. Background colour of all person cards should be light orange in colour.
+.. Test case: `bmi overweight underweight acceptable obese` +
+   Expected: Shows all persons with all BMI classification. Listed persons result should match that of the `list` command.
+.. Test case: `bmi` +
+   Expected: No change to persons listed, shows an error message of invalid command format.
+.. Test case: `bmi notAValidKeyword` +
+   Expected: No change to persons listed, shows an error message saying one or more invalid keywords found.
+.. Test case: `bmi notAValidKeyword overweight` +
+   Expected: No change to persons listed, shows an error message saying one or more invalid keywords found.
+
 === Adding a person
 
 . Adding a person to the list. Alias `a` can be used.
@@ -1307,7 +1357,6 @@ These instructions only provide a starting point for testers to work on; testers
 === Show Google Calendar
 
 . Show the Google Calendar
-
 .. Prerequisites: User must log in for the first time upon use of 'calendar' command.
 .. Test case: `calendar` +
 Expected: Google Calendar is shown in the UI.
