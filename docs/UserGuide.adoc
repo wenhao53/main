@@ -65,6 +65,7 @@ Format: `help`
 
 Adds a person to the address book +
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS h/HEIGHT w/WEIGHT g/GENDER age/AGE al/ACTIVITYLEVEL [t/TAG]...`
+Alias: `a`
 
 [TIP]
 A person can have any number of tags (including 0)
@@ -164,12 +165,12 @@ Deletes the 1st person in the results of the `find` command.
 
 === Selecting a person : `select`
 
-Selects the person identified by the index number used in the last person listing. +
+Selects the person identified by the index number used in the last person listing and displays the person card that can be viewed by hovering mouse over the card. +
 Format: `select INDEX`
 Alias: `s`
 
 ****
-* Selects the person and loads the Google search page the person at the specified `INDEX`.
+* Selects the person and loads the person card at the specified `INDEX`.
 * The index refers to the index number shown in the most recent listing.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -222,6 +223,7 @@ Examples:
 * `addEvent n/Weights Training sd/2017-11-30 st/11:30 ed/2017-11-30 et/13:30`
 //end::addEvent[]
 
+//tag::calories[]
 === Show Calories a person requires : `Calories`
 
 Selects the person identified by the index number and shows the amount of calories needed to increase or decrease in weight. +
@@ -242,6 +244,7 @@ Shows the calories of the 2nd person in the address book.
 * `find Betsy` +
 `cal 1` +
 Shows the calories of the 1st person in the results of the `find` command.
+//end::calories[]
 
 === Weight Logging for clients `[coming in v2.0]`
 
