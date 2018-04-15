@@ -1,4 +1,4 @@
-= Person Trainer Pro (PTP) - User Guide
+= Personal Trainer Pro (PTP) - User Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
